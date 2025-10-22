@@ -1,37 +1,163 @@
+ body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(to bottom right, #0f2027, #203a43, #2c5364);
+  color: #f2f2f2;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  scroll-behavior: smooth;
+}
+
 header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
-    }
-
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
+  text-align: center;
+  padding: 60px 20px;
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
 }
 
-nav li {
-    margin: 0 20px;
+.profile-img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: 3px solid #00bcd4;
+  margin-bottom: 15px;
+  transition: transform 0.4s ease-in-out;
 }
 
-nav a {
-    text-decoration: none;
-    color: #fff;
+.profile-img:hover {
+  transform: scale(1.1);
 }
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+h1 {
+  font-size: 2.2em;
+  margin: 10px 0;
 }
 
-img {
-    max-width: 100%;
+.subtitle {
+  color: #aaa;
+  font-size: 1.1em;
 }
+
+.contact a {
+  color: #00bcd4;
+  text-decoration: none;
+  margin: 0 8px;
+}
+
+.section {
+  max-width: 900px;
+  margin: 60px auto;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+}
+
+h2 {
+  color: #00e0ff;
+  border-bottom: 2px solid #00e0ff;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+.card {
+  background: rgba(0, 0, 0, 0.3);
+  border-left: 4px solid #00bcd4;
+  padding: 15px 20px;
+  margin-bottom: 25px;
+  border-radius: 10px;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.card h3 {
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1em;
+}
+
+.github-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 12px;
+  background: #00bcd4;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.github-btn:hover {
+  background: #0097a7;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #333;
-    color: #fff;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9em;
+  color: #bbb;
+  background: rgba(0, 0, 0, 0.4);
 }
-      
+/* Certifications & Contact */
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 15px;
+}
+
+.card-list .card {
+  background: rgba(0, 0, 0, 0.25);
+  padding: 15px 20px;
+  border-left: 4px solid #00bcd4;
+  border-radius: 10px;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.card-list .card:hover {
+  transform: translateY(-5px);
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.card-list .card .date {
+  float: right;
+  color: #38bdf8;
+  font-weight: 600;
+}
+
+/* Contact card */
+.contact-card {
+  background: rgba(0, 0, 0, 0.25);
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.contact-card a {
+  color: #38bdf8;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.contact-card a:hover {
+  color: #00bcd4;
+}
+
