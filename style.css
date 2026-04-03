@@ -1132,6 +1132,33 @@ body.page-loaded .navbar {
 }
 
 
+/* --- Custom Cursor --- */
+*, *::before, *::after {
+    cursor: none !important;
+}
+
+.custom-cursor {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: var(--text-primary);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s ease, height 0.2s ease, background 0.2s ease, opacity 0.2s ease;
+    will-change: left, top;
+    mix-blend-mode: difference;
+}
+
+.custom-cursor.cursor-hover {
+    width: 40px;
+    height: 40px;
+    background: rgba(59, 130, 246, 0.25);
+    mix-blend-mode: normal;
+    border: 1.5px solid rgba(59, 130, 246, 0.5);
+}
+
 /* --- Custom Cursor Glow --- */
 .cursor-glow {
     position: fixed;
@@ -1140,7 +1167,7 @@ body.page-loaded .navbar {
     border-radius: 50%;
     pointer-events: none;
     z-index: 9990;
-    background: radial-gradient(circle, rgba(99, 102, 241, 0.07) 0%, rgba(99, 102, 241, 0.02) 40%, transparent 70%);
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, rgba(59, 130, 246, 0.025) 40%, transparent 70%);
     transform: translate(-50%, -50%);
     transition: width 0.4s ease, height 0.4s ease, background 0.4s ease;
     will-change: left, top;
@@ -1149,15 +1176,15 @@ body.page-loaded .navbar {
 .cursor-glow.cursor-hover {
     width: 400px;
     height: 400px;
-    background: radial-gradient(circle, rgba(99, 102, 241, 0.10) 0%, rgba(99, 102, 241, 0.03) 40%, transparent 70%);
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, rgba(59, 130, 246, 0.04) 40%, transparent 70%);
 }
 
 :root[data-theme="light"] .cursor-glow {
-    background: radial-gradient(circle, rgba(99, 102, 241, 0.06) 0%, rgba(99, 102, 241, 0.015) 40%, transparent 70%);
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.06) 0%, rgba(59, 130, 246, 0.015) 40%, transparent 70%);
 }
 
 :root[data-theme="light"] .cursor-glow.cursor-hover {
-    background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, rgba(99, 102, 241, 0.02) 40%, transparent 70%);
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.09) 0%, rgba(59, 130, 246, 0.025) 40%, transparent 70%);
 }
 
 
@@ -1375,7 +1402,12 @@ body.page-loaded .navbar {
         align-items: stretch;
     }
 
-    .cursor-glow {
+    .cursor-glow,
+    .custom-cursor {
         display: none !important;
+    }
+
+    *, *::before, *::after {
+        cursor: auto !important;
     }
 }

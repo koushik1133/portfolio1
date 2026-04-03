@@ -38,8 +38,9 @@
         </div>
     </div>
 
-    <!-- Custom Cursor Glow -->
+    <!-- Custom Cursor -->
     <div class="cursor-glow" id="cursorGlow"></div>
+    <div class="custom-cursor" id="customCursor"></div>
 
     <!-- Background grid pattern -->
     <div class="bg-grid"></div>
@@ -581,24 +582,31 @@
             setTimeout(() => {
                 pageLoader.classList.add('loaded');
                 document.body.classList.add('page-loaded');
+                // Trigger animated counters after loader finishes
+                startCounters();
             }, 600);
             setTimeout(() => {
                 pageLoader.style.display = 'none';
             }, 1400);
         });
 
-        // ========== Custom Cursor Glow ==========
+        // ========== Custom Cursor ==========
         const cursorGlow = document.getElementById('cursorGlow');
+        const customCursor = document.getElementById('customCursor');
         let mouseX = 0, mouseY = 0, glowX = 0, glowY = 0;
 
         document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
+            // Cursor dot follows instantly
+            customCursor.style.left = mouseX + 'px';
+            customCursor.style.top = mouseY + 'px';
         });
 
         function animateCursor() {
-            glowX += (mouseX - glowX) * 0.15;
-            glowY += (mouseY - glowY) * 0.15;
+            // Glow follows with smooth lag
+            glowX += (mouseX - glowX) * 0.12;
+            glowY += (mouseY - glowY) * 0.12;
             cursorGlow.style.left = glowX + 'px';
             cursorGlow.style.top = glowY + 'px';
             requestAnimationFrame(animateCursor);
@@ -607,13 +615,20 @@
 
         // Enlarge on hover over interactive elements
         document.querySelectorAll('a, button, .project-card, .skill-pill, .exp-card, .bento-card').forEach(el => {
-            el.addEventListener('mouseenter', () => cursorGlow.classList.add('cursor-hover'));
-            el.addEventListener('mouseleave', () => cursorGlow.classList.remove('cursor-hover'));
+            el.addEventListener('mouseenter', () => {
+                cursorGlow.classList.add('cursor-hover');
+                customCursor.classList.add('cursor-hover');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorGlow.classList.remove('cursor-hover');
+                customCursor.classList.remove('cursor-hover');
+            });
         });
 
-        // Hide cursor glow on mobile
+        // Hide cursors on touch devices
         if ('ontouchstart' in window) {
             cursorGlow.style.display = 'none';
+            customCursor.style.display = 'none';
         }
 
         // ========== Theme Toggle ==========
@@ -666,35 +681,29 @@
         const statNumbers = document.querySelectorAll('.stat-number[data-target]');
         let statsCounted = false;
 
-        const statsObserver = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !statsCounted) {
-                    statsCounted = true;
-                    statNumbers.forEach(stat => {
-                        const target = parseInt(stat.getAttribute('data-target'));
-                        const suffix = stat.getAttribute('data-suffix') || '';
-                        const duration = 1800;
-                        const startTime = performance.now();
+        function startCounters() {
+            if (statsCounted) return;
+            statsCounted = true;
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-target'));
+                const suffix = stat.getAttribute('data-suffix') || '';
+                const duration = 1800;
+                const startTime = performance.now();
 
-                        function updateCount(currentTime) {
-                            const elapsed = currentTime - startTime;
-                            const progress = Math.min(elapsed / duration, 1);
-                            // Ease-out cubic for smooth deceleration
-                            const eased = 1 - Math.pow(1 - progress, 3);
-                            const current = Math.round(eased * target);
-                            stat.textContent = current + suffix;
-                            if (progress < 1) {
-                                requestAnimationFrame(updateCount);
-                            }
-                        }
+                function updateCount(currentTime) {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    // Ease-out cubic for smooth deceleration
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    const current = Math.round(eased * target);
+                    stat.textContent = current + suffix;
+                    if (progress < 1) {
                         requestAnimationFrame(updateCount);
-                    });
+                    }
                 }
+                requestAnimationFrame(updateCount);
             });
-        }, { threshold: 0.5 });
-
-        const heroStats = document.querySelector('.hero-stats');
-        if (heroStats) statsObserver.observe(heroStats);
+        }
 
         // ========== Smooth Scroll ==========
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {

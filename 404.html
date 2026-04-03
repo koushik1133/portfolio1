@@ -81,7 +81,7 @@
             content: '';
             position: absolute;
             inset: -20px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.06) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
             border-radius: 50%;
             pointer-events: none;
         }
@@ -91,92 +91,50 @@
             height: 100%;
         }
 
-        .error-code {
-            font-size: clamp(4rem, 12vw, 8rem);
-            font-weight: 900;
-            letter-spacing: -4px;
-            line-height: 1;
-            margin-bottom: 12px;
-            background: linear-gradient(135deg, var(--text) 0%, var(--text-dim) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        /* --- Custom Cursor --- */
+        *, *::before, *::after {
+            cursor: none !important;
         }
 
-        .error-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            margin-bottom: 12px;
-            color: var(--text);
+        .custom-cursor {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background: var(--text);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99999;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s ease, height 0.2s ease, background 0.2s ease, opacity 0.2s ease;
+            will-change: left, top;
+            mix-blend-mode: difference;
         }
 
-        .error-desc {
-            font-size: 1rem;
-            color: var(--text-muted);
-            line-height: 1.7;
-            margin-bottom: 36px;
+        .custom-cursor.cursor-hover {
+            width: 40px;
+            height: 40px;
+            background: rgba(59, 130, 246, 0.25);
+            mix-blend-mode: normal;
+            border: 1.5px solid rgba(59, 130, 246, 0.5);
         }
 
-        .actions {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
+        .cursor-glow {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9990;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, rgba(59, 130, 246, 0.025) 40%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: width 0.4s ease, height 0.4s ease, background 0.4s ease;
+            will-change: left, top;
         }
 
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.2s ease;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background: var(--btn-bg);
-            color: var(--btn-text);
-        }
-
-        .btn-primary:hover {
-            opacity: 0.88;
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--btn2-text);
-            border: 1.5px solid var(--btn2-border);
-        }
-
-        .btn-secondary:hover {
-            color: var(--text);
-            border-color: var(--text-muted);
-        }
-
-        .footer-note {
-            margin-top: 64px;
-            font-size: 0.8rem;
-            color: var(--text-dim);
-        }
-
-        .footer-note a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 600;
-            border-bottom: 1px solid var(--border);
-            transition: color 0.2s;
-        }
-
-        .footer-note a:hover {
-            color: var(--text);
+        .cursor-glow.cursor-hover {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, rgba(59, 130, 246, 0.04) 40%, transparent 70%);
         }
 
         @media (max-width: 480px) {
@@ -191,10 +149,18 @@
             .btn {
                 justify-content: center;
             }
+            .cursor-glow, .custom-cursor {
+                display: none !important;
+            }
+            *, *::before, *::after {
+                cursor: auto !important;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="cursor-glow" id="cursorGlow"></div>
+    <div class="custom-cursor" id="customCursor"></div>
     <div class="bg-grid"></div>
     <div class="container">
         <div class="lottie-wrapper">
@@ -219,6 +185,43 @@
     <script>
         const theme = localStorage.getItem('portfolio-theme') || 'dark';
         document.documentElement.setAttribute('data-theme', theme);
+
+        // Custom Cursor JS
+        const cursorGlow = document.getElementById('cursorGlow');
+        const customCursor = document.getElementById('customCursor');
+        let mouseX = 0, mouseY = 0, glowX = 0, glowY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            customCursor.style.left = mouseX + 'px';
+            customCursor.style.top = mouseY + 'px';
+        });
+
+        function animateCursor() {
+            glowX += (mouseX - glowX) * 0.12;
+            glowY += (mouseY - glowY) * 0.12;
+            cursorGlow.style.left = glowX + 'px';
+            cursorGlow.style.top = glowY + 'px';
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorGlow.classList.add('cursor-hover');
+                customCursor.classList.add('cursor-hover');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorGlow.classList.remove('cursor-hover');
+                customCursor.classList.remove('cursor-hover');
+            });
+        });
+
+        if ('ontouchstart' in window) {
+            cursorGlow.style.display = 'none';
+            customCursor.style.display = 'none';
+        }
     </script>
 </body>
 </html>
