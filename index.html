@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
 </head>
 <body>
 
@@ -37,51 +38,62 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section — Split Layout with Lottie -->
     <section class="hero" id="hero">
-        <div class="hero-content">
-            <div class="hero-badge fade-in">
-                <span class="status-dot"></span>
-                Available for opportunities
+        <div class="hero-split">
+            <div class="hero-content">
+                <div class="hero-badge fade-in">
+                    <span class="status-dot"></span>
+                    Available for opportunities
+                </div>
+                <h1 class="hero-title fade-in">
+                    Software Engineer<br>
+                    <span class="hero-gradient">building the future.</span>
+                </h1>
+                <p class="hero-description fade-in">
+                    Full-Stack Engineer & AI Specialist currently at <strong>LANE Trailer Mfg.</strong>
+                    Senior Computer Science student at Iowa State University.
+                    Dean's List Scholar every semester.
+                </p>
+                <div class="hero-actions fade-in">
+                    <a href="mailto:koushik9924@gmail.com" class="btn btn-primary">
+                        <i class="fas fa-envelope"></i>
+                        Contact Me
+                    </a>
+                    <a href="https://linkedin.com/in/koushik-shaganti" target="_blank" class="btn btn-secondary">
+                        <i class="fab fa-linkedin"></i>
+                        LinkedIn
+                    </a>
+                    <a href="https://github.com/koushik1133" target="_blank" class="btn btn-secondary">
+                        <i class="fab fa-github"></i>
+                        GitHub
+                    </a>
+                </div>
             </div>
-            <h1 class="hero-title fade-in">
-                Software Engineer<br>
-                <span class="hero-gradient">building the future.</span>
-            </h1>
-            <p class="hero-description fade-in">
-                Full-Stack Engineer & AI Specialist currently at <strong>LANE Trailer Mfg.</strong>
-                Senior Computer Science student at Iowa State University.
-                Dean's List Scholar every semester.
-            </p>
-            <div class="hero-actions fade-in">
-                <a href="mailto:koushik9924@gmail.com" class="btn btn-primary">
-                    <i class="fas fa-envelope"></i>
-                    Contact Me
-                </a>
-                <a href="https://linkedin.com/in/koushik-shaganti" target="_blank" class="btn btn-secondary">
-                    <i class="fab fa-linkedin"></i>
-                    LinkedIn
-                </a>
-                <a href="https://github.com/koushik1133" target="_blank" class="btn btn-secondary">
-                    <i class="fab fa-github"></i>
-                    GitHub
-                </a>
+            <div class="hero-lottie fade-in">
+                <dotlottie-player 
+                    src="https://assets-v2.lottiefiles.com/a/5017fc96-1177-11ee-b93e-0b578c668bf6/eMfHJTNM36.lottie"
+                    background="transparent"
+                    speed="1"
+                    loop
+                    autoplay>
+                </dotlottie-player>
             </div>
-            <div class="hero-stats fade-in">
-                <div class="stat">
-                    <span class="stat-number">3+</span>
-                    <span class="stat-label">Years Experience</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat">
-                    <span class="stat-number">9+</span>
-                    <span class="stat-label">Projects Built</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat">
-                    <span class="stat-number">6</span>
-                    <span class="stat-label">Certifications</span>
-                </div>
+        </div>
+        <div class="hero-stats fade-in">
+            <div class="stat">
+                <span class="stat-number">1+</span>
+                <span class="stat-label">Years Experience</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+                <span class="stat-number">9+</span>
+                <span class="stat-label">Projects Built</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+                <span class="stat-number">6</span>
+                <span class="stat-label">Certifications</span>
             </div>
         </div>
     </section>
@@ -89,12 +101,25 @@
     <!-- Experience Section -->
     <section class="section" id="experience">
         <div class="section-container">
-            <div class="section-label fade-in">
-                <span class="label-tag">01</span>
-                Experience
+            <div class="section-header-row">
+                <div>
+                    <div class="section-label fade-in">
+                        <span class="label-tag">01</span>
+                        Experience
+                    </div>
+                    <h2 class="section-title fade-in">Professional background.</h2>
+                    <p class="section-subtitle fade-in">Where I've worked and what I've built.</p>
+                </div>
+                <div class="section-lottie fade-in">
+                    <dotlottie-player 
+                        src="https://assets-v2.lottiefiles.com/a/745fc364-117b-11ee-b7ec-9f18a8a356e0/ctpFpJP75f.lottie"
+                        background="transparent"
+                        speed="1"
+                        loop
+                        autoplay>
+                    </dotlottie-player>
+                </div>
             </div>
-            <h2 class="section-title fade-in">Professional background.</h2>
-            <p class="section-subtitle fade-in">Where I've worked and what I've built.</p>
 
             <div class="timeline">
                 <!-- Current Role -->
@@ -153,12 +178,25 @@
     <!-- Projects Section -->
     <section class="section section-alt" id="projects">
         <div class="section-container">
-            <div class="section-label fade-in">
-                <span class="label-tag">02</span>
-                Projects
+            <div class="section-header-row">
+                <div>
+                    <div class="section-label fade-in">
+                        <span class="label-tag">02</span>
+                        Projects
+                    </div>
+                    <h2 class="section-title fade-in">Things I've built.</h2>
+                    <p class="section-subtitle fade-in">From AI agents to distributed systems — each project solves a real problem.</p>
+                </div>
+                <div class="section-lottie fade-in">
+                    <dotlottie-player 
+                        src="https://assets-v2.lottiefiles.com/a/3f9cf38a-116d-11ee-b74f-03d8ed1ed29e/HDkJN3Ci5S.lottie"
+                        background="transparent"
+                        speed="1"
+                        loop
+                        autoplay>
+                    </dotlottie-player>
+                </div>
             </div>
-            <h2 class="section-title fade-in">Things I've built.</h2>
-            <p class="section-subtitle fade-in">From AI agents to distributed systems — each project solves a real problem.</p>
 
             <div class="project-grid">
                 <div class="project-card fade-in">
@@ -284,12 +322,25 @@
     <!-- Skills Section -->
     <section class="section" id="skills">
         <div class="section-container">
-            <div class="section-label fade-in">
-                <span class="label-tag">03</span>
-                Skills
+            <div class="section-header-row">
+                <div>
+                    <div class="section-label fade-in">
+                        <span class="label-tag">03</span>
+                        Skills
+                    </div>
+                    <h2 class="section-title fade-in">Technical toolkit.</h2>
+                    <p class="section-subtitle fade-in">Technologies and tools I use to build great software.</p>
+                </div>
+                <div class="section-lottie fade-in">
+                    <dotlottie-player 
+                        src="https://assets-v2.lottiefiles.com/a/b32ba14c-1150-11ee-8f2e-773779f12ee1/wkIGm03Uqb.lottie"
+                        background="transparent"
+                        speed="1"
+                        loop
+                        autoplay>
+                    </dotlottie-player>
+                </div>
             </div>
-            <h2 class="section-title fade-in">Technical toolkit.</h2>
-            <p class="section-subtitle fade-in">Technologies and tools I use to build great software.</p>
 
             <div class="skills-grid">
                 <div class="skill-category fade-in">
@@ -373,11 +424,24 @@
     <!-- Education & Certifications Section -->
     <section class="section section-alt" id="education">
         <div class="section-container">
-            <div class="section-label fade-in">
-                <span class="label-tag">04</span>
-                Education & More
+            <div class="section-header-row">
+                <div>
+                    <div class="section-label fade-in">
+                        <span class="label-tag">04</span>
+                        Education & More
+                    </div>
+                    <h2 class="section-title fade-in">Background.</h2>
+                </div>
+                <div class="section-lottie fade-in">
+                    <dotlottie-player 
+                        src="https://assets-v2.lottiefiles.com/a/f13f8d9c-1d3d-11ee-9191-93ee82af7c96/nDcPQ14dmN.lottie"
+                        background="transparent"
+                        speed="1"
+                        loop
+                        autoplay>
+                    </dotlottie-player>
+                </div>
             </div>
-            <h2 class="section-title fade-in">Background.</h2>
 
             <div class="bento-grid">
                 <div class="bento-card bento-wide fade-in">
@@ -410,6 +474,44 @@
                         <li><strong>Instructor:</strong> Led HTML/CSS workshop for incoming students (Summer 2025)</li>
                     </ul>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner with Rocket Animation -->
+    <section class="cta-banner">
+        <div class="cta-inner">
+            <div class="cta-lottie">
+                <dotlottie-player 
+                    src="https://assets-v2.lottiefiles.com/a/05fe782a-1185-11ee-b4a1-377ad5371ff2/eFJr9kWegJ.lottie"
+                    background="transparent"
+                    speed="1"
+                    loop
+                    autoplay>
+                </dotlottie-player>
+            </div>
+            <div class="cta-content fade-in">
+                <h2 class="cta-title">Let's build something amazing together.</h2>
+                <p class="cta-desc">I'm always open to new opportunities, collaborations, and challenging projects.</p>
+                <div class="cta-actions">
+                    <a href="mailto:koushik9924@gmail.com" class="btn btn-primary btn-lg">
+                        <i class="fas fa-envelope"></i>
+                        Get in Touch
+                    </a>
+                    <a href="https://linkedin.com/in/koushik-shaganti" target="_blank" class="btn btn-secondary btn-lg">
+                        <i class="fab fa-linkedin"></i>
+                        Connect on LinkedIn
+                    </a>
+                </div>
+            </div>
+            <div class="cta-lottie">
+                <dotlottie-player 
+                    src="https://assets-v2.lottiefiles.com/a/201beb62-1189-11ee-b914-4368693c2fcc/ufktK6dC3g.lottie"
+                    background="transparent"
+                    speed="1"
+                    loop
+                    autoplay>
+                </dotlottie-player>
             </div>
         </div>
     </section>
