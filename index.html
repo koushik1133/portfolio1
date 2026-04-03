@@ -6,12 +6,40 @@
     <title>Koushik Goud Shaganti — Software Engineer</title>
     <meta name="description" content="Software Engineer specializing in Full-Stack Development, AI Automation, and Cloud Systems. Currently at LANE Trailer Mfg. Senior CS student at Iowa State University.">
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <!-- Open Graph / Social Preview -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Koushik Goud Shaganti — Software Engineer">
+    <meta property="og:description" content="Full-Stack Engineer & AI Specialist. Building scalable systems, AI automation, and cloud infrastructure. Senior CS student at Iowa State University.">
+    <meta property="og:image" content="og-image.png">
+    <meta property="og:url" content="https://koushik1133.github.io/portfolio1/">
+    <meta property="og:site_name" content="Koushik Goud Shaganti">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Koushik Goud Shaganti — Software Engineer">
+    <meta name="twitter:description" content="Full-Stack Engineer & AI Specialist. Building scalable systems, AI automation, and cloud infrastructure.">
+    <meta name="twitter:image" content="og-image.png">
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
 </head>
 <body>
+
+    <!-- Page Loading Overlay -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-content">
+            <div class="loader-logo">KS</div>
+            <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+        </div>
+    </div>
+
+    <!-- Custom Cursor Glow -->
+    <div class="cursor-glow" id="cursorGlow"></div>
 
     <!-- Background grid pattern -->
     <div class="bg-grid"></div>
@@ -82,17 +110,17 @@
         </div>
         <div class="hero-stats fade-in">
             <div class="stat">
-                <span class="stat-number">1+</span>
+                <span class="stat-number" data-target="1" data-suffix="+">0</span>
                 <span class="stat-label">Years Experience</span>
             </div>
             <div class="stat-divider"></div>
             <div class="stat">
-                <span class="stat-number">9+</span>
+                <span class="stat-number" data-target="9" data-suffix="+">0</span>
                 <span class="stat-label">Projects Built</span>
             </div>
             <div class="stat-divider"></div>
             <div class="stat">
-                <span class="stat-number">6</span>
+                <span class="stat-number" data-target="6" data-suffix="">0</span>
                 <span class="stat-label">Certifications</span>
             </div>
         </div>
@@ -547,7 +575,48 @@
     </footer>
 
     <script>
-        // Theme Toggle
+        // ========== Page Loader ==========
+        const pageLoader = document.getElementById('pageLoader');
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                pageLoader.classList.add('loaded');
+                document.body.classList.add('page-loaded');
+            }, 600);
+            setTimeout(() => {
+                pageLoader.style.display = 'none';
+            }, 1400);
+        });
+
+        // ========== Custom Cursor Glow ==========
+        const cursorGlow = document.getElementById('cursorGlow');
+        let mouseX = 0, mouseY = 0, glowX = 0, glowY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            glowX += (mouseX - glowX) * 0.15;
+            glowY += (mouseY - glowY) * 0.15;
+            cursorGlow.style.left = glowX + 'px';
+            cursorGlow.style.top = glowY + 'px';
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Enlarge on hover over interactive elements
+        document.querySelectorAll('a, button, .project-card, .skill-pill, .exp-card, .bento-card').forEach(el => {
+            el.addEventListener('mouseenter', () => cursorGlow.classList.add('cursor-hover'));
+            el.addEventListener('mouseleave', () => cursorGlow.classList.remove('cursor-hover'));
+        });
+
+        // Hide cursor glow on mobile
+        if ('ontouchstart' in window) {
+            cursorGlow.style.display = 'none';
+        }
+
+        // ========== Theme Toggle ==========
         const themeBtn = document.getElementById('themeBtn');
         const themeIcon = document.getElementById('themeIcon');
         const root = document.documentElement;
@@ -561,7 +630,7 @@
         setTheme(localStorage.getItem('portfolio-theme') || 'dark');
         themeBtn.onclick = () => setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
 
-        // Mobile Menu
+        // ========== Mobile Menu ==========
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navLinks = document.getElementById('navLinks');
         mobileMenuBtn.onclick = () => {
@@ -569,7 +638,6 @@
             mobileMenuBtn.classList.toggle('active');
         };
 
-        // Close mobile menu on link click
         navLinks.querySelectorAll('a').forEach(link => {
             link.onclick = () => {
                 navLinks.classList.remove('active');
@@ -577,13 +645,13 @@
             };
         });
 
-        // Scroll-based nav background
+        // ========== Scroll Nav ==========
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             navbar.classList.toggle('scrolled', window.scrollY > 50);
         });
 
-        // Intersection Observer for fade-in
+        // ========== Fade-in Observer ==========
         const observer = new IntersectionObserver(entries => {
             entries.forEach(e => {
                 if (e.isIntersecting) {
@@ -594,7 +662,41 @@
 
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        // Smooth scroll for nav links
+        // ========== Animated Number Counters ==========
+        const statNumbers = document.querySelectorAll('.stat-number[data-target]');
+        let statsCounted = false;
+
+        const statsObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !statsCounted) {
+                    statsCounted = true;
+                    statNumbers.forEach(stat => {
+                        const target = parseInt(stat.getAttribute('data-target'));
+                        const suffix = stat.getAttribute('data-suffix') || '';
+                        const duration = 1800;
+                        const startTime = performance.now();
+
+                        function updateCount(currentTime) {
+                            const elapsed = currentTime - startTime;
+                            const progress = Math.min(elapsed / duration, 1);
+                            // Ease-out cubic for smooth deceleration
+                            const eased = 1 - Math.pow(1 - progress, 3);
+                            const current = Math.round(eased * target);
+                            stat.textContent = current + suffix;
+                            if (progress < 1) {
+                                requestAnimationFrame(updateCount);
+                            }
+                        }
+                        requestAnimationFrame(updateCount);
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const heroStats = document.querySelector('.hero-stats');
+        if (heroStats) statsObserver.observe(heroStats);
+
+        // ========== Smooth Scroll ==========
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
