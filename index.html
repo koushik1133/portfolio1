@@ -3,439 +3,505 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Koushik Goud Shaganti | Portfolio</title>
+    <title>Koushik Goud Shaganti — Software Engineer</title>
+    <meta name="description" content="Software Engineer specializing in Full-Stack Development, AI Automation, and Cloud Systems. Currently at LANE Trailer Mfg. Senior CS student at Iowa State University.">
     
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <style>
-        :root[data-theme="light"] {
-            --primary: #2563eb;
-            --primary-rgb: 37, 99, 235;
-            --primary-glow: rgba(37, 99, 235, 0.1);
-            --bg: #f8fafc;
-            --card-bg: rgba(255, 255, 255, 0.7);
-            --featured-bg: rgba(37, 99, 235, 0.05);
-            --text-main: #0f172a;
-            --text-muted: #475569;
-            --border: rgba(226, 232, 240, 0.8);
-        }
-
-        :root[data-theme="dark"] {
-            --primary: #60a5fa;
-            --primary-rgb: 96, 165, 250;
-            --primary-glow: rgba(96, 165, 250, 0.15);
-            --bg: #020617;
-            --card-bg: rgba(15, 23, 42, 0.6);
-            --featured-bg: rgba(96, 165, 250, 0.08);
-            --text-main: #f1f5f9;
-            --text-muted: #94a3b8;
-            --border: rgba(51, 65, 85, 0.8);
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; transition: background-color 0.4s ease, color 0.4s ease; }
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        #particleCanvas {
-            position: fixed;
-            top: 0; left: 0;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        nav {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-
-        .theme-toggle {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            padding: 10px 14px;
-            border-radius: 12px;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-            color: var(--text-main);
-        }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; position: relative; }
-
-        /* Hero */
-        .hero {
-            min-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding-bottom: 2rem;
-        }
-
-        .profile-img {
-            width: 200px;
-            height: 200px;
-            border-radius: 45px;
-            transform: rotate(-5deg);
-            border: 4px solid var(--primary);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-            margin-bottom: 2.5rem;
-            object-fit: cover;
-            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .profile-img:hover { transform: rotate(0deg) scale(1.08); box-shadow: 0 0 60px var(--primary-glow); }
-
-        h1 { 
-            font-size: clamp(2.5rem, 7vw, 4.5rem); 
-            font-weight: 800; 
-            letter-spacing: -2px; 
-            background: linear-gradient(135deg, var(--primary), #a855f7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
-        }
-
-        .section-header {
-            font-size: 1.8rem;
-            font-weight: 800;
-            margin: 5rem 0 2.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .section-header::after {
-            content: "";
-            height: 2px;
-            flex-grow: 1;
-            background: linear-gradient(to right, var(--border), transparent);
-        }
-
-        /* Experience Highlighting */
-        .card {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 2.5rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            overflow: hidden;
-            transition: 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        .featured-experience {
-            border: 2px solid var(--primary);
-            background: var(--featured-bg);
-            box-shadow: 0 0 40px var(--primary-glow);
-        }
-
-        .badge-current {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--primary);
-            color: #fff;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.6; }
-            100% { opacity: 1; }
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1rem; }
-        .tag {
-            background: var(--primary-glow);
-            color: var(--primary);
-            font-size: 0.7rem;
-            font-weight: 700;
-            padding: 4px 10px;
-            border-radius: 8px;
-            text-transform: uppercase;
-        }
-
-        .info-bento {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        ul { list-style: none; }
-        li { margin-bottom: 0.8rem; position: relative; padding-left: 1.5rem; color: var(--text-muted); font-size: 0.95rem; }
-        li::before {
-            content: "•";
-            color: var(--primary);
-            position: absolute;
-            left: 0;
-            font-weight: bold;
-        }
-
-        .btn-group { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; justify-content: center; }
-        .btn {
-            padding: 12px 28px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: 0.3s;
-        }
-        .btn-primary { background: var(--primary); color: white; }
-        .btn-outline { border: 1px solid var(--border); color: var(--text-main); background: var(--card-bg); }
-
-        .fade-in { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-        @media (max-width: 768px) {
-            .info-bento { grid-template-columns: 1fr; }
-            .container { padding: 1rem; }
-            .card { padding: 1.5rem; }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <nav>
-        <button class="theme-toggle" id="themeBtn"><i class="fas fa-sun"></i></button>
+    <!-- Background grid pattern -->
+    <div class="bg-grid"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">KS</a>
+            <div class="nav-links" id="navLinks">
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#education" class="nav-link">Education</a>
+                <a href="mailto:koushik9924@gmail.com" class="nav-cta">Get in Touch</a>
+            </div>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeBtn" aria-label="Toggle theme">
+                    <i class="fas fa-sun" id="themeIcon"></i>
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
     </nav>
 
-    <canvas id="particleCanvas"></canvas>
-
-    <div class="container">
-        <header class="hero fade-in">
-            <img src="images/profile.png" class="profile-img" alt="Koushik Shaganti" onerror="this.src='https://ui-avatars.com/api/?name=Koushik+Shaganti&size=200&background=2563eb&color=fff'">
-            
-            <h1>Koushik Goud Shaganti</h1>
-           <p style="font-size: 1.3rem; color: var(--text-muted); max-width: 850px;">
-    <span style="color: var(--primary); font-weight: 700;">Software Engineer Co-op @ LANE Trailer Mfg.</span><br>
-    Senior Computer Science Student @ Iowa State University<br>
-    <span style="font-size: 1rem; font-weight: 700; color: var(--primary);">
-        Dean’s List Scholar (Every Semester Since First Semester)
-    </span>
-</p>
-
-            <div class="btn-group">
-                <a href="mailto:koushik9924@gmail.com" class="btn btn-primary"><i class="fas fa-envelope"></i> Contact Me</a>
-                <a href="https://linkedin.com/in/koushik-shaganti" target="_blank" class="btn btn-outline"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                <a href="https://github.com/koushik1133" target="_blank" class="btn btn-outline"><i class="fab fa-github"></i> GitHub</a>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-badge fade-in">
+                <span class="status-dot"></span>
+                Available for opportunities
             </div>
-        </header>
-
-        <h2 class="section-header">Professional Experience</h2>
-        
-        <div class="card featured-experience fade-in">
-            <div class="badge-current">Present Role</div>
-            <div style="margin-bottom: 1.5rem;">
-                <h3 style="color: var(--primary); font-size: 1.6rem;">Software Engineer (Full-Stack, AI Automation) – Co-op</h3>
-                <p style="font-weight: 700; opacity: 0.9; margin-top: 5px;">LANE Trailer Mfg. | Boone, IA <span style="margin-left: 10px; opacity: 0.6; font-weight: 400;">(Jan 2026 – Present)</span></p>
+            <h1 class="hero-title fade-in">
+                Software Engineer<br>
+                <span class="hero-gradient">building the future.</span>
+            </h1>
+            <p class="hero-description fade-in">
+                Full-Stack Engineer & AI Specialist currently at <strong>LANE Trailer Mfg.</strong>
+                Senior Computer Science student at Iowa State University.
+                Dean's List Scholar every semester.
+            </p>
+            <div class="hero-actions fade-in">
+                <a href="mailto:koushik9924@gmail.com" class="btn btn-primary">
+                    <i class="fas fa-envelope"></i>
+                    Contact Me
+                </a>
+                <a href="https://linkedin.com/in/koushik-shaganti" target="_blank" class="btn btn-secondary">
+                    <i class="fab fa-linkedin"></i>
+                    LinkedIn
+                </a>
+                <a href="https://github.com/koushik1133" target="_blank" class="btn btn-secondary">
+                    <i class="fab fa-github"></i>
+                    GitHub
+                </a>
             </div>
-            <ul>
-                <li>Enhance company website performance, scalability, and security using modern full-stack tech.</li>
-                <li>Design AI-driven automation workflows for internal operations and customer communications.</li>
-                <li>Develop backend services and database systems for real-time parts inventory management.</li>
-                <li>Build analytics-driven automation to optimize Google Ads targeting efficiency.</li>
-            </ul>
+            <div class="hero-stats fade-in">
+                <div class="stat">
+                    <span class="stat-number">3+</span>
+                    <span class="stat-label">Years Experience</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number">9+</span>
+                    <span class="stat-label">Projects Built</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number">6</span>
+                    <span class="stat-label">Certifications</span>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="card fade-in">
-            <div style="display: flex; justify-content: space-between; flex-wrap: wrap; margin-bottom: 0.5rem;">
-                <h3 style="color: var(--primary)">Research Assistant – AI Systems Engineering</h3>
-                <span style="font-weight: 700; opacity: 0.8;">Jun 2025 – Dec 2025</span>
+    <!-- Experience Section -->
+    <section class="section" id="experience">
+        <div class="section-container">
+            <div class="section-label fade-in">
+                <span class="label-tag">01</span>
+                Experience
             </div>
-            <p style="font-weight: 700; margin-bottom: 1rem;">Iowa State University | Ames, IA</p>
-            <ul>
-                <li>Built an AI pipeline translating C/C++ code to CUDA using LLMs for GPU acceleration.</li>
-                <li>Developed multiprocessing workflows for automated compilation, execution, and validation.</li>
-                <li>Improved model reliability using structured prompting and automated regression testing.</li>
-            </ul>
-        </div>
+            <h2 class="section-title fade-in">Professional background.</h2>
+            <p class="section-subtitle fade-in">Where I've worked and what I've built.</p>
 
-        <div class="card fade-in">
-            <div style="display: flex; justify-content: space-between; flex-wrap: wrap; margin-bottom: 0.5rem;">
-                <h3 style="color: var(--primary)">Full Stack Development Intern</h3>
-                <span style="font-weight: 700; opacity: 0.8;">May 2024 – Jul 2024</span>
-            </div>
-            <p style="font-weight: 700; margin-bottom: 1rem;">Cognifyz Technologies</p>
-            <ul>
-                <li>Developed REST APIs and AI-enabled modules using Python and Flask.</li>
-                <li>Built real-time performance analytics dashboards with JavaScript and Power BI.</li>
-                <li>Collaborated in Agile teams using Git/GitLab CI/CD and unit testing.</li>
-            </ul>
-        </div>
+            <div class="timeline">
+                <!-- Current Role -->
+                <div class="exp-card exp-featured fade-in">
+                    <div class="exp-header">
+                        <div class="exp-title-group">
+                            <div class="exp-badge">Current Role</div>
+                            <h3 class="exp-title">Software Engineer (Full-Stack, AI Automation) – Co-op</h3>
+                            <p class="exp-company">LANE Trailer Mfg. · Boone, IA</p>
+                        </div>
+                        <span class="exp-date">Jan 2026 – Present</span>
+                    </div>
+                    <ul class="exp-list">
+                        <li>Enhance company website performance, scalability, and security using modern full-stack tech.</li>
+                        <li>Design AI-driven automation workflows for internal operations and customer communications.</li>
+                        <li>Develop backend services and database systems for real-time parts inventory management.</li>
+                        <li>Build analytics-driven automation to optimize Google Ads targeting efficiency.</li>
+                    </ul>
+                </div>
 
-        <h2 class="section-header">Technical Projects</h2>
-        <div class="project-grid">
-            
-            <div class="card fade-in">
-                <div class="tag-row"><span class="tag">AWS</span><span class="tag">MLOps</span><span class="tag">Docker</span></div>
-                <h3>Malicious URL Detection</h3>
-                <p>End-to-end MLOps pipeline on AWS (EC2, ECR, S3) with XGBoost. Used MLFlow to track experiments and deployed containerized models for real-time URL safety analysis.</p>
-            </div>
+                <!-- Research Assistant -->
+                <div class="exp-card fade-in">
+                    <div class="exp-header">
+                        <div class="exp-title-group">
+                            <h3 class="exp-title">Research Assistant – AI Systems Engineering</h3>
+                            <p class="exp-company">Iowa State University · Ames, IA</p>
+                        </div>
+                        <span class="exp-date">Jun 2025 – Dec 2025</span>
+                    </div>
+                    <ul class="exp-list">
+                        <li>Built an AI pipeline translating C/C++ code to CUDA using LLMs for GPU acceleration.</li>
+                        <li>Developed multiprocessing workflows for automated compilation, execution, and validation.</li>
+                        <li>Improved model reliability using structured prompting and automated regression testing.</li>
+                    </ul>
+                </div>
 
-            <div class="card fade-in">
-                <div class="tag-row"><span class="tag">YOLOv8n</span><span class="tag">Raspberry Pi</span><span class="tag">AI</span></div>
-                <h3>Autonomous "Follow Me" Robot</h3>
-                <p>Built a complete embedded system tracking users in real-time. Integrated YOLOv8n for on-device detection and local vision models via Ollama for target distinction.</p>
-            </div>
-
-            <div class="card fade-in">
-                <div class="tag-row"><span class="tag">Gemini AI</span><span class="tag">FastAPI</span><span class="tag">Supabase</span></div>
-                <h3>NL-to-Database Agent</h3>
-                <p>AI agent using Google Gemini to convert English instructions into SQL queries. Developed a responsive frontend and FastAPI backend for real-time query execution.</p>
-            </div>
-
-            <div class="card fade-in">
-                <div class="tag-row"><span class="tag">n8n</span><span class="tag">Gmail API</span><span class="tag">AI Studio</span></div>
-                <h3>AI Gmail Assistant</h3>
-                <p>Automated Gmail management agent that routes emails, generates summaries, and handles auto-labeling via multi-step agentic pipelines and workspace automation.</p>
-            </div>
-
-            <div class="card fade-in">
-                <div class="tag-row"><span class="tag">n8n</span><span class="tag">WhatsApp API</span><span class="tag">Sheets</span></div>
-                <h3>WhatsApp AI Ordering Bot</h3>
-                <p>Developed a chatbot automating restaurant ordering, menu queries, and order tracking. Connected live inventory on Google Sheets with agentic workflows.</p>
-            </div>
-
-            <div class="card fade-in">
-                <div class="tag-row"><span class="tag">Cloudflare</span><span class="tag">Llama</span><span class="tag">KV</span></div>
-                <h3>ArguVista Analyzer</h3>
-                <p>Distributed AI inference tool using Workers AI. Achieved sub-30ms global latency with KV-based conversation memory served from Cloudflare's edge network.</p>
-            </div>
-
-            <div class="card fade-in">
-                <div class="tag-row"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">MongoDB</span></div>
-                <h3>Melodify Platform</h3>
-                <p>MERN-stack application with artist microservices, metadata management, and dynamic previews integrated via the YouTube API.</p>
-            </div>
-
-            <div class="card fade-in">
-                <div class="tag-row"><span class="tag">Spring Boot</span><span class="tag">WebSocket</span><span class="tag">Hibernate</span></div>
-                <h3>Donkey Kong Multiplayer</h3>
-                <p>Backend architecture for real-time multiplayer gaming using WebSockets. Designed SQL/Hibernate models for low-latency matchmaking and state sync.</p>
-            </div>
-
-            <div class="card fade-in">
-                <div class="tag-row"><span class="tag">C/C++</span><span class="tag">OOP</span><span class="tag">WebSockets</span></div>
-                <h3>Roguelike Dungeon Game</h3>
-                <p>Dungeon crawler with OOP design and file I/O. Added multiplayer support using WebSockets to reduce latency and enable real-time interactions.</p>
-            </div>
-
-        </div>
-
-        <div class="info-bento">
-            <div class="fade-in">
-                <h2 class="section-header">Certifications</h2>
-                <div class="card">
-                    <ul>
-                        <li>Data Science, ML & Statistics – Udemy (2025)</li>
-                        <li>Full Stack Development Internship (2025)</li>
-                        <li>Blockchain Hackathon – Anurag University (2025)</li>
-                        <li>Full-Stack Web Development – Udemy (2025)</li>
-                        <li>MySQL & Java Programming – Udemy (2024/25)</li>
-                        <li>Python Programming – Scaler (2024)</li>
+                <!-- Intern -->
+                <div class="exp-card fade-in">
+                    <div class="exp-header">
+                        <div class="exp-title-group">
+                            <h3 class="exp-title">Full Stack Development Intern</h3>
+                            <p class="exp-company">Cognifyz Technologies</p>
+                        </div>
+                        <span class="exp-date">May 2024 – Jul 2024</span>
+                    </div>
+                    <ul class="exp-list">
+                        <li>Developed REST APIs and AI-enabled modules using Python and Flask.</li>
+                        <li>Built real-time performance analytics dashboards with JavaScript and Power BI.</li>
+                        <li>Collaborated in Agile teams using Git/GitLab CI/CD and unit testing.</li>
                     </ul>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="fade-in">
-                <h2 class="section-header">Leadership</h2>
-                <div class="card">
-                    <ul>
+    <!-- Projects Section -->
+    <section class="section section-alt" id="projects">
+        <div class="section-container">
+            <div class="section-label fade-in">
+                <span class="label-tag">02</span>
+                Projects
+            </div>
+            <h2 class="section-title fade-in">Things I've built.</h2>
+            <p class="section-subtitle fade-in">From AI agents to distributed systems — each project solves a real problem.</p>
+
+            <div class="project-grid">
+                <div class="project-card fade-in">
+                    <div class="project-icon">
+                        <i class="fas fa-shield-halved"></i>
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">AWS</span>
+                        <span class="project-tag">MLOps</span>
+                        <span class="project-tag">Docker</span>
+                    </div>
+                    <h3 class="project-title">Malicious URL Detection</h3>
+                    <p class="project-desc">End-to-end MLOps pipeline on AWS (EC2, ECR, S3) with XGBoost. Used MLFlow to track experiments and deployed containerized models for real-time URL safety analysis.</p>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">YOLOv8n</span>
+                        <span class="project-tag">Raspberry Pi</span>
+                        <span class="project-tag">AI</span>
+                    </div>
+                    <h3 class="project-title">Autonomous "Follow Me" Robot</h3>
+                    <p class="project-desc">Built a complete embedded system tracking users in real-time. Integrated YOLOv8n for on-device detection and local vision models via Ollama for target distinction.</p>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">Gemini AI</span>
+                        <span class="project-tag">FastAPI</span>
+                        <span class="project-tag">Supabase</span>
+                    </div>
+                    <h3 class="project-title">NL-to-Database Agent</h3>
+                    <p class="project-desc">AI agent using Google Gemini to convert English instructions into SQL queries. Developed a responsive frontend and FastAPI backend for real-time query execution.</p>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-icon">
+                        <i class="fas fa-envelope-open-text"></i>
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">n8n</span>
+                        <span class="project-tag">Gmail API</span>
+                        <span class="project-tag">AI Studio</span>
+                    </div>
+                    <h3 class="project-title">AI Gmail Assistant</h3>
+                    <p class="project-desc">Automated Gmail management agent that routes emails, generates summaries, and handles auto-labeling via multi-step agentic pipelines and workspace automation.</p>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">n8n</span>
+                        <span class="project-tag">WhatsApp API</span>
+                        <span class="project-tag">Sheets</span>
+                    </div>
+                    <h3 class="project-title">WhatsApp AI Ordering Bot</h3>
+                    <p class="project-desc">Developed a chatbot automating restaurant ordering, menu queries, and order tracking. Connected live inventory on Google Sheets with agentic workflows.</p>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">Cloudflare</span>
+                        <span class="project-tag">Llama</span>
+                        <span class="project-tag">KV</span>
+                    </div>
+                    <h3 class="project-title">ArguVista Analyzer</h3>
+                    <p class="project-desc">Distributed AI inference tool using Workers AI. Achieved sub-30ms global latency with KV-based conversation memory served from Cloudflare's edge network.</p>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">React</span>
+                        <span class="project-tag">Node.js</span>
+                        <span class="project-tag">MongoDB</span>
+                    </div>
+                    <h3 class="project-title">Melodify Platform</h3>
+                    <p class="project-desc">MERN-stack application with artist microservices, metadata management, and dynamic previews integrated via the YouTube API.</p>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">Spring Boot</span>
+                        <span class="project-tag">WebSocket</span>
+                        <span class="project-tag">Hibernate</span>
+                    </div>
+                    <h3 class="project-title">Donkey Kong Multiplayer</h3>
+                    <p class="project-desc">Backend architecture for real-time multiplayer gaming using WebSockets. Designed SQL/Hibernate models for low-latency matchmaking and state sync.</p>
+                </div>
+
+                <div class="project-card fade-in">
+                    <div class="project-icon">
+                        <i class="fas fa-dungeon"></i>
+                    </div>
+                    <div class="project-tags">
+                        <span class="project-tag">C/C++</span>
+                        <span class="project-tag">OOP</span>
+                        <span class="project-tag">WebSockets</span>
+                    </div>
+                    <h3 class="project-title">Roguelike Dungeon Game</h3>
+                    <p class="project-desc">Dungeon crawler with OOP design and file I/O. Added multiplayer support using WebSockets to reduce latency and enable real-time interactions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section" id="skills">
+        <div class="section-container">
+            <div class="section-label fade-in">
+                <span class="label-tag">03</span>
+                Skills
+            </div>
+            <h2 class="section-title fade-in">Technical toolkit.</h2>
+            <p class="section-subtitle fade-in">Technologies and tools I use to build great software.</p>
+
+            <div class="skills-grid">
+                <div class="skill-category fade-in">
+                    <h4 class="skill-cat-title">
+                        <i class="fas fa-code"></i>
+                        Languages
+                    </h4>
+                    <div class="skill-pills">
+                        <span class="skill-pill">Java</span>
+                        <span class="skill-pill">Python</span>
+                        <span class="skill-pill">JavaScript</span>
+                        <span class="skill-pill">TypeScript</span>
+                        <span class="skill-pill">C/C++</span>
+                        <span class="skill-pill">SQL</span>
+                        <span class="skill-pill">HTML/CSS</span>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-in">
+                    <h4 class="skill-cat-title">
+                        <i class="fas fa-layer-group"></i>
+                        Frameworks
+                    </h4>
+                    <div class="skill-pills">
+                        <span class="skill-pill">React</span>
+                        <span class="skill-pill">Node.js</span>
+                        <span class="skill-pill">Spring Boot</span>
+                        <span class="skill-pill">FastAPI</span>
+                        <span class="skill-pill">Flask</span>
+                        <span class="skill-pill">Express.js</span>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-in">
+                    <h4 class="skill-cat-title">
+                        <i class="fas fa-cloud"></i>
+                        Cloud & DevOps
+                    </h4>
+                    <div class="skill-pills">
+                        <span class="skill-pill">AWS</span>
+                        <span class="skill-pill">Docker</span>
+                        <span class="skill-pill">Cloudflare</span>
+                        <span class="skill-pill">Git</span>
+                        <span class="skill-pill">CI/CD</span>
+                        <span class="skill-pill">MLFlow</span>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-in">
+                    <h4 class="skill-cat-title">
+                        <i class="fas fa-brain"></i>
+                        AI & Data
+                    </h4>
+                    <div class="skill-pills">
+                        <span class="skill-pill">LLMs</span>
+                        <span class="skill-pill">Gemini AI</span>
+                        <span class="skill-pill">YOLO</span>
+                        <span class="skill-pill">XGBoost</span>
+                        <span class="skill-pill">n8n</span>
+                        <span class="skill-pill">Power BI</span>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-in">
+                    <h4 class="skill-cat-title">
+                        <i class="fas fa-database"></i>
+                        Databases
+                    </h4>
+                    <div class="skill-pills">
+                        <span class="skill-pill">MongoDB</span>
+                        <span class="skill-pill">MySQL</span>
+                        <span class="skill-pill">Supabase</span>
+                        <span class="skill-pill">S3</span>
+                        <span class="skill-pill">Hibernate</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Certifications Section -->
+    <section class="section section-alt" id="education">
+        <div class="section-container">
+            <div class="section-label fade-in">
+                <span class="label-tag">04</span>
+                Education & More
+            </div>
+            <h2 class="section-title fade-in">Background.</h2>
+
+            <div class="bento-grid">
+                <div class="bento-card bento-wide fade-in">
+                    <div class="bento-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3 class="bento-title">Iowa State University</h3>
+                    <p class="bento-subtitle">Senior · B.S. Computer Science · Ames, IA</p>
+                    <p class="bento-detail">Dean's List Scholar — every semester since freshman year.</p>
+                </div>
+
+                <div class="bento-card fade-in">
+                    <div class="bento-icon"><i class="fas fa-certificate"></i></div>
+                    <h3 class="bento-title">Certifications</h3>
+                    <ul class="bento-list">
+                        <li>Data Science, ML & Statistics – Udemy</li>
+                        <li>Full Stack Development Internship</li>
+                        <li>Blockchain Hackathon – Anurag University</li>
+                        <li>Full-Stack Web Development – Udemy</li>
+                        <li>MySQL & Java Programming – Udemy</li>
+                        <li>Python Programming – Scaler</li>
+                    </ul>
+                </div>
+
+                <div class="bento-card fade-in">
+                    <div class="bento-icon"><i class="fas fa-users"></i></div>
+                    <h3 class="bento-title">Leadership</h3>
+                    <ul class="bento-list">
                         <li>Google Developer Groups – Member</li>
                         <li>AI/ML Club @ ISU – Active Member</li>
                         <li>Web Development Club – Member</li>
-                        <li><strong>Instructor:</strong> Led HTML/CSS workshop for incoming students (Summer 2025).</li>
+                        <li><strong>Instructor:</strong> Led HTML/CSS workshop for incoming students (Summer 2025)</li>
                     </ul>
                 </div>
             </div>
         </div>
+    </section>
 
-        <footer style="text-align: center; padding: 6rem 0; opacity: 0.6; font-size: 0.9rem; border-top: 1px solid var(--border); margin-top: 4rem;">
-            &copy; 2026 Koushik Goud Shaganti | Iowa State University | Ames, IA
-        </footer>
-    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <span class="footer-logo">KS</span>
+                    <p class="footer-tagline">Building software that matters.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h5 class="footer-col-title">Navigate</h5>
+                        <a href="#experience">Experience</a>
+                        <a href="#projects">Projects</a>
+                        <a href="#skills">Skills</a>
+                        <a href="#education">Education</a>
+                    </div>
+                    <div class="footer-col">
+                        <h5 class="footer-col-title">Connect</h5>
+                        <a href="mailto:koushik9924@gmail.com">Email</a>
+                        <a href="https://linkedin.com/in/koushik-shaganti" target="_blank">LinkedIn</a>
+                        <a href="https://github.com/koushik1133" target="_blank">GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Koushik Goud Shaganti · Iowa State University</p>
+            </div>
+        </div>
+    </footer>
 
     <script>
+        // Theme Toggle
         const themeBtn = document.getElementById('themeBtn');
+        const themeIcon = document.getElementById('themeIcon');
         const root = document.documentElement;
+
         function setTheme(theme) {
             root.setAttribute('data-theme', theme);
-            themeBtn.innerHTML = theme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
             localStorage.setItem('portfolio-theme', theme);
         }
+
         setTheme(localStorage.getItem('portfolio-theme') || 'dark');
         themeBtn.onclick = () => setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
 
-        const canvas = document.getElementById('particleCanvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        function init() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            particles = [];
-            for(let i=0; i<85; i++) particles.push(new Particle());
-        }
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.6;
-                this.vy = (Math.random() - 0.5) * 0.6;
-            }
-            update() {
-                this.x += this.vx; this.y += this.vy;
-                if(this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if(this.y < 0 || this.y > canvas.height) this.vy *= -1;
-            }
-            draw() {
-                ctx.fillStyle = getComputedStyle(root).getPropertyValue('--primary');
-                ctx.beginPath(); ctx.arc(this.x, this.y, 2, 0, Math.PI*2); ctx.fill();
-            }
-        }
-        function animate() {
-            ctx.clearRect(0,0,canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.update(); p.draw();
-                particles.forEach(p2 => {
-                    const d = Math.hypot(p.x - p2.x, p.y - p2.y);
-                    if(d < 110) {
-                        ctx.strokeStyle = `rgba(${getComputedStyle(root).getPropertyValue('--primary-rgb')}, ${1-d/110})`;
-                        ctx.lineWidth = 0.6; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p2.x, p2.y); ctx.stroke();
-                    }
-                });
-            });
-            requestAnimationFrame(animate);
-        }
-        init(); animate(); window.onresize = init;
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        mobileMenuBtn.onclick = () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.classList.toggle('active');
+        };
 
+        // Close mobile menu on link click
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.onclick = () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
+            };
+        });
+
+        // Scroll-based nav background
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Intersection Observer for fade-in
         const observer = new IntersectionObserver(entries => {
-            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-        }, { threshold: 0.1 });
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
     </script>
 </body>
 </html>
