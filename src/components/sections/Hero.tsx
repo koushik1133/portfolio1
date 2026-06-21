@@ -52,8 +52,7 @@ export default function Hero() {
 
             {/* Description */}
             <motion.p className="hero-description" variants={itemVariants}>
-              Full-Stack Engineer &amp; AI Specialist currently at{" "}
-              <strong>LANE Trailer Mfg.</strong> Senior Computer Science student
+              Software Engineer at <strong>LANE Trailer Mfg.</strong> and Senior Computer Science student
               at Iowa State University. Dean&apos;s List Scholar every semester.
             </motion.p>
 

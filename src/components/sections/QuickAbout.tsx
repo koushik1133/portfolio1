@@ -29,7 +29,7 @@ export default function QuickAbout() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <p className="quick-about-text">
-              I am a Senior Computer Science student at Iowa State University and a Software Engineer Co-op at LANE Trailer Manufacturing. I specialize in architecting highly scalable full-stack applications and deploying autonomous AI agents that transform enterprise operations.
+              I am a Senior Computer Science student at Iowa State University and a Software Engineer at LANE Trailer Mfg. I specialize in architecting highly scalable full-stack applications and deploying autonomous AI agents that transform enterprise operations.
             </p>
             <Link href="/about" className="btn btn-outline quick-about-btn">
               Read my full story <i className="fas fa-arrow-right"></i>

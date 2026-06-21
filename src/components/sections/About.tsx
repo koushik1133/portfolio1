@@ -27,7 +27,7 @@ export default function About() {
               I am a Senior Computer Science student at Iowa State University (graduating May 2026), specializing in Full-Stack development, AI/Agentic systems, and cloud automation. My journey in tech began with a deep curiosity for building scalable solutions that bridge the gap between software engineering and artificial intelligence.
             </p>
             <p>
-              Currently, I am completing a Software Engineer Co-op at LANE Trailer Manufacturing, where I engineer enterprise production management platforms and implement AI agents using Google Gemini and Claude. By integrating AI-driven workflows, I've successfully optimized manual processes and transformed operational capabilities.
+              Currently, I am working as a Software Engineer at LANE Trailer Mfg., where I engineer enterprise production management platforms and implement AI agents using Google Gemini and Claude. By integrating AI-driven workflows, I've successfully optimized manual processes and transformed operational capabilities.
             </p>
             <p>
               Beyond the enterprise, I build and deploy independent products ranging from B2B e-commerce platforms (Shopify) to end-to-end WhatsApp automation tools for local businesses. I thrive at the intersection of modern web development and AI, constantly experimenting with multi-LLM architectures, RAG pipelines, and agentic workflows.

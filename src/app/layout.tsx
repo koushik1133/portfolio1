@@ -20,6 +20,7 @@ import ChatDeck from "../components/ui/ChatDeck";
 import CommandMenu from "../components/ui/CommandMenu";
 import Header from "../components/sections/Header";
 import Footer from "../components/sections/Footer";
+import SmoothScroll from "../components/SmoothScroll";
 
 export default function RootLayout({
   children,
@@ -32,18 +33,20 @@ export default function RootLayout({
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
       </head>
       <body className={`light-theme ${inter.className}`}>
-        <ClientLogic />
-        <CustomCursor />
-        <ChatDeck />
-        <CommandMenu />
-        <Script 
-          src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" 
-          type="module"
-          strategy="lazyOnload"
-        />
-        <Header />
-        {children}
-        <Footer />
+        <SmoothScroll>
+          <ClientLogic />
+          <CustomCursor />
+          <ChatDeck />
+          <CommandMenu />
+          <Script 
+            src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" 
+            type="module"
+            strategy="lazyOnload"
+          />
+          <Header />
+          {children}
+          <Footer />
+        </SmoothScroll>
       </body>
     </html>
   );

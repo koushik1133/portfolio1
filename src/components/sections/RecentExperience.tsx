@@ -26,10 +26,10 @@ export default function RecentExperience() {
           <div className="exp-content-wrapper">
             <div className="exp-header">
               <div>
-                <h3 className="exp-title">Software Engineer Co-op</h3>
-                <p className="exp-company">LANE Trailer Manufacturing Co. • Cedar Falls, IA</p>
+                <h3 className="exp-title">Software Engineer -- AI Systems and Automation (Full-Time)</h3>
+                <p className="exp-company">LANE Trailer Mfg. • Boone, IA</p>
               </div>
-              <div className="exp-date">May 2024 — Present</div>
+              <div className="exp-date">Jan 2026 — Present</div>
             </div>
             <p className="exp-description">
               Leading the development of highly scalable full-stack applications and deploying autonomous AI agents to transform enterprise operations. I architect robust systems that integrate complex business logic with modern tech stacks.

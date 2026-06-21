@@ -126,7 +126,7 @@ export default function Terminal() {
           setLines([
             ...currentLines,
             { text: "================ LOGGED EXPERIENCE ================", type: "system" },
-            { text: "💼 LANE Trailer Mfg. (Jan 2026 - Present) | Software Engineer Co-op", type: "output" },
+            { text: "💼 LANE Trailer Mfg. (Jan 2026 - Present) | Software Engineer -- AI Systems", type: "output" },
             { text: "   - Engineered real-time production tracking platforms and drag-and-drop Kanban.", type: "output" },
             { text: "   - Integrated Gemini/Claude automated internal email handling pipelines.", type: "output" },
             { text: "💼 Trailer Parts Experts (Oct 2025 - Dec 2025) | SDE Client Lead", type: "output" },
