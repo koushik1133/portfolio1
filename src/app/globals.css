@@ -1622,7 +1622,7 @@ body.dark-theme #themeToggle .fa-sun {
     box-shadow: 0 5px 15px rgba(var(--primary-color-rgb), 0.3);
 }
 
-/* ======= CTA Banner (kept for reference) ======= */
+/* ======= CTA Banner ======= */
 .cta-banner {
     background: var(--bg-color-alt);
     border-top: 1px solid var(--border-color);
