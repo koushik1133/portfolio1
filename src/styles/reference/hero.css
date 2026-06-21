@@ -1,0 +1,544 @@
+/**
+ * HERO COMPONENT
+ * 
+ * Styles for the hero/banner section
+ */
+
+/* ======= Hero Section ======= */
+.hero {
+    background-color: var(--bg-color);
+    padding-top: 60px; /* Reduced from 80px */
+    padding-bottom: 0;
+    overflow: hidden;
+    position: relative;
+    min-height: 90vh; /* Reduced from 110vh to pull content up */
+    display: flex;
+    align-items: center;
+    transition: background-color 0.4s ease;
+}
+
+/* Subtle dot-grid background */
+.hero-grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(circle, rgba(var(--primary-color-rgb), 0.06) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.dark-theme .hero-grid-bg {
+    background-image:
+        radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+/* ======= Hero Container ======= */
+.hero-container {
+    position: relative;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+    z-index: 2;
+}
+
+/* ======= Hero Split Layout ======= */
+.hero-split {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    padding: 2rem 0 0;
+}
+
+/* ======= Hero Content (left column) ======= */
+.hero-content {
+    flex: 1;
+    max-width: 560px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* Available badge */
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 1rem;
+    border-radius: 999px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color-alt);
+    color: var(--text-color-light);
+    font-size: 0.78rem;
+    font-family: 'Geist Mono', 'Fira Code', monospace;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    margin-bottom: 1.5rem;
+    width: fit-content;
+}
+
+.dark-theme .hero-badge {
+    background-color: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Pulsing status dot */
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+    display: inline-block;
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+    animation: statusPulse 2s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+@keyframes statusPulse {
+    0%   { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5); }
+    70%  { box-shadow: 0 0 0 7px rgba(34, 197, 94, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+/* Hero headline */
+.hero-title {
+    font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: var(--text-color);
+    margin-bottom: 1.25rem;
+}
+
+.hero-gradient {
+    background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.dark-theme .hero-gradient {
+    background: linear-gradient(135deg, #818cf8 0%, #22d3ee 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Hero description */
+.hero-description {
+    font-size: 1.05rem;
+    color: var(--text-color-light);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    max-width: 480px;
+}
+
+.hero-description strong {
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+/* ======= Hero Action Buttons ======= */
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 0;
+}
+
+/* Primary CTA */
+.hero-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.8rem;
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    border: none;
+    border-radius: var(--border-radius-md);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.hero-btn-primary:hover {
+    opacity: 0.88;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    color: var(--bg-color);
+}
+
+/* Secondary CTA */
+.hero-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.8rem;
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.hero-btn-secondary:hover {
+    border-color: var(--text-color);
+    transform: translateY(-2px);
+    background-color: rgba(var(--primary-color-rgb), 0.04);
+    color: var(--text-color);
+}
+
+.dark-theme .hero-btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* ======= Hero Lottie (right column) ======= */
+.hero-lottie {
+    flex: 0 0 480px;
+    width: 480px;
+    height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: heroLottieFloat 6s ease-in-out infinite;
+}
+
+/* Hero image (PNG character) - drop white background in dark mode */
+.hero-lottie img {
+    border-radius: 16px;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.2));
+}
+
+.dark-theme .hero-lottie img {
+    filter: drop-shadow(0 20px 60px rgba(99, 102, 241, 0.25));
+}
+
+@keyframes heroLottieFloat {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-14px); }
+}
+
+/* ======= Hero Stats ======= */
+.hero-stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+    width: 100%;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text-color);
+    line-height: 1;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-color-light);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-top: 0.3rem;
+}
+
+.stat-divider {
+    width: 1px;
+    height: 36px;
+    background: var(--border-color);
+    flex-shrink: 0;
+}
+
+/* ======= Scroll Hint ======= */
+.hero-scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+}
+
+.hero-scroll-hint a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    background: var(--bg-color);
+    color: var(--text-color-light);
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.hero-scroll-hint a:hover {
+    background: var(--text-color);
+    color: var(--bg-color);
+    border-color: var(--text-color);
+}
+
+/* ======= Pulsing dot (legacy alias for hero badge) ======= */
+.pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+    display: inline-block;
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+    animation: statusPulse 2s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+/* ======= Keyframes (shared) ======= */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatAsset {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%       { transform: translateY(-12px) rotate(2deg); }
+}
+
+@keyframes floatAstronaut {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%       { transform: translateY(-18px) rotate(-3deg); }
+}
+
+.floating-asset     { animation: floatAsset 5s ease-in-out infinite; }
+.floating-astronaut { animation: floatAstronaut 7s ease-in-out infinite; }
+
+/* ======= Responsive ======= */
+@media screen and (max-width: 1024px) {
+    .hero-lottie {
+        flex: 0 0 380px;
+        width: 380px;
+        height: 380px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .hero {
+        padding-top: 90px;
+        min-height: auto;
+        padding-bottom: 4rem;
+    }
+
+    .hero-split {
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 2rem;
+        padding-top: 1rem;
+    }
+
+    .hero-content {
+        max-width: 100%;
+        align-items: center;
+    }
+
+    .hero-badge {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-description {
+        text-align: center;
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
+
+    .hero-lottie {
+        flex: 0 0 auto;
+        width: 280px;
+        height: 280px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .hero-lottie {
+        width: 240px;
+        height: 240px;
+    }
+
+    .hero-stats {
+        gap: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    .stat-divider {
+        display: none;
+    }
+
+    .hero-btn-primary,
+    .hero-btn-secondary {
+        padding: 0.75rem 1.4rem;
+        font-size: 0.85rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .hero-stats {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding-top: 1.5rem;
+        margin-top: 2rem;
+    }
+    .stat-divider {
+        display: none;
+    }
+}
+
+/* ======= Leftover social-link (used in footer too) ======= */
+.social-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--bg-color-alt);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    transition: all var(--transition-fast);
+    text-decoration: none;
+    border: 1px solid var(--border-color);
+}
+
+.social-link:hover {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(var(--primary-color-rgb), 0.3);
+}
+
+/* ======= CTA Banner (kept for reference) ======= */
+.cta-banner {
+    background: var(--bg-color-alt);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 5rem 0;
+    transition: background-color 0.4s ease, border-color 0.3s ease;
+    overflow: hidden;
+}
+
+.dark-theme .cta-banner {
+    background: linear-gradient(180deg, #09090b 0%, #000000 100%);
+    border-top-color: rgba(255, 255, 255, 0.05);
+    border-bottom-color: rgba(255, 255, 255, 0.05);
+}
+
+.cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+    gap: 2rem;
+}
+
+.cta-content {
+    flex: 1;
+    text-align: center;
+    max-width: 600px;
+}
+
+.cta-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 800;
+    color: var(--text-color) !important;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.cta-desc {
+    font-size: 1rem;
+    color: var(--text-color-light) !important;
+    margin-bottom: 2rem;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.cta-lottie {
+    width: 240px;
+    height: 240px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-lg {
+    padding: 0.85rem 2rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: var(--border-radius-md);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--bg-color-alt);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+@media screen and (max-width: 768px) {
+    .cta-inner {
+        flex-direction: column;
+        gap: 3rem;
+    }
+    .cta-lottie {
+        width: 180px;
+        height: 180px;
+        order: 2;
+    }
+    .cta-content {
+        order: 1;
+    }
+}

@@ -1,0 +1,844 @@
+/* ======= Terminal & AI Chat Styles ======= */
+
+/* ======= Terminal Section Wrapper ======= */
+.terminal-section {
+  background: var(--bg-color-alt);
+  padding: var(--spacing-xl) 0;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.dark-theme .terminal-section {
+  background: linear-gradient(180deg, #050505 0%, #09090b 100%);
+  border-top-color: rgba(255,255,255,0.05);
+  border-bottom-color: rgba(255,255,255,0.05);
+}
+
+.terminal-section-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-items: center;
+  width: 90%;
+  max-width: 800px;
+}
+
+.terminal-section-label {
+  font-family: 'Geist Mono', 'Fira Code', monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #06b6d4;
+  font-weight: 600;
+}
+
+.terminal-section-title {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 800;
+  font-family: 'Geist Mono', 'Fira Code', monospace;
+  color: var(--text-color);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.dark-theme .terminal-section-title {
+  color: #ffffff;
+}
+
+/* Terminal section container size */
+.terminal-section > .terminal-container {
+  width: 90%;
+  max-width: 800px;
+}
+
+/* Terminal Input Wrapper */
+.terminal-input-wrapper {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+/* Autocomplete suggestion overlay */
+.terminal-suggestion {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: 'Geist Mono', 'Fira Code', monospace;
+  font-size: 0.875rem;
+  color: #52525b;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.terminal-suggestion-ghost {
+  opacity: 0.4;
+}
+
+.terminal-tab-hint {
+  font-size: 0.6rem;
+  margin-left: 0.4rem;
+  padding: 0.1rem 0.3rem;
+  border-radius: 3px;
+  background: #27272a;
+  color: #a1a1aa;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-family: inherit;
+}
+
+/* Shortcuts label */
+.terminal-shortcuts-label {
+  font-size: 0.65rem;
+  color: #52525b;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-right: 0.25rem;
+  flex-shrink: 0;
+}
+
+
+
+/* Terminal Box Container */
+.terminal-container {
+  background: rgba(10, 10, 12, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--border-radius-lg);
+  padding: 1.5rem;
+  font-family: 'Geist Mono', 'Fira Code', monospace;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+.terminal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.terminal-titlebar {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--border-radius-round);
+}
+
+.dot-red { background-color: #ef4444; }
+.dot-yellow { background-color: #eab308; }
+.dot-green { background-color: #22c55e; }
+
+.terminal-status {
+  font-size: 0.75rem;
+  color: var(--text-color-light);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.terminal-body {
+  height: 250px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar for Terminal */
+.terminal-body::-webkit-scrollbar,
+.chat-messages::-webkit-scrollbar {
+  width: 4px;
+}
+
+.terminal-body::-webkit-scrollbar-track,
+.chat-messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.terminal-body::-webkit-scrollbar-thumb,
+.chat-messages::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+.terminal-line {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.terminal-input-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.prompt-symbol {
+  color: #06b6d4; /* cyan */
+  font-weight: bold;
+}
+
+.terminal-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-family: 'Geist Mono', 'Fira Code', monospace;
+  font-size: 0.875rem;
+}
+
+/* AI Chat Deck Floating Container */
+.chat-deck-container {
+  position: fixed;
+  bottom: 5.5rem;
+  right: 1.5rem;
+  width: 380px;
+  height: 600px;
+  max-height: calc(100vh - 7rem);
+  background: rgba(9, 9, 11, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6), 0 0 1px rgba(255, 255, 255, 0.15);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Light theme overrides if body is light-theme, but let's keep chat deck dark for the premium terminal/cyberpunk contrast! */
+.chat-deck-container {
+  color: #e4e4e7;
+}
+
+.chat-header {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.chat-header-title {
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+}
+
+.chat-status {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.65rem;
+  color: var(--text-color-light);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.chat-status-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #10b981; /* green */
+  border-radius: var(--border-radius-round);
+  box-shadow: 0 0 8px #10b981;
+}
+
+.chat-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.chat-header-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: var(--border-radius-sm);
+  transition: all 0.2s ease;
+}
+
+.chat-header-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  scroll-behavior: smooth;
+}
+
+.message-bubble {
+  max-width: 85%;
+  padding: 0.75rem 1rem;
+  border-radius: var(--border-radius-md);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.message-bubble.user {
+  align-self: flex-end;
+  background: #ffffff;
+  color: #000000;
+  border-bottom-right-radius: 2px;
+}
+
+.message-bubble.assistant {
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: #e4e4e7;
+  border-bottom-left-radius: 2px;
+}
+
+.message-bubble.system-alert {
+  align-self: center;
+  max-width: 90%;
+  background: rgba(239, 68, 68, 0.05);
+  border: 1px solid rgba(239, 68, 68, 0.1);
+  color: #f87171;
+  text-align: center;
+  border-radius: var(--border-radius-md);
+}
+
+.message-label {
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+}
+
+.chat-quick-actions {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.chat-quick-actions::-webkit-scrollbar {
+  display: none;
+}
+
+.quick-action-pill {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: #a1a1aa;
+  padding: 0.375rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.quick-action-pill:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.chat-connect-panel {
+  padding: 0.75rem 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.chat-connect-title {
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.6rem;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.35);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.chat-connect-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.375rem;
+}
+
+
+.chat-connect-link {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  padding: 0.5rem 0;
+  text-align: center;
+  border-radius: var(--border-radius-sm);
+  transition: all 0.2s ease;
+}
+
+.chat-connect-link:hover {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+}
+
+.chat-input-bar {
+  padding: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.chat-input-field {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--border-radius-md);
+  padding: 0.625rem 0.875rem;
+  color: #ffffff;
+  font-size: 0.8125rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.chat-input-field:focus {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.chat-voice-btn,
+.chat-send-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--border-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.chat-voice-btn {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: #a1a1aa;
+}
+
+.chat-voice-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+
+.chat-send-btn {
+  background: #ffffff;
+  color: #000000;
+}
+
+.chat-send-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-1px);
+}
+
+.chat-send-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Floating Trigger Button */
+.chat-trigger-btn {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  height: 3.25rem;
+  padding: 0 1.25rem;
+  background: rgba(10, 10, 12, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 15px rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  z-index: 9998;
+  font-family: 'Geist Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.chat-trigger-btn:hover {
+  transform: scale(1.03) translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.chat-trigger-btn:active {
+  transform: scale(0.98);
+}
+
+.chat-trigger-glow {
+  position: absolute;
+  inset: -1px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #3b82f6, #06b6d4, #a855f7);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+.chat-trigger-btn:hover .chat-trigger-glow {
+  opacity: 0.15;
+}
+
+.pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--border-radius-round);
+  background-color: #22c55e;
+  box-shadow: 0 0 8px #22c55e;
+  animation: pulse-glow 1.5s infinite;
+}
+
+/* Animations */
+@keyframes pulse-glow {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(34, 197, 94, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+  }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  from, to { color: transparent; }
+  50% { color: #06b6d4; }
+}
+
+@media (max-width: 480px) {
+  .chat-deck-container {
+    width: calc(100vw - 2rem);
+    right: 1rem;
+    bottom: 5rem;
+    height: 500px;
+  }
+}
+
+/* ======= Command Menu (Cmd+K) Styles ======= */
+
+.command-menu-dialog {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: auto;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: none;
+  overflow: visible;
+  outline: none;
+}
+
+.command-menu-dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: opacity 0.3s ease;
+}
+
+.command-menu-container {
+  background: var(--bg-color-alt);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  color: var(--text-color);
+  box-shadow: 0 24px 48px var(--shadow-color), 0 0 1px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-height: 450px;
+  animation: modal-zoom 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dark-theme .command-menu-container {
+  background: rgba(10, 10, 12, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6), 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+@keyframes modal-zoom {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.command-menu-search-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border-color);
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.dark-theme .command-menu-search-wrapper {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.command-menu-search-icon {
+  color: var(--text-color-light);
+  flex-shrink: 0;
+}
+
+.command-menu-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-color);
+  font-family: var(--font-inter), sans-serif;
+  font-size: 1rem;
+}
+
+.command-menu-input::placeholder {
+  color: var(--text-color-light);
+  opacity: 0.6;
+}
+
+.command-menu-list {
+  overflow-y: auto;
+  padding: 0.5rem;
+  flex: 1;
+}
+
+.command-menu-group-title {
+  font-size: 0.6875rem;
+  font-family: 'Geist Mono', monospace;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-color-light);
+  opacity: 0.5;
+  padding: 0.5rem 0.75rem 0.25rem;
+  letter-spacing: 0.05em;
+}
+
+.command-menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem;
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+  font-size: 0.875rem;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  color: var(--text-color);
+  font-family: var(--font-inter), sans-serif;
+}
+
+.command-menu-item-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.command-menu-item-icon {
+  color: var(--text-color-light);
+  flex-shrink: 0;
+}
+
+.command-menu-item:hover,
+.command-menu-item.active {
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--primary-color);
+}
+
+.dark-theme .command-menu-item:hover,
+.dark-theme .command-menu-item.active {
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+}
+
+.command-menu-item.active .command-menu-item-icon {
+  color: var(--text-color);
+}
+
+.dark-theme .command-menu-item.active .command-menu-item-icon {
+  color: #ffffff;
+}
+
+.command-menu-shortcut {
+  font-size: 0.6875rem;
+  font-family: 'Geist Mono', 'Fira Code', monospace;
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--border-color);
+  padding: 0.125rem 0.375rem;
+  border-radius: var(--border-radius-sm);
+  color: var(--text-color-light);
+}
+
+.dark-theme .command-menu-shortcut {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.command-menu-footer {
+  padding: 0.625rem 1.25rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--text-color-light);
+  opacity: 0.8;
+  background: rgba(0, 0, 0, 0.01);
+}
+
+.dark-theme .command-menu-footer {
+  border-top-color: rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.command-menu-instructions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.command-menu-key-hint {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.command-menu-key {
+  font-family: 'Geist Mono', monospace;
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--border-color);
+  padding: 0.05rem 0.25rem;
+  border-radius: 3px;
+  font-size: 0.6875rem;
+}
+
+.dark-theme .command-menu-key {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* ======= Custom Terminal Line & Shortcut Styles ======= */
+
+.terminal-line-input {
+  color: #ffffff !important;
+  font-weight: 700;
+}
+
+.terminal-line-system {
+  color: #22d3ee !important; /* neon cyan */
+}
+
+.terminal-line-error {
+  color: #f87171 !important; /* soft red */
+}
+
+.terminal-line-ai {
+  color: #d8b4fe !important; /* soft purple */
+}
+
+.terminal-line-output {
+  color: #e4e4e7 !important; /* light zinc */
+}
+
+.terminal-shortcuts {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.terminal-shortcut-pill {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--border-radius-sm);
+  color: #a1a1aa;
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.7rem;
+}
+
+.terminal-shortcut-pill:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.terminal-shortcut-pill:active {
+  transform: translateY(0);
+}
+
+/* Ensure the Section Heading respects the page theme */
+#terminal-section h2 {
+  color: var(--text-color) !important;
+}
+
+.dark-theme #terminal-section h2 {
+  color: #ffffff !important;
+}
