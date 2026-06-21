@@ -31,10 +31,10 @@ export default function Experience() {
                   <Image src="/assets/logos/lane.png" alt="LANE Trailer Mfg." width={48} height={48} />
                 </div>
                 <div className="company-info">
-                  <h3 className="job-title">Software Engineer -- AI Systems and Automation (Full-Time)</h3>
+                  <h3 className="job-title">Software Engineer -- AI Systems and Automation</h3>
                   <h4 className="company-name">LANE Trailer Mfg.</h4>
                   <span className="job-duration"><i className="far fa-calendar-alt"></i> Jan 2026 - Present</span>
-                  <p className="company-location"><i className="fas fa-map-marker-alt"></i> Boone, IA</p>
+                  <p className="company-location"><i className="fas fa-map-marker-alt"></i> IA, USA</p>
                 </div>
               </div>
               <div className="job-description">

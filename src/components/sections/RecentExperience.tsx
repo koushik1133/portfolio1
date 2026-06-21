@@ -26,8 +26,8 @@ export default function RecentExperience() {
           <div className="exp-content-wrapper">
             <div className="exp-header">
               <div>
-                <h3 className="exp-title">Software Engineer -- AI Systems and Automation (Full-Time)</h3>
-                <p className="exp-company">LANE Trailer Mfg. • Boone, IA</p>
+                <h3 className="exp-title">Software Engineer -- AI Systems and Automation</h3>
+                <p className="exp-company">LANE Trailer Mfg. • IA, USA</p>
               </div>
               <div className="exp-date">Jan 2026 — Present</div>
             </div>
