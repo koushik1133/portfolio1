@@ -1,0 +1,16 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gmail-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4285F4" />   <!-- Blue -->
+      <stop offset="33%" stop-color="#EA4335" />  <!-- Red -->
+      <stop offset="66%" stop-color="#FBBC05" />  <!-- Yellow -->
+      <stop offset="100%" stop-color="#34A853" /> <!-- Green -->
+    </linearGradient>
+  </defs>
+  <!-- White Background with rounded corners -->
+  <rect width="512" height="512" rx="128" fill="#FFFFFF" />
+  <!-- KS Text with Gmail Gradient -->
+  <text x="50%" y="54%" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="300" letter-spacing="-10" text-anchor="middle" dominant-baseline="middle" fill="url(#gmail-gradient)">
+    KS
+  </text>
+</svg>
