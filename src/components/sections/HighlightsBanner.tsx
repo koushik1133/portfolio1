@@ -52,23 +52,12 @@ export default function HighlightsBanner() {
   };
 
   return (
-    <section className="highlights-banner-section section" style={{ padding: "2rem 0" }}>
-      <div className="container" style={{ textAlign: "center" }}>
-        <h2 style={{ marginBottom: "2rem", fontSize: "2rem", fontWeight: "bold", fontFamily: "var(--font-mono)" }}>Featured Highlights</h2>
+    <section className="highlights-banner-section section">
+      <div className="container">
+        <h2 className="highlights-title">Featured Highlights</h2>
         
         <div 
           className="banner-container"
-          style={{
-            position: "relative",
-            width: "100%",
-            maxWidth: "900px",
-            height: "400px",
-            margin: "0 auto",
-            overflow: "hidden",
-            borderRadius: "16px",
-            border: "2px solid rgba(255, 255, 255, 0.1)",
-            backgroundColor: "rgba(0, 0, 0, 0.2)"
-          }}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
@@ -79,18 +68,7 @@ export default function HighlightsBanner() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -100 }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                padding: "2rem 5rem"
-              }}
+              className="banner-slide"
             >
               {/* Featured Image Link */}
               <a 
@@ -98,16 +76,6 @@ export default function HighlightsBanner() {
                 target={HIGHLIGHTS[currentIndex].url !== "#" ? "_blank" : "_self"}
                 rel={HIGHLIGHTS[currentIndex].url !== "#" ? "noopener noreferrer" : ""}
                 className="image-container hover-target"
-                style={{
-                  width: "100%",
-                  height: "75%",
-                  borderRadius: "8px",
-                  overflow: "hidden",
-                  position: "relative",
-                  border: "1px solid rgba(255, 255, 255, 0.1)",
-                  backgroundColor: "rgba(0, 0, 0, 0.3)",
-                  display: "block"
-                }}
               >
                 <Image 
                   src={HIGHLIGHTS[currentIndex].image} 
@@ -117,9 +85,9 @@ export default function HighlightsBanner() {
                 />
               </a>
               
-              <div style={{ marginTop: "1rem", color: "#fff" }}>
-                <h3 style={{ fontSize: "1.5rem", margin: 0, fontFamily: "var(--font-mono)" }}>{HIGHLIGHTS[currentIndex].title}</h3>
-                <p style={{ color: "rgba(255, 255, 255, 0.6)", margin: "0.5rem 0 0", fontFamily: "var(--font-mono)" }}>
+              <div className="banner-slide-details">
+                <h3>{HIGHLIGHTS[currentIndex].title}</h3>
+                <p>
                   {HIGHLIGHTS[currentIndex].subtitle}
                 </p>
               </div>
@@ -128,74 +96,30 @@ export default function HighlightsBanner() {
 
           {/* Navigation Arrows */}
           <button 
-            className="hover-target"
+            className="banner-arrow prev hover-target"
             onClick={handlePrev}
-            style={{
-              position: "absolute",
-              left: "1rem",
-              top: "50%",
-              transform: "translateY(-50%)",
-              background: "rgba(0, 0, 0, 0.5)",
-              border: "1px solid rgba(255, 255, 255, 0.1)",
-              borderRadius: "50%",
-              width: "40px",
-              height: "40px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "white",
-              cursor: "pointer",
-              zIndex: 10,
-            }}
+            aria-label="Previous Highlight"
           >
             <ChevronLeft size={24} />
           </button>
           
           <button 
-            className="hover-target"
+            className="banner-arrow next hover-target"
             onClick={handleNext}
-            style={{
-              position: "absolute",
-              right: "1rem",
-              top: "50%",
-              transform: "translateY(-50%)",
-              background: "rgba(0, 0, 0, 0.5)",
-              border: "1px solid rgba(255, 255, 255, 0.1)",
-              borderRadius: "50%",
-              width: "40px",
-              height: "40px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "white",
-              cursor: "pointer",
-              zIndex: 10,
-            }}
+            aria-label="Next Highlight"
           >
             <ChevronRight size={24} />
           </button>
           
           {/* Progress Indicators */}
-          <div style={{
-            position: "absolute",
-            bottom: "1rem",
-            left: "50%",
-            transform: "translateX(-50%)",
-            display: "flex",
-            gap: "0.5rem"
-          }}>
+          <div className="banner-dots">
             {HIGHLIGHTS.map((_, idx) => (
               <div 
                 key={idx}
                 onClick={() => setCurrentIndex(idx)}
-                className="hover-target"
+                className={`banner-dot hover-target ${idx === currentIndex ? "active" : ""}`}
                 style={{
-                  width: idx === currentIndex ? "24px" : "8px",
-                  height: "8px",
-                  borderRadius: "4px",
-                  backgroundColor: idx === currentIndex ? "#00f0ff" : "rgba(255,255,255,0.3)",
-                  transition: "all 0.3s ease",
-                  cursor: "pointer"
+                  width: idx === currentIndex ? "24px" : "8px"
                 }}
               />
             ))}

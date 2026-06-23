@@ -5,6 +5,7 @@ import QuickAbout from "../components/sections/QuickAbout";
 import RecentExperience from "../components/sections/RecentExperience";
 import FeaturedProjects from "../components/sections/FeaturedProjects";
 import SeniorProject from "../components/sections/SeniorProject";
+import NexusShowcase from "../components/sections/NexusShowcase";
 import CallToAction from "../components/sections/CallToAction";
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
         <RecentExperience />
         <FeaturedProjects />
         <SeniorProject />
+        <NexusShowcase />
         <CallToAction />
       </main>
     </>

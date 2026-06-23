@@ -34,10 +34,10 @@ export default function SeniorProject() {
           </div>
           
           <div className="senior-project-image-box">
-            <div className="senior-project-placeholder">
-              <i className="fas fa-robot"></i>
-            </div>
-            {/* If an image exists, we can use it here later. For now we use the stylized placeholder matching the project cards */}
+            <img 
+              src="/images/robot.jpg" 
+              alt="Mekk — Autonomous AI Robot" 
+            />
           </div>
         </motion.div>
       </div>

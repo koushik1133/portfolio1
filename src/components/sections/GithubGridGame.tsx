@@ -205,21 +205,22 @@ export default function GithubGridGame() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.15 }}
         >
-          {/* Month row */}
-          <div className="ig-months">
-            {monthLabels.map(({ label, col }) => (
-              <span
-                key={label}
-                className="ig-month-label"
-                style={{ gridColumn: col + 1 }}
-              >
-                {label}
-              </span>
-            ))}
-          </div>
-
-          {/* Grid */}
+          {/* Grid Scroll Wrapper */}
           <div className="ig-grid-wrapper">
+            {/* Month row */}
+            <div className="ig-months">
+              {monthLabels.map(({ label, col }) => (
+                <span
+                  key={label}
+                  className="ig-month-label"
+                  style={{ gridColumn: col + 1 }}
+                >
+                  {label}
+                </span>
+              ))}
+            </div>
+
+            {/* Grid */}
             <div
               className="ig-grid"
               style={{ gridTemplateColumns: `repeat(${COLS}, 1fr)` }}
