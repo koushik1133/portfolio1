@@ -7,7 +7,8 @@ import React, { useEffect, useRef, useState } from "react";
 let _carId = 0;
 
 /* ── Car SVG (sleek side-view) with animated lights ── */
-function CarSVG({ color = "#e53e3e", flip = false }: { color?: string; flip?: boolean }) {
+/* ── Car SVG (sleek side-view) with animated lights ── */
+function CarSVG({ color = "#e53e3e", flip = false, isDark = true }: { color?: string; flip?: boolean; isDark?: boolean }) {
   const id = useRef(`car${++_carId}`).current;
   return (
     <svg
@@ -30,20 +31,24 @@ function CarSVG({ color = "#e53e3e", flip = false }: { color?: string; flip?: bo
         </radialGradient>
       </defs>
 
-      {/* ── Headlight beam (cone projecting forward) ── */}
-      <polygon
-        points="158,28 220,8 220,56 158,40"
-        fill={`url(#hl-${id})`}
-        style={{ animation: "beamFlicker 1.8s ease-in-out infinite" }}
-      />
+      {/* ── Headlight beam (cone projecting forward) — ON at night, OFF during day ── */}
+      {isDark && (
+        <polygon
+          points="158,28 220,8 220,56 158,40"
+          fill={`url(#hl-${id})`}
+          style={{ animation: "beamFlicker 1.8s ease-in-out infinite" }}
+        />
+      )}
 
-      {/* ── Tail-glow behind car ── */}
-      <ellipse
-        cx="12" cy="34"
-        rx="18" ry="10"
-        fill={`url(#tl-${id})`}
-        style={{ animation: "taillightBlink 1.2s ease-in-out infinite" }}
-      />
+      {/* ── Tail-glow behind car — ON at night, OFF during day ── */}
+      {isDark && (
+        <ellipse
+          cx="12" cy="34"
+          rx="18" ry="10"
+          fill={`url(#tl-${id})`}
+          style={{ animation: "taillightBlink 1.2s ease-in-out infinite" }}
+        />
+      )}
 
       {/* Body */}
       <rect x="10" y="28" width="148" height="20" rx="4" fill={color} />
@@ -55,26 +60,26 @@ function CarSVG({ color = "#e53e3e", flip = false }: { color?: string; flip?: bo
       {/* ── Headlight assembly ── */}
       {/* outer glow ring */}
       <ellipse cx="157" cy="34" rx="9" ry="6"
-        fill="#fffde7" opacity="0.3"
-        style={{ animation: "headlightPulse 1.8s ease-in-out infinite" }}
+        fill="#fffde7" opacity={isDark ? 0.3 : 0}
+        style={isDark ? { animation: "headlightPulse 1.8s ease-in-out infinite" } : {}}
       />
       {/* main lens */}
-      <ellipse cx="157" cy="34" rx="6" ry="4" fill="#fff9c4" opacity="0.95" />
+      <ellipse cx="157" cy="34" rx="6" ry="4" fill={isDark ? "#fff9c4" : "#e5e7eb"} opacity="0.95" />
       <ellipse cx="157" cy="34" rx="3" ry="2"
-        fill="#ffeb3b"
-        style={{ animation: "headlightPulse 1.8s ease-in-out infinite" }}
+        fill={isDark ? "#ffeb3b" : "#d1d5db"}
+        style={isDark ? { animation: "headlightPulse 1.8s ease-in-out infinite" } : {}}
       />
 
       {/* ── Taillight assembly ── */}
       {/* outer glow */}
       <rect x="7" y="27" width="12" height="14" rx="3"
-        fill="#ff1744" opacity="0.25"
-        style={{ animation: "taillightBlink 1.2s ease-in-out infinite" }}
+        fill="#ff1744" opacity={isDark ? 0.25 : 0}
+        style={isDark ? { animation: "taillightBlink 1.2s ease-in-out infinite" } : {}}
       />
       {/* main lens */}
       <rect x="10" y="30" width="8" height="8" rx="2"
-        fill="#ff1744"
-        style={{ animation: "taillightBlink 1.2s ease-in-out infinite" }}
+        fill={isDark ? "#ff1744" : "#991b1b"}
+        style={isDark ? { animation: "taillightBlink 1.2s ease-in-out infinite" } : {}}
       />
 
       {/* Undercarriage */}
@@ -95,8 +100,8 @@ function CarSVG({ color = "#e53e3e", flip = false }: { color?: string; flip?: bo
 }
 
 
-/* ── Full cinematic night scene: Moon + Mountains ── */
-function NightScene() {
+/* ── Full cinematic night/day scene: Moon + Mountains ── */
+function SkyScene({ isDark }: { isDark: boolean }) {
   return (
     <svg
       viewBox="0 0 1440 500"
@@ -112,17 +117,19 @@ function NightScene() {
       }}
     >
       <defs>
-        {/* Moon glow */}
-        <radialGradient id="moonGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%"   stopColor="#fffde7" stopOpacity="1" />
-          <stop offset="35%"  stopColor="#fff9c4" stopOpacity="0.95" />
-          <stop offset="70%"  stopColor="#fef08a" stopOpacity="0.15" />
-          <stop offset="100%" stopColor="#fef08a" stopOpacity="0" />
+        {/* Realistic grey moon base gradient */}
+        <radialGradient id="moonGreyGrad" cx="30%" cy="30%" r="70%">
+          <stop offset="0%"   stopColor="#ffffff" />
+          <stop offset="60%"  stopColor="#f3f4f6" />
+          <stop offset="85%"  stopColor="#e5e7eb" />
+          <stop offset="100%" stopColor="#d1d5db" />
         </radialGradient>
-        {/* Moon halo */}
-        <radialGradient id="moonHalo" cx="50%" cy="50%" r="50%">
-          <stop offset="0%"   stopColor="#e0f2fe" stopOpacity="0.18" />
-          <stop offset="100%" stopColor="#e0f2fe" stopOpacity="0" />
+        {/* Sun gradient */}
+        <radialGradient id="sunGrad" cx="35%" cy="35%" r="65%">
+          <stop offset="0%"   stopColor="#ffffff" />
+          <stop offset="25%"  stopColor="#fef08a" />
+          <stop offset="70%"  stopColor="#f59e0b" />
+          <stop offset="100%" stopColor="#ea580c" />
         </radialGradient>
         {/* Moonlit sky */}
         <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
@@ -131,32 +138,32 @@ function NightScene() {
           <stop offset="80%"  stopColor="#050e1c" />
           <stop offset="100%" stopColor="#0a1628" />
         </linearGradient>
-        {/* Realistic grey moon base gradient */}
-        <radialGradient id="moonGreyGrad" cx="30%" cy="30%" r="70%">
-          <stop offset="0%"   stopColor="#fdfdfd" />
-          <stop offset="45%"  stopColor="#dedede" />
-          <stop offset="80%"  stopColor="#b5b5b5" />
-          <stop offset="100%" stopColor="#7a7a7a" />
-        </radialGradient>
+        {/* Day sky */}
+        <linearGradient id="skyGradDay" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stopColor="#0284c7" />
+          <stop offset="50%"  stopColor="#38bdf8" />
+          <stop offset="85%"  stopColor="#7dd3fc" />
+          <stop offset="100%" stopColor="#bae6fd" />
+        </linearGradient>
         {/* Far mountain */}
         <linearGradient id="mtnFar" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stopColor="#0d1f35" />
-          <stop offset="100%" stopColor="#04101e" />
+          <stop offset="0%"   stopColor={isDark ? "#0d1f35" : "#576b82"} />
+          <stop offset="100%" stopColor={isDark ? "#04101e" : "#3b4d61"} />
         </linearGradient>
         {/* Mid mountain */}
         <linearGradient id="mtnMid" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stopColor="#050c18" />
-          <stop offset="100%" stopColor="#010408" />
+          <stop offset="0%"   stopColor={isDark ? "#050c18" : "#3b4d61"} />
+          <stop offset="100%" stopColor={isDark ? "#010408" : "#243242"} />
         </linearGradient>
         {/* Near mountain */}
         <linearGradient id="mtnNear" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stopColor="#020609" />
-          <stop offset="100%" stopColor="#010203" />
+          <stop offset="0%"   stopColor={isDark ? "#020609" : "#243242"} />
+          <stop offset="100%" stopColor={isDark ? "#010203" : "#131d27"} />
         </linearGradient>
         {/* Ground mist */}
         <linearGradient id="mist" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stopColor="#1a3a5c" stopOpacity="0.28" />
-          <stop offset="100%" stopColor="#1a3a5c" stopOpacity="0" />
+          <stop offset="0%"   stopColor={isDark ? "#1a3a5c" : "#bae6fd"} stopOpacity={isDark ? "0.28" : "0.35"} />
+          <stop offset="100%" stopColor={isDark ? "#1a3a5c" : "#bae6fd"} stopOpacity="0" />
         </linearGradient>
         {/* Star glow filter */}
         <filter id="starGlow">
@@ -166,10 +173,10 @@ function NightScene() {
       </defs>
 
       {/* Full sky */}
-      <rect x="0" y="0" width="1440" height="500" fill="url(#skyGrad)" />
+      <rect x="0" y="0" width="1440" height="500" fill={isDark ? "url(#skyGrad)" : "url(#skyGradDay)"} />
 
-      {/* ── Stars scattered in the top 55% of sky ── */}
-      {[
+      {/* ── Stars: visible only at night ── */}
+      {isDark && [
         [80,12],[145,5],[230,18],[325,8],[400,22],[478,5],[558,15],[662,10],[738,24],[825,7],
         [905,18],[985,4],[1065,14],[1158,22],[1238,8],[1328,20],[1408,6],
         [55,38],[188,48],[298,34],[428,52],[538,42],[665,32],[788,48],[895,36],[1015,46],
@@ -186,52 +193,59 @@ function NightScene() {
         />
       ))}
 
-      {/* ── Realistic Grey Moon (Upper-Left Corner, Static, Scaled Down & Shifted Lower) ── */}
-      <g transform="translate(130, 145) scale(0.7) translate(-130, -90)">
-        {/* Faint ambient atmosphere rim glow */}
-        <circle cx="130" cy="90" r="47" fill="#ffffff" opacity="0.04" />
-        {/* Moon base body */}
-        <circle cx="130" cy="90" r="44" fill="url(#moonGreyGrad)" />
+      {/* ── Moon (Night) / Sun (Day) ── */}
+      {isDark ? (
+        /* Realistic Clean Illustrated Moon matching reference image exactly */
+        <g transform="translate(130, 145) scale(0.7) translate(-130, -90)">
+          {/* Main Moon Disc */}
+          <circle cx="130" cy="90" r="44" fill="url(#moonGreyGrad)" />
 
-        {/* Lunar Maria (large dark basaltic plains) */}
-        <path d="M108,68 Q122,58 140,66 Q152,74 148,90 Q140,106 124,102 Q110,90 108,68 Z" fill="#61666b" opacity="0.32" />
-        <path d="M98,82 Q102,72 116,76 Q128,80 124,92 Q116,104 104,100 Q94,92 98,82 Z" fill="#4b4e52" opacity="0.35" />
-        <path d="M130,64 Q142,60 148,70 Q154,80 146,88 Q138,92 132,80 Z" fill="#52565a" opacity="0.30" />
-        <path d="M92,84 Q96,70 106,76 Q110,88 104,100 Q96,112 88,100 Q86,92 92,84 Z" fill="#585c60" opacity="0.30" />
+          {/* Clean Rounded Craters & Maria */}
+          <circle cx="120" cy="65" r="9" fill="#cbd2d6" opacity="0.85" />
+          <circle cx="140" cy="80" r="7" fill="#cbd2d6" opacity="0.85" />
+          
+          <circle cx="114" cy="92" r="5" fill="#cbd2d6" opacity="0.75" />
+          <circle cx="136" cy="112" r="7.5" fill="#cbd2d6" opacity="0.75" />
+          <circle cx="106" cy="108" r="4" fill="#cbd2d6" opacity="0.70" />
 
-        {/* Ejecta Rays from Tycho Crater */}
-        <path d="M124,118 L108,98 M124,118 L96,110 M124,118 L114,128 M124,118 L136,124 M124,118 L138,108 M124,118 L132,92 M124,118 L120,78 M124,118 L142,72" stroke="#ffffff" strokeWidth="0.8" opacity="0.22" strokeDasharray="2,3" />
+          {/* Small crater clusters */}
+          <circle cx="100" cy="74" r="2.2" fill="#cbd2d6" opacity="0.8" />
+          <circle cx="104" cy="78" r="1.8" fill="#cbd2d6" opacity="0.8" />
+          <circle cx="98" cy="82" r="2.8" fill="#cbd2d6" opacity="0.8" />
 
-        {/* Major Craters */}
-        {/* Tycho (near bottom-center) */}
-        <circle cx="124" cy="118" r="4.5" fill="#f5f5f5" />
-        <circle cx="124" cy="118" r="2" fill="#adadad" />
+          <circle cx="146" cy="65" r="3.5" fill="#cbd2d6" opacity="0.8" />
+          <circle cx="150" cy="71" r="2.2" fill="#cbd2d6" opacity="0.8" />
 
-        {/* Copernicus (left-center) */}
-        <circle cx="108" cy="88" r="3.5" fill="#ffffff" opacity="0.85" />
-        <circle cx="108" cy="88" r="1.5" fill="#757575" />
+          <circle cx="156" cy="90" r="3.2" fill="#cbd2d6" opacity="0.75" />
+          <circle cx="158" cy="96" r="2.2" fill="#cbd2d6" opacity="0.75" />
+          <circle cx="154" cy="102" r="1.8" fill="#cbd2d6" opacity="0.75" />
 
-        {/* Kepler */}
-        <circle cx="98" cy="92" r="2.2" fill="#ffffff" opacity="0.75" />
+          <circle cx="134" cy="126" r="2.5" fill="#cbd2d6" opacity="0.8" />
+          <circle cx="138" cy="128" r="1.8" fill="#cbd2d6" opacity="0.8" />
 
-        {/* Other craters */}
-        <circle cx="136" cy="68" r="3" fill="#ffffff" opacity="0.4" />
-        <circle cx="144" cy="76" r="2.5" fill="#ffffff" opacity="0.5" />
-        <circle cx="120" cy="56" r="3.5" fill="#ffffff" opacity="0.3" />
-        <circle cx="106" cy="62" r="2" fill="#ffffff" opacity="0.4" />
-        <circle cx="152" cy="98" r="4" fill="#ffffff" opacity="0.3" />
-        <circle cx="138" cy="108" r="2" fill="#ffffff" opacity="0.5" />
+          {/* Individual detailed ovals/shadows matching the reference style */}
+          <ellipse cx="124" cy="122" rx="4.5" ry="3.5" fill="#cbd2d6" opacity="0.85" />
+          <ellipse cx="142" cy="116" rx="5.5" ry="4.5" fill="#cbd2d6" opacity="0.85" />
+          
+          {/* Inner shaded parts for Tycho/large crater depth */}
+          <circle cx="120" cy="66" r="6" fill="#adb5bd" opacity="0.45" />
+          <circle cx="140" cy="81" r="4.5" fill="#adb5bd" opacity="0.45" />
+          <circle cx="136" cy="112" r="5" fill="#adb5bd" opacity="0.45" />
 
-        {/* Fine texture and crater rim highlights */}
-        <circle cx="115" cy="72" r="0.8" fill="#ffffff" opacity="0.6" />
-        <circle cx="122" cy="78" r="1" fill="#ffffff" opacity="0.5" />
-        <circle cx="126" cy="84" r="0.7" fill="#ffffff" opacity="0.7" />
-        <circle cx="140" cy="92" r="1.2" fill="#ffffff" opacity="0.4" />
-        <circle cx="132" cy="100" r="0.8" fill="#ffffff" opacity="0.6" />
-
-        {/* 3D shadow terminator overlay (crisp 3D texture shading) */}
-        <path d="M130,46 A44,44 0 0,1 174,90 A44,44 0 0,1 130,134 A44,36 0 0,0 130,46 Z" fill="#030814" opacity="0.25" />
-      </g>
+          {/* 3D Darker Crescent Shadow on the Right side */}
+          <path d="M130,46 A44,44 0 0,1 174,90 A44,44 0 0,1 130,134 A44,40 0 0,0 130,46 Z" fill="#6b7280" opacity="0.18" />
+        </g>
+      ) : (
+        /* Sunny Day Sun */
+        <g transform="translate(130, 145) scale(0.7) translate(-130, -90)">
+          {/* Outer ray glow */}
+          <circle cx="130" cy="90" r="75" fill="#fef08a" opacity="0.28" />
+          {/* Mid glow */}
+          <circle cx="130" cy="90" r="58" fill="#f59e0b" opacity="0.4" />
+          {/* Sun body */}
+          <circle cx="130" cy="90" r="44" fill="url(#sunGrad)" />
+        </g>
+      )}
 
       {/* ── Far mountains — tall & dramatic ── */}
       <path
@@ -242,15 +256,15 @@ function NightScene() {
         opacity="0.80"
       />
       {/* Snow caps on far peaks */}
-      <path d="M240,205 L260,222 L220,222 Z" fill="#dde8f0" opacity="0.18" />
-      <path d="M420,175 L442,195 L398,195 Z" fill="#dde8f0" opacity="0.15" />
-      <path d="M600,155 L624,176 L576,176 Z" fill="#dde8f0" opacity="0.18" />
-      <path d="M780,140 L805,162 L755,162 Z" fill="#dde8f0" opacity="0.20" />
-      <path d="M960,130 L986,154 L934,154 Z" fill="#dde8f0" opacity="0.18" />
-      <path d="M1140,120 L1168,144 L1112,144 Z" fill="#dde8f0" opacity="0.20" />
-      <path d="M1320,118 L1346,142 L1294,142 Z" fill="#dde8f0" opacity="0.16" />
+      <path d="M240,205 L260,222 L220,222 Z" fill={isDark ? "#dde8f0" : "#ffffff"} opacity={isDark ? 0.18 : 0.4} />
+      <path d="M420,175 L442,195 L398,195 Z" fill={isDark ? "#dde8f0" : "#ffffff"} opacity={isDark ? 0.15 : 0.35} />
+      <path d="M600,155 L624,176 L576,176 Z" fill={isDark ? "#dde8f0" : "#ffffff"} opacity={isDark ? 0.18 : 0.4} />
+      <path d="M780,140 L805,162 L755,162 Z" fill={isDark ? "#dde8f0" : "#ffffff"} opacity={isDark ? 0.20 : 0.45} />
+      <path d="M960,130 L986,154 L934,154 Z" fill={isDark ? "#dde8f0" : "#ffffff"} opacity={isDark ? 0.18 : 0.4} />
+      <path d="M1140,120 L1168,144 L1112,144 Z" fill={isDark ? "#dde8f0" : "#ffffff"} opacity={isDark ? 0.20 : 0.45} />
+      <path d="M1320,118 L1346,142 L1294,142 Z" fill={isDark ? "#dde8f0" : "#ffffff"} opacity={isDark ? 0.16 : 0.35} />
 
-      {/* ── Mid mountains — closer, darker ── */}
+      {/* ── Mid mountains ── */}
       <path
         d="M0,420 L90,330 L180,368 L270,295 L370,345 L460,272 L560,318
            L660,250 L755,300 L850,240 L950,285 L1050,228 L1150,270
@@ -258,13 +272,13 @@ function NightScene() {
         fill="url(#mtnMid)"
         opacity="0.95"
       />
-      {/* Moonlit ridge highlight */}
+      {/* ridge highlight */}
       <path d="M460,272 L490,286 L560,318 L660,250 L682,262"
-        fill="none" stroke="#1a3254" strokeWidth="2" opacity="0.55" />
+        fill="none" stroke={isDark ? "#1a3254" : "#94a3b8"} strokeWidth="2" opacity="0.55" />
       <path d="M1050,228 L1078,242 L1150,270 L1250,215 L1272,226"
-        fill="none" stroke="#1a3254" strokeWidth="2" opacity="0.55" />
+        fill="none" stroke={isDark ? "#1a3254" : "#94a3b8"} strokeWidth="2" opacity="0.55" />
 
-      {/* ── Near foothills — darkest ── */}
+      {/* ── Near foothills ── */}
       <path
         d="M0,460 L110,398 L220,428 L330,380 L440,415 L550,370
            L660,405 L770,362 L880,400 L990,355 L1100,390 L1210,348
@@ -272,14 +286,14 @@ function NightScene() {
         fill="url(#mtnNear)"
       />
 
-      {/* ── Pine trees along near ridge ── */}
+      {/* ── Pine trees ── */}
       {[85,175,305,435,545,660,770,875,985,1095,1195,1308,1408].map((x, i) => {
         const base = 395 + (i % 3) * 10;
         return (
           <path
             key={i}
             d={`M${x},${base-40} L${x+14},${base} L${x+7},${base} L${x+7},${base+16} L${x-7},${base+16} L${x-7},${base} L${x-14},${base} Z`}
-            fill="#010305"
+            fill={isDark ? "#010305" : "#0d2719"}
             opacity="0.95"
           />
         );
@@ -287,9 +301,9 @@ function NightScene() {
 
       {/* ── Ground mist / valley fog ── */}
       <rect x="0" y="455" width="1440" height="45" fill="url(#mist)" />
-      <ellipse cx="220"  cy="468" rx="320" ry="22" fill="#071525" opacity="0.22" />
-      <ellipse cx="820"  cy="465" rx="380" ry="20" fill="#071525" opacity="0.18" />
-      <ellipse cx="1300" cy="470" rx="240" ry="18" fill="#071525" opacity="0.15" />
+      <ellipse cx="220"  cy="468" rx="320" ry="22" fill={isDark ? "#071525" : "#e0f2fe"} opacity="0.22" />
+      <ellipse cx="820"  cy="465" rx="380" ry="20" fill={isDark ? "#071525" : "#e0f2fe"} opacity="0.18" />
+      <ellipse cx="1300" cy="470" rx="240" ry="18" fill={isDark ? "#071525" : "#e0f2fe"} opacity="0.15" />
     </svg>
   );
 }
@@ -306,12 +320,14 @@ function AnimatedCar({
   yPos,
   flip = false,
   delay = 0,
+  isDark = true,
 }: {
   carColor: string;
   duration: number;
   yPos: number;
   flip?: boolean;
   delay?: number;
+  isDark?: boolean;
 }) {
   return (
     <div
@@ -325,7 +341,7 @@ function AnimatedCar({
         willChange: "transform",
       }}
     >
-      <CarSVG color={carColor} flip={flip} />
+      <CarSVG color={carColor} flip={flip} isDark={isDark} />
     </div>
   );
 }
@@ -571,25 +587,27 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* ── TRACK SCENE — Cinematic night with mountains ── */}
+      {/* ── TRACK SCENE — Cinematic night/day with mountains ── */}
       <div style={{
         position: "relative",
-        background: "#000",
+        background: isDark ? "#000" : "#7dd3fc",
         height: "clamp(340px, 42vw, 460px)",
         overflow: "hidden",
       }}>
-        {/* Mountain + Moon night scene */}
-        <NightScene />
+        {/* Mountain + Moon/Sun sky scene */}
+        <SkyScene isDark={isDark} />
 
-        {/* Subtle dark overlay at very top to blend into upper footer */}
+        {/* Subtle dark overlay at very top to blend into upper footer — hidden or soft in light mode */}
         <div style={{
           position: "absolute", top: 0, left: 0, right: 0, height: "30px",
-          background: "linear-gradient(to bottom, #000 0%, transparent 100%)",
+          background: isDark 
+            ? "linear-gradient(to bottom, #000 0%, transparent 100%)"
+            : "linear-gradient(to bottom, var(--bg-color, #ffffff) 0%, transparent 100%)",
           pointerEvents: "none",
           zIndex: 2,
         }} />
 
-        {/* Street lights — each lamp has its own horror-flicker animation */}
+        {/* Street lights — active at night, inactive bulb with no glowing cone during day */}
         {[
           { pct: 8,  anim: "flicker0", dur: "4s",   delay: "0s"   },
           { pct: 22, anim: "flicker1", dur: "6s",   delay: "1.2s" },
@@ -607,7 +625,7 @@ export default function Footer() {
             alignItems: "center",
           }}>
             {/* Pole */}
-            <div style={{ width: "3px", height: "clamp(30px,5vw,55px)", background: "#333" }} />
+            <div style={{ width: "3px", height: "clamp(30px,5vw,55px)", background: isDark ? "#333" : "#64748b" }} />
             {/* Arm */}
             <div style={{
               position: "absolute",
@@ -615,9 +633,9 @@ export default function Footer() {
               left: "-12px",
               width: "15px",
               height: "3px",
-              background: "#333",
+              background: isDark ? "#333" : "#64748b",
             }} />
-            {/* Light bulb — animated independently */}
+            {/* Light bulb — animated independently only in dark mode */}
             <div style={{
               position: "absolute",
               top: 0,
@@ -625,19 +643,21 @@ export default function Footer() {
               width: "10px",
               height: "6px",
               borderRadius: "3px",
-              background: "#fbbf24",
-              animation: `${anim} ${dur} ease-in-out ${delay} infinite`,
+              background: isDark ? "#fbbf24" : "#cbd5e1",
+              animation: isDark ? `${anim} ${dur} ease-in-out ${delay} infinite` : "none",
             }} />
-            {/* Ground cone of light — flickers with same animation */}
-            <div style={{
-              position: "absolute",
-              top: "6px",
-              left: "-30px",
-              width: "30px",
-              height: "clamp(28px,4vw,50px)",
-              background: "radial-gradient(ellipse at top, rgba(251,191,36,0.18) 0%, transparent 80%)",
-              animation: `${anim} ${dur} ease-in-out ${delay} infinite`,
-            }} />
+            {/* Ground cone of light — visible/flickering only at night */}
+            {isDark && (
+              <div style={{
+                position: "absolute",
+                top: "6px",
+                left: "-30px",
+                width: "30px",
+                height: "clamp(28px,4vw,50px)",
+                background: "radial-gradient(ellipse at top, rgba(251,191,36,0.18) 0%, transparent 80%)",
+                animation: `${anim} ${dur} ease-in-out ${delay} infinite`,
+              }} />
+            )}
           </div>
         ))}
 
@@ -648,7 +668,9 @@ export default function Footer() {
           left: 0,
           right: 0,
           height: "40%",
-          background: "linear-gradient(180deg, #080808 0%, #111 50%, #0d0d0d 100%)",
+          background: isDark 
+            ? "linear-gradient(180deg, #080808 0%, #111 50%, #0d0d0d 100%)"
+            : "linear-gradient(180deg, #22252a 0%, #374151 50%, #1f2937 100%)",
         }}>
           {/* Road texture lines */}
           <div style={{
@@ -692,25 +714,27 @@ export default function Footer() {
           {/* Road edges */}
           <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "3px", background: "#e2e8f0", opacity: 0.3 }} />
           <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "3px", background: "#e2e8f0", opacity: 0.3 }} />
-          {/* Moonlight glint — soft shimmer strip */}
-          <div style={{
-            position: "absolute",
-            top: "48%", left: "3%", right: "3%",
-            height: "4px",
-            background: "linear-gradient(90deg, transparent, rgba(255,253,231,0.08) 20%, rgba(255,253,231,0.14) 50%, rgba(255,253,231,0.08) 80%, transparent)",
-            borderRadius: "4px",
-          }} />
+          {/* Moonlight glint — soft shimmer strip (Visible only at night) */}
+          {isDark && (
+            <div style={{
+              position: "absolute",
+              top: "48%", left: "3%", right: "3%",
+              height: "4px",
+              background: "linear-gradient(90deg, transparent, rgba(255,253,231,0.08) 20%, rgba(255,253,231,0.14) 50%, rgba(255,253,231,0.08) 80%, transparent)",
+              borderRadius: "4px",
+            }} />
+          )}
         </div>
 
         {/* TOP lane — 3 cars going left → right, above yellow center line */}
-        <AnimatedCar carColor="#ef4444" duration={10} yPos={112} delay={0}    />
-        <AnimatedCar carColor="#3b82f6" duration={10} yPos={112} delay={-3.3} />
-        <AnimatedCar carColor="#f59e0b" duration={10} yPos={112} delay={-6.6} />
+        <AnimatedCar carColor="#ef4444" duration={10} yPos={112} delay={0}    isDark={isDark} />
+        <AnimatedCar carColor="#3b82f6" duration={10} yPos={112} delay={-3.3} isDark={isDark} />
+        <AnimatedCar carColor="#f59e0b" duration={10} yPos={112} delay={-6.6} isDark={isDark} />
 
         {/* BOTTOM lane — 3 cars going right → left, below yellow center line */}
-        <AnimatedCar carColor="#10b981" duration={11} yPos={8}   delay={0}    flip />
-        <AnimatedCar carColor="#8b5cf6" duration={11} yPos={8}   delay={-3.7} flip />
-        <AnimatedCar carColor="#e11d48" duration={11} yPos={8}   delay={-7.3} flip />
+        <AnimatedCar carColor="#10b981" duration={11} yPos={8}   delay={0}    flip isDark={isDark} />
+        <AnimatedCar carColor="#8b5cf6" duration={11} yPos={8}   delay={-3.7} flip isDark={isDark} />
+        <AnimatedCar carColor="#e11d48" duration={11} yPos={8}   delay={-7.3} flip isDark={isDark} />
 
       </div>
 
