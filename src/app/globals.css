@@ -817,7 +817,7 @@ body.dark-theme #themeToggle .fa-sun {
 /* ======= Hero Section ======= */
 .hero {
     background-color: var(--bg-color);
-    padding-top: 60px; /* Reduced from 80px */
+    padding-top: 130px;
     padding-bottom: 0;
     overflow: hidden;
     position: relative;
