@@ -360,8 +360,8 @@ export default function Footer() {
     return () => mo.disconnect();
   }, []);
 
-  const trackBg = "#000000";
-  const roadBg = "#0d0d0d";
+  const trackBg = isDark ? "#000000" : "#ffffff";
+  const roadBg = isDark ? "#0d0d0d" : "#1e293b";
 
   return (
     <footer style={{ position: "relative", overflow: "hidden" }}>
@@ -465,12 +465,13 @@ export default function Footer() {
       {/* ── UPPER FOOTER (info content) ── */}
       <div style={{
         background: trackBg,
-        color: "#e2e8f0",
+        color: isDark ? "#e2e8f0" : "#1e293b",
         padding: "3.5rem 2rem 0",
         position: "relative",
+        borderTop: isDark ? "none" : "1px solid #e2e8f0",
       }}>
-        {/* Stars */}
-        {[...Array(40)].map((_, i) => (
+        {/* Stars — active only at night */}
+        {isDark && [...Array(40)].map((_, i) => (
           <div key={i} style={{
             position: "absolute",
             top: `${Math.random() * 70}%`,
@@ -490,7 +491,7 @@ export default function Footer() {
             gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
             gap: "2.5rem",
             paddingBottom: "2.5rem",
-            borderBottom: "1px solid rgba(255,255,255,0.08)",
+            borderBottom: isDark ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(0,0,0,0.08)",
           }}>
             {/* Brand */}
             <div>
@@ -503,7 +504,7 @@ export default function Footer() {
                 WebkitTextFillColor: "transparent",
                 marginBottom: "0.75rem",
               }}>Koushik</div>
-              <p style={{ fontSize: "0.85rem", color: "#94a3b8", lineHeight: 1.7, maxWidth: "220px" }}>
+              <p style={{ fontSize: "0.85rem", color: isDark ? "#94a3b8" : "#475569", lineHeight: 1.7, maxWidth: "220px" }}>
                 Building intelligent systems at the intersection of AI & software engineering.
               </p>
             </div>
@@ -515,11 +516,11 @@ export default function Footer() {
               {["Home","About","Experience","Projects","Skills","Contact"].map(link => (
                 <div key={link} style={{ marginBottom: "0.5rem" }}>
                   <a href={`#${link.toLowerCase()}`} style={{
-                    color: "#94a3b8", textDecoration: "none", fontSize: "0.9rem",
+                    color: isDark ? "#94a3b8" : "#475569", textDecoration: "none", fontSize: "0.9rem",
                     transition: "color 0.2s",
                   }}
                     onMouseEnter={e => (e.currentTarget.style.color = "#60a5fa")}
-                    onMouseLeave={e => (e.currentTarget.style.color = "#94a3b8")}
+                    onMouseLeave={e => (e.currentTarget.style.color = isDark ? "#94a3b8" : "#475569")}
                   >{link}</a>
                 </div>
               ))}
@@ -537,11 +538,11 @@ export default function Footer() {
               ].map(item => (
                 <div key={item.label} style={{ marginBottom: "0.55rem" }}>
                   <a href={item.href} target="_blank" rel="noopener noreferrer" style={{
-                    color: "#94a3b8", textDecoration: "none", fontSize: "0.9rem",
+                    color: isDark ? "#94a3b8" : "#475569", textDecoration: "none", fontSize: "0.9rem",
                     display: "flex", alignItems: "center", gap: "0.5rem", transition: "color 0.2s",
                   }}
                     onMouseEnter={e => (e.currentTarget.style.color = "#a78bfa")}
-                    onMouseLeave={e => (e.currentTarget.style.color = "#94a3b8")}
+                    onMouseLeave={e => (e.currentTarget.style.color = isDark ? "#94a3b8" : "#475569")}
                   >
                     <i className={item.icon} style={{ width: "16px" }} />
                     {item.label}
@@ -555,17 +556,17 @@ export default function Footer() {
               <h4 style={{ fontSize: "0.75rem", letterSpacing: "0.1em", textTransform: "uppercase",
                 color: "#64748b", marginBottom: "1rem" }}>Currently</h4>
               <div style={{
-                background: "rgba(96,165,250,0.08)",
-                border: "1px solid rgba(96,165,250,0.15)",
+                background: isDark ? "rgba(96,165,250,0.08)" : "rgba(37,99,235,0.05)",
+                border: isDark ? "1px solid rgba(96,165,250,0.15)" : "1px solid rgba(37,99,235,0.12)",
                 borderRadius: "12px",
                 padding: "1rem",
                 fontSize: "0.85rem",
-                color: "#cbd5e1",
+                color: isDark ? "#cbd5e1" : "#334155",
                 lineHeight: 1.7,
               }}>
-                🚀 Building <strong style={{ color: "#60a5fa" }}>NexusOS</strong><br />
-                <span style={{ color: "#fbbf24", fontSize: "0.78rem" }}>● In Progress</span><br /><br />
-                📍 Looking for opportunities in AI/ML & Full-Stack roles.
+                🚀 Working on <strong style={{ color: isDark ? "#60a5fa" : "#2563eb" }}>KernelHub, NexousOS & OpenClaw</strong><br />
+                <span style={{ color: isDark ? "#fbbf24" : "#b45309", fontSize: "0.78rem" }}>● In Progress</span><br /><br />
+                📍 Looking for opportunities in Software Development & AI & Full-Stack roles.
               </div>
             </div>
           </div>
@@ -579,7 +580,7 @@ export default function Footer() {
             flexWrap: "wrap",
             gap: "0.5rem",
           }}>
-            <p style={{ fontSize: "0.8rem", color: "#475569" }}>
+            <p style={{ fontSize: "0.8rem", color: isDark ? "#475569" : "#64748b" }}>
               © {new Date().getFullYear()} Koushik Goud Shaganti — All Rights Reserved.
             </p>
 
@@ -672,12 +673,6 @@ export default function Footer() {
             ? "linear-gradient(180deg, #080808 0%, #111 50%, #0d0d0d 100%)"
             : "linear-gradient(180deg, #22252a 0%, #374151 50%, #1f2937 100%)",
         }}>
-          {/* Road texture lines */}
-          <div style={{
-            position: "absolute",
-            top: 0, left: 0, right: 0, bottom: 0,
-            backgroundImage: "repeating-linear-gradient(90deg, transparent 0, transparent 30px, rgba(255,255,255,0.03) 30px, rgba(255,255,255,0.03) 31px)",
-          }} />
 
           {/* Center dividing dashes — STATIC yellow line */}
           <div style={{
