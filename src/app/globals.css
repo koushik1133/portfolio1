@@ -5495,8 +5495,14 @@ form .form-success {
     margin: 0 auto;
     overflow: hidden;
     border-radius: 16px;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color-alt);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.dark-theme .banner-container {
+    background-color: rgba(255, 255, 255, 0.02);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .banner-slide {
@@ -5518,62 +5524,70 @@ form .form-success {
     border-radius: 8px;
     overflow: hidden;
     position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-color);
+    background-color: rgba(0, 0, 0, 0.03);
     display: block;
 }
 
+.dark-theme .banner-slide .image-container {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
 .banner-slide-details {
-    margin-top: 1rem;
-    color: #fff;
+    margin-top: 1.25rem;
+    text-align: center;
 }
 
 .banner-slide h3 {
     font-size: 1.5rem;
     margin: 0;
     font-family: var(--font-mono);
+    color: var(--text-color);
 }
 
 .banner-slide p {
-    color: rgba(255, 255, 255, 0.6);
-    margin: 0.5rem 0 0;
+    color: var(--text-color-light);
+    margin: 0.4rem 0 0;
     font-family: var(--font-mono);
+    font-size: 0.95rem;
 }
 
 .banner-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: var(--text-color);
     cursor: pointer;
     z-index: 10;
     transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .banner-arrow:hover {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.3);
+    background: var(--text-color);
+    color: var(--bg-color);
+    border-color: var(--text-color);
 }
 
 .banner-arrow.prev {
-    left: 1rem;
+    left: 1.25rem;
 }
 
 .banner-arrow.next {
-    right: 1rem;
+    right: 1.25rem;
 }
 
 .banner-dots {
     position: absolute;
-    bottom: 1rem;
+    bottom: 1.25rem;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -5582,14 +5596,20 @@ form .form-success {
 }
 
 .banner-dot {
+    width: 8px;
     height: 8px;
-    border-radius: 4px;
-    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    background-color: var(--border-color);
     transition: all 0.3s ease;
     cursor: pointer;
 }
 
 .banner-dot.active {
+    background-color: var(--primary-color);
+    transform: scale(1.2);
+}
+
+.dark-theme .banner-dot.active {
     background-color: #00f0ff;
 }
 
