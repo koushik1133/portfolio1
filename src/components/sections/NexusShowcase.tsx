@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export default function NexusShowcase() {
   return (
-    <section className="senior-project-section" style={{ paddingTop: 0 }}>
+    <section className="senior-project-section" style={{ paddingTop: 0, paddingBottom: "2rem" }}>
       <div className="container">
         <motion.div 
           className="senior-project-wrapper reverse"

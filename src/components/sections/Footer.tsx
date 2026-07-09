@@ -466,7 +466,7 @@ export default function Footer() {
       <div style={{
         background: trackBg,
         color: isDark ? "#e2e8f0" : "#1e293b",
-        padding: "3.5rem 2rem 0",
+        padding: "2rem 2rem 0",
         position: "relative",
         borderTop: isDark ? "none" : "1px solid #e2e8f0",
       }}>
