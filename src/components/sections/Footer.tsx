@@ -95,99 +95,175 @@ function CarSVG({ color = "#e53e3e", flip = false }: { color?: string; flip?: bo
 }
 
 
-/* ── City Skyline silhouette ── */
-function CitySkyline({ dark }: { dark: boolean }) {
-  const fill = "#1a1a1a";
-  const fill2 = "#2a2a2a";
+/* ── Full cinematic night scene: Moon + Mountains ── */
+function NightScene() {
   return (
-    <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg"
-      style={{ position: "absolute", bottom: "100%", left: 0, width: "100%", pointerEvents: "none" }}>
-      {/* Back row buildings */}
-      <rect x="0" y="60" width="30" height="60" fill={fill} opacity="0.5" />
-      <rect x="40" y="40" width="20" height="80" fill={fill} opacity="0.5" />
-      <rect x="70" y="55" width="35" height="65" fill={fill} opacity="0.5" />
-      <rect x="115" y="30" width="25" height="90" fill={fill} opacity="0.5" />
-      <rect x="148" y="45" width="40" height="75" fill={fill} opacity="0.5" />
-      <rect x="198" y="20" width="18" height="100" fill={fill} opacity="0.5" />
-      <rect x="224" y="50" width="30" height="70" fill={fill} opacity="0.5" />
-      <rect x="262" y="35" width="22" height="85" fill={fill} opacity="0.5" />
-      {/* antenna */}
-      <rect x="272" y="15" width="2" height="20" fill={fill} opacity="0.5" />
-      <rect x="292" y="55" width="45" height="65" fill={fill} opacity="0.5" />
-      <rect x="345" y="25" width="28" height="95" fill={fill} opacity="0.5" />
-      <rect x="381" y="50" width="35" height="70" fill={fill} opacity="0.5" />
-      <rect x="424" y="40" width="20" height="80" fill={fill} opacity="0.5" />
-      <rect x="452" y="15" width="15" height="105" fill={fill} opacity="0.5" />
-      <rect x="475" y="45" width="40" height="75" fill={fill} opacity="0.5" />
-      <rect x="524" y="30" width="28" height="90" fill={fill} opacity="0.5" />
-      <rect x="560" y="55" width="35" height="65" fill={fill} opacity="0.5" />
-      <rect x="602" y="20" width="22" height="100" fill={fill} opacity="0.5" />
-      <rect x="632" y="40" width="30" height="80" fill={fill} opacity="0.5" />
-      <rect x="670" y="10" width="20" height="110" fill={fill} opacity="0.5" />
-      <rect x="698" y="50" width="45" height="70" fill={fill} opacity="0.5" />
-      <rect x="752" y="30" width="25" height="90" fill={fill} opacity="0.5" />
-      <rect x="785" y="45" width="35" height="75" fill={fill} opacity="0.5" />
-      <rect x="828" y="25" width="20" height="95" fill={fill} opacity="0.5" />
-      <rect x="856" y="55" width="30" height="65" fill={fill} opacity="0.5" />
-      <rect x="894" y="35" width="40" height="85" fill={fill} opacity="0.5" />
-      <rect x="942" y="20" width="22" height="100" fill={fill} opacity="0.5" />
-      <rect x="972" y="45" width="35" height="75" fill={fill} opacity="0.5" />
-      <rect x="1015" y="30" width="28" height="90" fill={fill} opacity="0.5" />
-      <rect x="1051" y="50" width="20" height="70" fill={fill} opacity="0.5" />
-      <rect x="1080" y="15" width="30" height="105" fill={fill} opacity="0.5" />
-      <rect x="1118" y="40" width="40" height="80" fill={fill} opacity="0.5" />
-      <rect x="1166" y="25" width="22" height="95" fill={fill} opacity="0.5" />
-      <rect x="1196" y="50" width="35" height="70" fill={fill} opacity="0.5" />
-      <rect x="1239" y="35" width="25" height="85" fill={fill} opacity="0.5" />
-      <rect x="1272" y="55" width="30" height="65" fill={fill} opacity="0.5" />
-      <rect x="1310" y="20" width="20" height="100" fill={fill} opacity="0.5" />
-      <rect x="1338" y="40" width="40" height="80" fill={fill} opacity="0.5" />
-      <rect x="1386" y="30" width="54" height="90" fill={fill} opacity="0.5" />
+    <svg
+      viewBox="0 0 1440 320"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="none"
+      style={{
+        position: "absolute",
+        bottom: "48%",  /* sits just above the road */
+        left: 0,
+        width: "100%",
+        height: "clamp(180px, 28vw, 340px)",
+        pointerEvents: "none",
+      }}
+    >
+      <defs>
+        {/* Moon glow */}
+        <radialGradient id="moonGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"   stopColor="#fffde7" stopOpacity="1" />
+          <stop offset="35%"  stopColor="#fff9c4" stopOpacity="0.95" />
+          <stop offset="70%"  stopColor="#fef08a" stopOpacity="0.15" />
+          <stop offset="100%" stopColor="#fef08a" stopOpacity="0" />
+        </radialGradient>
+        {/* Moon halo */}
+        <radialGradient id="moonHalo" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"   stopColor="#e0f2fe" stopOpacity="0.12" />
+          <stop offset="100%" stopColor="#e0f2fe" stopOpacity="0" />
+        </radialGradient>
+        {/* Moonlit sky */}
+        <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stopColor="#000000" />
+          <stop offset="60%"  stopColor="#050a14" />
+          <stop offset="100%" stopColor="#0a1628" />
+        </linearGradient>
+        {/* Far mountain gradient */}
+        <linearGradient id="mtnFar" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stopColor="#0d1f35" />
+          <stop offset="100%" stopColor="#071020" />
+        </linearGradient>
+        {/* Mid mountain */}
+        <linearGradient id="mtnMid" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stopColor="#060e1a" />
+          <stop offset="100%" stopColor="#020509" />
+        </linearGradient>
+        {/* Near mountain */}
+        <linearGradient id="mtnNear" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stopColor="#030810" />
+          <stop offset="100%" stopColor="#010205" />
+        </linearGradient>
+        {/* Ground mist */}
+        <linearGradient id="mist" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stopColor="#1a3a5c" stopOpacity="0.22" />
+          <stop offset="100%" stopColor="#1a3a5c" stopOpacity="0" />
+        </linearGradient>
+        {/* Moonlight road glint */}
+        <linearGradient id="moonRoad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stopColor="transparent" />
+          <stop offset="10%"  stopColor="#fffde7" stopOpacity="0.04" />
+          <stop offset="50%"  stopColor="#fffde7" stopOpacity="0.10" />
+          <stop offset="90%"  stopColor="#fffde7" stopOpacity="0.04" />
+          <stop offset="100%" stopColor="transparent" />
+        </linearGradient>
+        {/* Star glow filter */}
+        <filter id="starGlow">
+          <feGaussianBlur stdDeviation="0.8" result="blur" />
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
 
-      {/* Front row – darker, more prominent */}
-      <rect x="0" y="75" width="50" height="45" fill={fill2} />
-      <rect x="55" y="60" width="35" height="60" fill={fill2} />
-      <rect x="98" y="70" width="45" height="50" fill={fill2} />
-      <rect x="152" y="50" width="30" height="70" fill={fill2} />
-      <rect x="190" y="65" width="50" height="55" fill={fill2} />
-      <rect x="248" y="45" width="25" height="75" fill={fill2} />
-      <rect x="282" y="62" width="40" height="58" fill={fill2} />
-      <rect x="330" y="70" width="55" height="50" fill={fill2} />
-      <rect x="393" y="42" width="28" height="78" fill={fill2} />
-      <rect x="430" y="68" width="42" height="52" fill={fill2} />
-      <rect x="480" y="55" width="32" height="65" fill={fill2} />
-      <rect x="520" y="72" width="48" height="48" fill={fill2} />
-      <rect x="576" y="48" width="26" height="72" fill={fill2} />
-      <rect x="610" y="65" width="44" height="55" fill={fill2} />
-      <rect x="662" y="38" width="30" height="82" fill={fill2} />
-      <rect x="700" y="58" width="50" height="62" fill={fill2} />
-      <rect x="758" y="70" width="36" height="50" fill={fill2} />
-      <rect x="802" y="44" width="42" height="76" fill={fill2} />
-      <rect x="852" y="62" width="28" height="58" fill={fill2} />
-      <rect x="888" y="50" width="52" height="70" fill={fill2} />
-      <rect x="948" y="68" width="35" height="52" fill={fill2} />
-      <rect x="991" y="42" width="30" height="78" fill={fill2} />
-      <rect x="1029" y="60" width="45" height="60" fill={fill2} />
-      <rect x="1082" y="72" width="38" height="48" fill={fill2} />
-      <rect x="1128" y="46" width="32" height="74" fill={fill2} />
-      <rect x="1168" y="64" width="50" height="56" fill={fill2} />
-      <rect x="1226" y="50" width="26" height="70" fill={fill2} />
-      <rect x="1260" y="68" width="44" height="52" fill={fill2} />
-      <rect x="1312" y="40" width="30" height="80" fill={fill2} />
-      <rect x="1350" y="60" width="90" height="60" fill={fill2} />
+      {/* Sky background */}
+      <rect x="0" y="0" width="1440" height="320" fill="url(#skyGrad)" />
 
-      {/* Tiny windows lit up */}
-      {[60,180,280,400,540,650,710,830,960,1080,1190,1300].map((x, i) => (
-        <React.Fragment key={i}>
-          <rect x={x+4} y={62} width={4} height={4} fill="#fbbf24" opacity="0.7" />
-          <rect x={x+12} y={62} width={4} height={4} fill="#fbbf24" opacity="0.5" />
-          <rect x={x+4} y={72} width={4} height={4} fill="#93c5fd" opacity="0.6" />
-          <rect x={x+12} y={55} width={4} height={4} fill="#fbbf24" opacity="0.8" />
-        </React.Fragment>
+      {/* ── Stars ── */}
+      {[
+        [80,18],[140,8],[220,25],[310,12],[390,30],[470,8],[550,20],[650,15],[730,28],[820,10],
+        [900,22],[980,6],[1060,18],[1150,28],[1230,12],[1320,24],[1400,9],[1440,20],
+        [50,45],[180,55],[290,40],[420,60],[530,48],[660,38],[780,55],[890,42],[1010,52],
+        [1120,38],[1250,58],[1370,44],[100,70],[250,65],[450,80],[620,72],[800,68],[1000,78],
+        [1200,62],[1380,75],[170,90],[380,85],[580,95],[760,88],[960,82],[1160,92],[1350,86],
+      ].map(([x,y], i) => (
+        <circle key={i} cx={x} cy={y} r={i % 5 === 0 ? 1.2 : 0.7}
+          fill="#ffffff"
+          opacity={0.5 + (i % 4) * 0.12}
+          filter="url(#starGlow)"
+          style={{ animation: `starTwinkle ${2 + (i % 5) * 0.6}s ease-in-out ${(i * 0.3) % 3}s infinite` }}
+        />
       ))}
+
+      {/* ── Moon: upper-left area ── */}
+      {/* Outer halo */}
+      <circle cx="110" cy="72" r="80" fill="url(#moonHalo)" />
+      {/* Mid halo */}
+      <circle cx="110" cy="72" r="52" fill="#e0f2fe" opacity="0.06" />
+      {/* Moon disc */}
+      <circle cx="110" cy="72" r="36" fill="url(#moonGlow)" />
+      {/* Realistic craters */}
+      <circle cx="96"  cy="60" r="5"   fill="#fef3c7" opacity="0.35" />
+      <circle cx="118" cy="82" r="3.5" fill="#fef3c7" opacity="0.28" />
+      <circle cx="128" cy="58" r="2.5" fill="#fef3c7" opacity="0.22" />
+      <circle cx="102" cy="78" r="2"   fill="#fef3c7" opacity="0.18" />
+      <circle cx="120" cy="66" r="4"   fill="#fef3c7" opacity="0.20" />
+      {/* Moon shadow / terminator */}
+      <ellipse cx="122" cy="72" rx="30" ry="36" fill="#0a0f1a" opacity="0.18" />
+      {/* Moonlight ray — soft vertical beam down */}
+      <rect x="88" y="108" width="44" height="212" fill="url(#moonRoad)" opacity="0.6" />
+
+      {/* ── Far mountains (very pale blue-grey, far away) ── */}
+      <path
+        d="M0,220 L60,150 L130,180 L200,120 L280,165 L360,105 L440,150 L520,90
+           L600,140 L680,85 L760,130 L840,75 L920,120 L1000,80 L1080,115
+           L1160,70 L1240,110 L1320,75 L1400,120 L1440,100 L1440,320 L0,320 Z"
+        fill="url(#mtnFar)"
+        opacity="0.75"
+      />
+      {/* Snow caps on far peaks */}
+      <path d="M200,120 L215,132 L185,132 Z" fill="#e2e8f0" opacity="0.12" />
+      <path d="M360,105 L378,118 L342,118 Z" fill="#e2e8f0" opacity="0.10" />
+      <path d="M520,90  L540,106 L500,106 Z" fill="#e2e8f0" opacity="0.13" />
+      <path d="M680,85  L700,100 L660,100 Z" fill="#e2e8f0" opacity="0.11" />
+      <path d="M840,75  L862,92  L818,92  Z" fill="#e2e8f0" opacity="0.14" />
+      <path d="M1000,80 L1020,96 L980,96  Z" fill="#e2e8f0" opacity="0.10" />
+      <path d="M1160,70 L1182,88 L1138,88 Z" fill="#e2e8f0" opacity="0.13" />
+
+      {/* ── Mid mountains (darker, closer) ── */}
+      <path
+        d="M0,260 L80,195 L160,225 L240,170 L330,210 L410,155 L500,195
+           L590,145 L670,185 L760,150 L840,190 L930,142 L1010,178 L1100,138
+           L1180,172 L1270,135 L1360,168 L1440,145 L1440,320 L0,320 Z"
+        fill="url(#mtnMid)"
+        opacity="0.92"
+      />
+      {/* Moonlit ridge highlights on mid mountains */}
+      <path
+        d="M410,155 L430,164 L500,195 L590,145 L610,154"
+        fill="none" stroke="#1e3a5f" strokeWidth="1.5" opacity="0.5"
+      />
+      <path
+        d="M930,142 L950,152 L1010,178 L1100,138 L1118,148"
+        fill="none" stroke="#1e3a5f" strokeWidth="1.5" opacity="0.5"
+      />
+
+      {/* ── Near mountains / foothills (darkest, closest) ── */}
+      <path
+        d="M0,290 L100,240 L200,268 L300,225 L400,255 L500,218
+           L600,248 L700,215 L800,245 L900,210 L1000,240 L1100,205
+           L1200,235 L1300,208 L1400,238 L1440,220 L1440,320 L0,320 Z"
+        fill="url(#mtnNear)"
+      />
+
+      {/* ── Pine tree silhouettes on near ridge ── */}
+      {[90,170,310,460,570,680,790,870,990,1090,1180,1290,1390].map((x, i) => (
+        <path
+          key={i}
+          d={`M${x},${245+(i%3)*8} L${x+10},${270+(i%3)*8} L${x+5},${270+(i%3)*8} L${x+5},${280+(i%3)*8} L${x-5},${280+(i%3)*8} L${x-5},${270+(i%3)*8} L${x-10},${270+(i%3)*8} Z`}
+          fill="#010204"
+          opacity="0.9"
+        />
+      ))}
+
+      {/* ── Ground mist / atmosphere ── */}
+      <rect x="0" y="278" width="1440" height="42" fill="url(#mist)" />
+      <ellipse cx="200" cy="300" rx="280" ry="22" fill="#0a1e35" opacity="0.18" />
+      <ellipse cx="900" cy="298" rx="320" ry="20" fill="#0a1e35" opacity="0.14" />
+      <ellipse cx="1300" cy="302" rx="200" ry="18" fill="#0a1e35" opacity="0.12" />
     </svg>
   );
 }
+
 
 /* ── Animated Car on Track ── */
 /* ── Animated Car on Track ──
@@ -460,21 +536,22 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* ── TRACK SCENE ── */}
+      {/* ── TRACK SCENE — Cinematic night with mountains ── */}
       <div style={{
         position: "relative",
-        background: roadBg,
-        height: "clamp(160px, 20vw, 230px)",
+        background: "#000",
+        height: "clamp(220px, 28vw, 320px)",
         overflow: "hidden",
       }}>
-        {/* City skyline silhouette */}
-        <CitySkyline dark={isDark} />
+        {/* Mountain + Moon night scene */}
+        <NightScene />
 
-        {/* Night sky gradient top */}
+        {/* Subtle dark overlay at very top to blend into upper footer */}
         <div style={{
-          position: "absolute", inset: 0,
-          background: `linear-gradient(to bottom, ${trackBg} 0%, transparent 40%)`,
+          position: "absolute", top: 0, left: 0, right: 0, height: "30px",
+          background: "linear-gradient(to bottom, #000 0%, transparent 100%)",
           pointerEvents: "none",
+          zIndex: 2,
         }} />
 
         {/* Street lights — each lamp has its own horror-flicker animation */}
@@ -535,8 +612,8 @@ export default function Footer() {
           bottom: 0,
           left: 0,
           right: 0,
-          height: "52%",
-          background: "#111111",
+          height: "48%",
+          background: "linear-gradient(180deg, #0a0a0a 0%, #111 60%, #0d0d0d 100%)",
         }}>
           {/* Road texture lines */}
           <div style={{
@@ -581,19 +658,27 @@ export default function Footer() {
           }} />
 
           {/* Road edges */}
-          <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "3px", background: "#e2e8f0", opacity: 0.4 }} />
-          <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "3px", background: "#e2e8f0", opacity: 0.4 }} />
+          <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "3px", background: "#e2e8f0", opacity: 0.3 }} />
+          <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "3px", background: "#e2e8f0", opacity: 0.3 }} />
+          {/* Moonlight glint — soft shimmer strip */}
+          <div style={{
+            position: "absolute",
+            top: "48%", left: "3%", right: "3%",
+            height: "4px",
+            background: "linear-gradient(90deg, transparent, rgba(255,253,231,0.08) 20%, rgba(255,253,231,0.14) 50%, rgba(255,253,231,0.08) 80%, transparent)",
+            borderRadius: "4px",
+          }} />
         </div>
 
-        {/* TOP lane — 3 cars going left → right, evenly spaced via negative delay */}
-        <AnimatedCar carColor="#ef4444" duration={10} yPos={72} delay={0}    />
-        <AnimatedCar carColor="#3b82f6" duration={10} yPos={72} delay={-3.3} />
-        <AnimatedCar carColor="#f59e0b" duration={10} yPos={72} delay={-6.6} />
+        {/* TOP lane — 3 cars going left → right, above yellow center line */}
+        <AnimatedCar carColor="#ef4444" duration={10} yPos={100} delay={0}    />
+        <AnimatedCar carColor="#3b82f6" duration={10} yPos={100} delay={-3.3} />
+        <AnimatedCar carColor="#f59e0b" duration={10} yPos={100} delay={-6.6} />
 
-        {/* BOTTOM lane — 3 cars going right → left, evenly spaced via negative delay */}
-        <AnimatedCar carColor="#10b981" duration={11} yPos={6}  delay={0}    flip />
-        <AnimatedCar carColor="#8b5cf6" duration={11} yPos={6}  delay={-3.7} flip />
-        <AnimatedCar carColor="#e11d48" duration={11} yPos={6}  delay={-7.3} flip />
+        {/* BOTTOM lane — 3 cars going right → left, below yellow center line */}
+        <AnimatedCar carColor="#10b981" duration={11} yPos={8}   delay={0}    flip />
+        <AnimatedCar carColor="#8b5cf6" duration={11} yPos={8}   delay={-3.7} flip />
+        <AnimatedCar carColor="#e11d48" duration={11} yPos={8}   delay={-7.3} flip />
 
       </div>
 
