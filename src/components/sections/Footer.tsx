@@ -145,8 +145,8 @@ function MagnifyingGlass({ scrollProgress }: { scrollProgress: number }) {
 
 /* ── City Skyline silhouette ── */
 function CitySkyline({ dark }: { dark: boolean }) {
-  const fill = dark ? "#111827" : "#1e293b";
-  const fill2 = dark ? "#1f2937" : "#334155";
+  const fill = "#1a1a1a";
+  const fill2 = "#2a2a2a";
   return (
     <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg"
       style={{ position: "absolute", bottom: "100%", left: 0, width: "100%", pointerEvents: "none" }}>
@@ -286,8 +286,8 @@ export default function Footer() {
     return () => mo.disconnect();
   }, []);
 
-  const trackBg = isDark ? "#0f172a" : "#1e293b";
-  const roadBg = isDark ? "#1e293b" : "#334155";
+  const trackBg = "#000000";
+  const roadBg = "#0d0d0d";
 
   return (
     <footer style={{ position: "relative", overflow: "hidden" }}>
@@ -507,7 +507,7 @@ export default function Footer() {
           left: 0,
           right: 0,
           height: "52%",
-          background: "#1e293b",
+          background: "#111111",
         }}>
           {/* Road texture lines */}
           <div style={{
