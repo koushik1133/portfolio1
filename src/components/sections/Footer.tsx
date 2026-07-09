@@ -186,8 +186,8 @@ function NightScene() {
         />
       ))}
 
-      {/* ── Realistic Grey Moon (Upper-Left Corner with Floating Animation) ── */}
-      <g style={{ animation: "moonFloat 6s ease-in-out infinite" }}>
+      {/* ── Realistic Grey Moon (Upper-Left Corner, Static, Scaled Down & Shifted Lower) ── */}
+      <g transform="translate(130, 145) scale(0.7) translate(-130, -90)">
         {/* Faint ambient atmosphere rim glow */}
         <circle cx="130" cy="90" r="47" fill="#ffffff" opacity="0.04" />
         {/* Moon base body */}
