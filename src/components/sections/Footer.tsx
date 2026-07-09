@@ -2,21 +2,6 @@
 
 import React, { useEffect, useRef, useState } from "react";
 
-/* ── tiny hook: normalised scroll progress 0→1 ── */
-function useScrollProgress() {
-  const [progress, setProgress] = useState(0);
-  useEffect(() => {
-    const update = () => {
-      const el = document.documentElement;
-      const max = el.scrollHeight - el.clientHeight;
-      setProgress(max > 0 ? Math.min(el.scrollTop / max, 1) : 0);
-    };
-    window.addEventListener("scroll", update, { passive: true });
-    update();
-    return () => window.removeEventListener("scroll", update);
-  }, []);
-  return progress;
-}
 
 /* ── unique SVG id generator (avoids gradient ID collisions) ── */
 let _carId = 0;
@@ -109,94 +94,6 @@ function CarSVG({ color = "#e53e3e", flip = false }: { color?: string; flip?: bo
   );
 }
 
-/* ── Magnifying Glass that peeks in from the right edge ── */
-function MagnifyingGlass({ scrollProgress }: { scrollProgress: number }) {
-  // At scroll 0 → glass is fully hidden (translateX 100%)
-  // At scroll 0.3 → partially visible
-  // At scroll 1 → glass peeks in completely, slightly raised
-  const peekX = Math.max(0, 1 - scrollProgress * 2.5); // 0 = fully in, 1 = hidden
-  const floatY = Math.sin(Date.now() / 1200) * 6; // subtle float (updated via RAF)
-
-  const [rafY, setRafY] = useState(0);
-  const rafRef = useRef<number>();
-  useEffect(() => {
-    const tick = () => {
-      setRafY(Math.sin(Date.now() / 1200) * 6);
-      rafRef.current = requestAnimationFrame(tick);
-    };
-    rafRef.current = requestAnimationFrame(tick);
-    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
-  }, []);
-
-  // vertical shift: when near bottom (scroll > 0.7) glass rises, otherwise stays mid
-  const verticalShift = scrollProgress > 0.5
-    ? -40 - (scrollProgress - 0.5) * 160   // rises up
-    : -20 + scrollProgress * 40;            // gently descends while reading
-
-  const translateX = peekX * 200;
-
-  return (
-    <div
-      style={{
-        position: "absolute",
-        right: 0,
-        bottom: `calc(${220 + verticalShift + rafY}px)`,
-        transform: `translateX(${translateX}px)`,
-        transition: "bottom 0.4s cubic-bezier(0.34,1.56,0.64,1), transform 0.5s ease",
-        zIndex: 20,
-        pointerEvents: "none",
-        width: "clamp(100px, 14vw, 180px)",
-      }}
-    >
-      <svg viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg">
-        {/* Handle */}
-        <rect x="70" y="100" width="14" height="48" rx="7" fill="#3d2b1f"
-          transform="rotate(30 70 100)" />
-        <rect x="70" y="100" width="14" height="48" rx="7" fill="#5c3d2e" opacity="0.6"
-          transform="rotate(30 70 100)" />
-        {/* Lens ring */}
-        <circle cx="52" cy="58" r="46" fill="#2c2c2c" />
-        <circle cx="52" cy="58" r="42" fill="url(#lensGrad)" />
-        {/* Shine on glass */}
-        <ellipse cx="38" cy="40" rx="14" ry="9" fill="white" opacity="0.18"
-          transform="rotate(-20 38 40)" />
-        <ellipse cx="44" cy="36" rx="7" ry="4" fill="white" opacity="0.25"
-          transform="rotate(-20 44 36)" />
-        {/* Reflection details */}
-        <circle cx="68" cy="72" r="5" fill="white" opacity="0.08" />
-        {/* Lens rim gloss */}
-        <circle cx="52" cy="58" r="42" fill="none" stroke="#666" strokeWidth="2" opacity="0.4" />
-        <defs>
-          <radialGradient id="lensGrad" cx="40%" cy="35%" r="60%">
-            <stop offset="0%" stopColor="#1a2a4a" />
-            <stop offset="40%" stopColor="#0d1b3a" />
-            <stop offset="100%" stopColor="#060d1f" />
-          </radialGradient>
-        </defs>
-      </svg>
-      {/* Tooltip that changes with scroll */}
-      <div style={{
-        position: "absolute",
-        top: "50%",
-        right: "105%",
-        transform: "translateY(-50%)",
-        background: "rgba(0,0,0,0.75)",
-        backdropFilter: "blur(8px)",
-        color: "#fff",
-        fontSize: "clamp(0.6rem, 1.2vw, 0.75rem)",
-        padding: "4px 10px",
-        borderRadius: "20px",
-        whiteSpace: "nowrap",
-        opacity: scrollProgress > 0.7 ? 1 : 0,
-        transition: "opacity 0.4s",
-        border: "1px solid rgba(255,255,255,0.1)",
-      }}>
-        {scrollProgress > 0.9 ? "🏁 You've reached the finish line!" :
-         scrollProgress > 0.7 ? "👀 Inspecting the details..." : ""}
-      </div>
-    </div>
-  );
-}
 
 /* ── City Skyline silhouette ── */
 function CitySkyline({ dark }: { dark: boolean }) {
@@ -328,7 +225,6 @@ function AnimatedCar({
 
 /* ──────────────────────────────────────── MAIN FOOTER ── */
 export default function Footer() {
-  const scrollProgress = useScrollProgress();
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
@@ -632,8 +528,6 @@ export default function Footer() {
         <AnimatedCar carColor="#10b981" startX={5}  duration={11} yPos={6}  delay={1}  flip />
         <AnimatedCar carColor="#8b5cf6" startX={55} duration={13} yPos={6}  delay={5}  flip />
 
-        {/* Magnifying glass — scroll reactive */}
-        <MagnifyingGlass scrollProgress={scrollProgress} />
       </div>
 
       {/* ── Finishing kerb strip ── */}
