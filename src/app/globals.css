@@ -1081,10 +1081,11 @@ body.dark-theme #themeToggle .fa-sun {
 
 /* ======= Scroll Hint ======= */
 .hero-scroll-hint {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    width: 100%;
     z-index: 5;
 }
 

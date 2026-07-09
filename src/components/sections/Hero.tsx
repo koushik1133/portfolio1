@@ -127,18 +127,18 @@ export default function Hero() {
             <span className="stat-label">Certifications</span>
           </div>
         </motion.div>
-      </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        className="hero-scroll-hint"
-        animate={{ y: [0, 9, 0] }}
-        transition={{ repeat: Infinity, duration: 2 }}
-      >
-        <a href="#about" className="hover-target" aria-label="Scroll down">
-          <i className="fas fa-chevron-down" />
-        </a>
-      </motion.div>
+        {/* Scroll indicator */}
+        <motion.div
+          className="hero-scroll-hint"
+          animate={{ y: [0, 9, 0] }}
+          transition={{ repeat: Infinity, duration: 2 }}
+        >
+          <a href="#about" className="hover-target" aria-label="Scroll down">
+            <i className="fas fa-chevron-down" />
+          </a>
+        </motion.div>
+      </div>
     </section>
   );
 }

@@ -140,10 +140,10 @@ function SkyScene({ isDark }: { isDark: boolean }) {
         </linearGradient>
         {/* Day sky */}
         <linearGradient id="skyGradDay" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stopColor="#0284c7" />
-          <stop offset="50%"  stopColor="#38bdf8" />
-          <stop offset="85%"  stopColor="#7dd3fc" />
-          <stop offset="100%" stopColor="#bae6fd" />
+          <stop offset="0%"   stopColor="#7ec8f8" />
+          <stop offset="45%"  stopColor="#add7f6" />
+          <stop offset="75%"  stopColor="#d6eafd" />
+          <stop offset="100%" stopColor="#f0f7fe" />
         </linearGradient>
         {/* Far mountain */}
         <linearGradient id="mtnFar" x1="0" y1="0" x2="0" y2="1">
@@ -362,6 +362,27 @@ export default function Footer() {
 
   const trackBg = isDark ? "#000000" : "#ffffff";
   const roadBg = isDark ? "#0d0d0d" : "#1e293b";
+
+  const handleThemeToggle = () => {
+    const themeToggleBtn = document.getElementById("themeToggle");
+    if (themeToggleBtn) {
+      themeToggleBtn.click();
+    } else {
+      const body = document.body;
+      if (body.classList.contains("dark-theme")) {
+        body.classList.remove("dark-theme");
+        body.classList.add("light-theme");
+        localStorage.setItem("theme", "light");
+      } else {
+        body.classList.remove("light-theme");
+        body.classList.add("dark-theme");
+        localStorage.setItem("theme", "dark");
+      }
+      const event = new Event("class-change");
+      body.dispatchEvent(event);
+      document.documentElement.dispatchEvent(event);
+    }
+  };
 
   return (
     <footer style={{ position: "relative", overflow: "hidden" }}>
@@ -595,6 +616,43 @@ export default function Footer() {
         height: "clamp(340px, 42vw, 460px)",
         overflow: "hidden",
       }}>
+        {/* Try Theme Mode Interactive Button */}
+        <button
+          onClick={handleThemeToggle}
+          className="hover-target"
+          style={{
+            position: "absolute",
+            top: "24px",
+            right: "24px",
+            zIndex: 20,
+            background: isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(0, 0, 0, 0.08)",
+            border: isDark ? "1px solid rgba(255, 255, 255, 0.2)" : "1px solid rgba(0, 0, 0, 0.12)",
+            borderRadius: "999px",
+            padding: "0.6rem 1.4rem",
+            fontSize: "0.85rem",
+            fontWeight: "600",
+            color: isDark ? "#ffffff" : "#0f172a",
+            cursor: "pointer",
+            backdropFilter: "blur(8px)",
+            WebkitBackdropFilter: "blur(8px)",
+            display: "flex",
+            alignItems: "center",
+            gap: "0.5rem",
+            transition: "all 0.3s ease",
+            boxShadow: isDark ? "0 4px 12px rgba(0,0,0,0.2)" : "0 4px 12px rgba(0,0,0,0.06)",
+          }}
+          onMouseEnter={e => {
+            e.currentTarget.style.background = isDark ? "rgba(255, 255, 255, 0.22)" : "rgba(0, 0, 0, 0.15)";
+            e.currentTarget.style.transform = "translateY(-1px)";
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.background = isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(0, 0, 0, 0.08)";
+            e.currentTarget.style.transform = "translateY(0)";
+          }}
+        >
+          {isDark ? "Try Light Mode ☀️" : "Try Dark Mode 🌙"}
+        </button>
+
         {/* Mountain + Moon/Sun sky scene */}
         <SkyScene isDark={isDark} />
 
