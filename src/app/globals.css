@@ -1084,7 +1084,7 @@ body.dark-theme #themeToggle .fa-sun {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 2rem;
+    margin-top: 4.5rem;
     width: 100%;
     z-index: 5;
 }
