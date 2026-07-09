@@ -18,38 +18,93 @@ function useScrollProgress() {
   return progress;
 }
 
-/* ── Car SVG (sleek side-view) ── */
+/* ── unique SVG id generator (avoids gradient ID collisions) ── */
+let _carId = 0;
+
+/* ── Car SVG (sleek side-view) with animated lights ── */
 function CarSVG({ color = "#e53e3e", flip = false }: { color?: string; flip?: boolean }) {
+  const id = useRef(`car${++_carId}`).current;
   return (
     <svg
-      viewBox="0 0 160 60"
+      viewBox="0 0 220 64"
       xmlns="http://www.w3.org/2000/svg"
+      overflow="visible"
       style={{ transform: flip ? "scaleX(-1)" : "none" }}
     >
+      <defs>
+        {/* Headlight beam cone */}
+        <radialGradient id={`hl-${id}`} cx="0%" cy="50%" r="100%" fx="0%" fy="50%">
+          <stop offset="0%" stopColor="#fffde7" stopOpacity="0.9" />
+          <stop offset="60%" stopColor="#fff176" stopOpacity="0.25" />
+          <stop offset="100%" stopColor="#fff176" stopOpacity="0" />
+        </radialGradient>
+        {/* Taillight glow */}
+        <radialGradient id={`tl-${id}`} cx="100%" cy="50%" r="100%">
+          <stop offset="0%" stopColor="#ff1744" stopOpacity="1" />
+          <stop offset="100%" stopColor="#ff1744" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+
+      {/* ── Headlight beam (cone projecting forward) ── */}
+      <polygon
+        points="158,28 220,8 220,56 158,40"
+        fill={`url(#hl-${id})`}
+        style={{ animation: "beamFlicker 1.8s ease-in-out infinite" }}
+      />
+
+      {/* ── Tail-glow behind car ── */}
+      <ellipse
+        cx="12" cy="34"
+        rx="18" ry="10"
+        fill={`url(#tl-${id})`}
+        style={{ animation: "taillightBlink 1.2s ease-in-out infinite" }}
+      />
+
       {/* Body */}
-      <rect x="10" y="28" width="140" height="20" rx="4" fill={color} />
+      <rect x="10" y="28" width="148" height="20" rx="4" fill={color} />
       {/* Cabin */}
-      <path d="M40 28 Q50 8 80 8 Q110 8 120 28 Z" fill={color} />
+      <path d="M42 28 Q52 8 84 8 Q114 8 124 28 Z" fill={color} />
       {/* Windows */}
-      <path d="M48 27 Q56 12 78 12 Q96 12 108 27 Z" fill="#b8daf5" opacity="0.85" />
-      {/* Headlight */}
-      <ellipse cx="148" cy="33" rx="6" ry="4" fill="#fff9c4" opacity="0.95" />
-      <ellipse cx="148" cy="33" rx="3" ry="2" fill="#ffeb3b" />
-      {/* Taillight */}
-      <rect x="10" y="30" width="8" height="8" rx="2" fill="#ff1744" opacity="0.9" />
+      <path d="M50 27 Q58 12 82 12 Q100 12 112 27 Z" fill="#b8daf5" opacity="0.85" />
+
+      {/* ── Headlight assembly ── */}
+      {/* outer glow ring */}
+      <ellipse cx="157" cy="34" rx="9" ry="6"
+        fill="#fffde7" opacity="0.3"
+        style={{ animation: "headlightPulse 1.8s ease-in-out infinite" }}
+      />
+      {/* main lens */}
+      <ellipse cx="157" cy="34" rx="6" ry="4" fill="#fff9c4" opacity="0.95" />
+      <ellipse cx="157" cy="34" rx="3" ry="2"
+        fill="#ffeb3b"
+        style={{ animation: "headlightPulse 1.8s ease-in-out infinite" }}
+      />
+
+      {/* ── Taillight assembly ── */}
+      {/* outer glow */}
+      <rect x="7" y="27" width="12" height="14" rx="3"
+        fill="#ff1744" opacity="0.25"
+        style={{ animation: "taillightBlink 1.2s ease-in-out infinite" }}
+      />
+      {/* main lens */}
+      <rect x="10" y="30" width="8" height="8" rx="2"
+        fill="#ff1744"
+        style={{ animation: "taillightBlink 1.2s ease-in-out infinite" }}
+      />
+
       {/* Undercarriage */}
-      <rect x="20" y="46" width="120" height="4" rx="2" fill={color} opacity="0.6" />
+      <rect x="22" y="46" width="124" height="4" rx="2" fill={color} opacity="0.6" />
       {/* Front wheel */}
-      <circle cx="120" cy="50" r="10" fill="#1a1a1a" />
-      <circle cx="120" cy="50" r="6" fill="#555" />
-      <circle cx="120" cy="50" r="2.5" fill="#999" />
+      <circle cx="126" cy="52" r="10" fill="#1a1a1a" />
+      <circle cx="126" cy="52" r="6" fill="#444" />
+      <circle cx="126" cy="52" r="2.5" fill="#888" />
       {/* Rear wheel */}
-      <circle cx="40" cy="50" r="10" fill="#1a1a1a" />
-      <circle cx="40" cy="50" r="6" fill="#555" />
-      <circle cx="40" cy="50" r="2.5" fill="#999" />
+      <circle cx="42" cy="52" r="10" fill="#1a1a1a" />
+      <circle cx="42" cy="52" r="6" fill="#444" />
+      <circle cx="42" cy="52" r="2.5" fill="#888" />
       {/* Spoiler */}
-      <rect x="12" y="23" width="3" height="10" rx="1" fill={color} opacity="0.8" />
-      <rect x="8" y="22" width="10" height="2.5" rx="1" fill={color} opacity="0.9" />
+      <rect x="12" y="23" width="3" height="10" rx="1" fill={color} opacity="0.85" />
+      <rect x="8" y="22" width="11" height="3" rx="1.5" fill={color} opacity="0.95" />
     </svg>
   );
 }
@@ -294,28 +349,40 @@ export default function Footer() {
       {/* ── CSS keyframes (inline so no globals needed) ── */}
       <style>{`
         @keyframes carDrive {
-          0%   { transform: translateX(-160px); }
+          0%   { transform: translateX(-220px); }
           100% { transform: translateX(110vw); }
         }
         @keyframes carDriveRev {
-          0%   { transform: translateX(110vw) scaleX(1); }
-          100% { transform: translateX(-160px) scaleX(1); }
+          0%   { transform: translateX(110vw); }
+          100% { transform: translateX(-220px); }
         }
         @keyframes dashMove {
           0%   { background-position: 0 0; }
-          100% { background-position: 60px 0; }
+          100% { background-position: 80px 0; }
         }
         @keyframes starTwinkle {
           0%, 100% { opacity: 0.4; }
           50%       { opacity: 1; }
         }
-        @keyframes smokeRise {
-          0%   { transform: translateY(0) scale(1); opacity: 0.6; }
-          100% { transform: translateY(-30px) scale(1.5); opacity: 0; }
-        }
         @keyframes lampGlow {
           0%, 100% { filter: drop-shadow(0 0 4px #fbbf24); }
-          50%       { filter: drop-shadow(0 0 10px #fbbf24); }
+          50%       { filter: drop-shadow(0 0 12px #fbbf24); }
+        }
+        /* ── Car light animations ── */
+        @keyframes headlightPulse {
+          0%, 100% { opacity: 1;    filter: drop-shadow(0 0 6px #fffde7) drop-shadow(0 0 12px #ffeb3b); }
+          50%       { opacity: 0.7; filter: drop-shadow(0 0 14px #fffde7) drop-shadow(0 0 28px #ffeb3b); }
+        }
+        @keyframes taillightBlink {
+          0%, 45%      { opacity: 1;   filter: drop-shadow(0 0 8px #ff1744) drop-shadow(0 0 16px #ff174480); }
+          50%, 95%     { opacity: 0.2; filter: none; }
+          100%         { opacity: 1;   filter: drop-shadow(0 0 8px #ff1744); }
+        }
+        @keyframes beamFlicker {
+          0%, 100% { opacity: 0.75; }
+          30%      { opacity: 0.55; }
+          60%      { opacity: 0.85; }
+          80%      { opacity: 0.65; }
         }
       `}</style>
 
@@ -556,14 +623,14 @@ export default function Footer() {
           <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "3px", background: "#e2e8f0", opacity: 0.4 }} />
         </div>
 
-        {/* Animated cars — top lane (left to right) */}
-        <AnimatedCar carColor="#ef4444" startX={5}  duration={12} yPos={87} delay={0} />
-        <AnimatedCar carColor="#3b82f6" startX={40} duration={9}  yPos={87} delay={3} />
-        <AnimatedCar carColor="#f59e0b" startX={70} duration={14} yPos={87} delay={6} />
+        {/* Animated cars — TOP lane (left → right, above yellow line) */}
+        <AnimatedCar carColor="#ef4444" startX={5}  duration={12} yPos={72} delay={0} />
+        <AnimatedCar carColor="#3b82f6" startX={40} duration={9}  yPos={72} delay={3} />
+        <AnimatedCar carColor="#f59e0b" startX={70} duration={14} yPos={72} delay={7} />
 
-        {/* Animated cars — bottom lane (right to left) */}
-        <AnimatedCar carColor="#10b981" startX={5}  duration={11} yPos={60} delay={1}  flip />
-        <AnimatedCar carColor="#8b5cf6" startX={55} duration={13} yPos={60} delay={5}  flip />
+        {/* Animated cars — BOTTOM lane (right → left, below yellow line) */}
+        <AnimatedCar carColor="#10b981" startX={5}  duration={11} yPos={6}  delay={1}  flip />
+        <AnimatedCar carColor="#8b5cf6" startX={55} duration={13} yPos={6}  delay={5}  flip />
 
         {/* Magnifying glass — scroll reactive */}
         <MagnifyingGlass scrollProgress={scrollProgress} />
