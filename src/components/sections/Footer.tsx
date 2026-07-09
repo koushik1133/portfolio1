@@ -267,6 +267,56 @@ export default function Footer() {
           0%, 100% { filter: drop-shadow(0 0 4px #fbbf24); }
           50%       { filter: drop-shadow(0 0 12px #fbbf24); }
         }
+        /* ── Horror flicker variants ── */
+        /* Lamp 0: steady normal glow */
+        @keyframes flicker0 {
+          0%,100% { opacity:1;   filter: drop-shadow(0 0 8px #fbbf24) drop-shadow(0 0 20px #f59e0b); }
+          50%     { opacity:0.85;filter: drop-shadow(0 0 4px #fbbf24); }
+        }
+        /* Lamp 1: slow dim — goes almost dead */
+        @keyframes flicker1 {
+          0%,40%  { opacity:1;    filter: drop-shadow(0 0 10px #fbbf24); }
+          45%     { opacity:0.05; filter: none; }
+          50%     { opacity:0.9;  filter: drop-shadow(0 0 6px #fbbf24); }
+          55%     { opacity:0.05; filter: none; }
+          60%,100%{ opacity:1;    filter: drop-shadow(0 0 10px #fbbf24); }
+        }
+        /* Lamp 2: rapid stutter — horror buzz */
+        @keyframes flicker2 {
+          0%      { opacity:1; }
+          10%     { opacity:0; }
+          11%     { opacity:1; }
+          13%     { opacity:0; }
+          14%     { opacity:1; }
+          30%     { opacity:1; }
+          31%     { opacity:0; }
+          32%     { opacity:1; }
+          50%,100%{ opacity:1; }
+        }
+        /* Lamp 3: dead — completely off most of the time */
+        @keyframes flicker3 {
+          0%,5%   { opacity:1;    filter: drop-shadow(0 0 8px #fbbf24); }
+          6%,70%  { opacity:0;    filter: none; }
+          71%     { opacity:0.6;  filter: drop-shadow(0 0 3px #fbbf24); }
+          73%     { opacity:0;    filter: none; }
+          74%,78% { opacity:0.8;  filter: drop-shadow(0 0 6px #fbbf24); }
+          79%,100%{ opacity:0;    filter: none; }
+        }
+        /* Lamp 4: eerie slow pulse with colour shift to cold white */
+        @keyframes flicker4 {
+          0%,100% { opacity:1;   filter: drop-shadow(0 0 6px #fbbf24) drop-shadow(0 0 14px #f59e0b); }
+          30%     { opacity:0.5; filter: drop-shadow(0 0 4px #e0f2fe) drop-shadow(0 0 10px #bae6fd); }
+          60%     { opacity:0.1; filter: none; }
+          70%     { opacity:0.9; filter: drop-shadow(0 0 12px #fbbf24); }
+        }
+        /* Lamp 5: single sharp blink then long off */
+        @keyframes flicker5 {
+          0%,20%  { opacity:1;   filter: drop-shadow(0 0 10px #fbbf24); }
+          21%     { opacity:0;   filter: none; }
+          22%     { opacity:1;   filter: drop-shadow(0 0 16px #fbbf24); }
+          23%     { opacity:0;   filter: none; }
+          24%,100%{ opacity:1;   filter: drop-shadow(0 0 8px #fbbf24); }
+        }
         /* ── Car light animations ── */
         @keyframes headlightPulse {
           0%, 100% { opacity: 1;    filter: drop-shadow(0 0 6px #fffde7) drop-shadow(0 0 12px #ffeb3b); }
@@ -405,9 +455,7 @@ export default function Footer() {
             <p style={{ fontSize: "0.8rem", color: "#475569" }}>
               © {new Date().getFullYear()} Koushik Goud Shaganti — All Rights Reserved.
             </p>
-            <p style={{ fontSize: "0.8rem", color: "#475569" }}>
-              Built with ❤️ using Next.js & passion for cars 🏎️
-            </p>
+
           </div>
         </div>
       </div>
@@ -429,8 +477,15 @@ export default function Footer() {
           pointerEvents: "none",
         }} />
 
-        {/* Street lights */}
-        {[8, 22, 38, 55, 72, 88].map((pct, i) => (
+        {/* Street lights — each lamp has its own horror-flicker animation */}
+        {[
+          { pct: 8,  anim: "flicker0", dur: "4s",   delay: "0s"   },
+          { pct: 22, anim: "flicker1", dur: "6s",   delay: "1.2s" },
+          { pct: 38, anim: "flicker2", dur: "2.5s", delay: "0.3s" },
+          { pct: 55, anim: "flicker3", dur: "9s",   delay: "0s"   },
+          { pct: 72, anim: "flicker4", dur: "7s",   delay: "2.1s" },
+          { pct: 88, anim: "flicker5", dur: "5s",   delay: "0.8s" },
+        ].map(({ pct, anim, dur, delay }, i) => (
           <div key={i} style={{
             position: "absolute",
             left: `${pct}%`,
@@ -438,11 +493,9 @@ export default function Footer() {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            animation: "lampGlow 3s ease-in-out infinite",
-            animationDelay: `${i * 0.4}s`,
           }}>
             {/* Pole */}
-            <div style={{ width: "3px", height: "clamp(30px,5vw,55px)", background: "#475569" }} />
+            <div style={{ width: "3px", height: "clamp(30px,5vw,55px)", background: "#333" }} />
             {/* Arm */}
             <div style={{
               position: "absolute",
@@ -450,9 +503,9 @@ export default function Footer() {
               left: "-12px",
               width: "15px",
               height: "3px",
-              background: "#475569",
+              background: "#333",
             }} />
-            {/* Light */}
+            {/* Light bulb — animated independently */}
             <div style={{
               position: "absolute",
               top: 0,
@@ -461,7 +514,17 @@ export default function Footer() {
               height: "6px",
               borderRadius: "3px",
               background: "#fbbf24",
-              boxShadow: "0 0 8px 2px rgba(251,191,36,0.5)",
+              animation: `${anim} ${dur} ease-in-out ${delay} infinite`,
+            }} />
+            {/* Ground cone of light — flickers with same animation */}
+            <div style={{
+              position: "absolute",
+              top: "6px",
+              left: "-30px",
+              width: "30px",
+              height: "clamp(28px,4vw,50px)",
+              background: "radial-gradient(ellipse at top, rgba(251,191,36,0.18) 0%, transparent 80%)",
+              animation: `${anim} ${dur} ease-in-out ${delay} infinite`,
             }} />
           </div>
         ))}
