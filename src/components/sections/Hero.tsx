@@ -134,7 +134,7 @@ export default function Hero() {
           animate={{ y: [0, 9, 0] }}
           transition={{ repeat: Infinity, duration: 2 }}
         >
-          <a href="#about" className="hover-target" aria-label="Scroll down">
+          <a href="#highlights" className="hover-target" aria-label="Scroll down">
             <i className="fas fa-chevron-down" />
           </a>
         </motion.div>

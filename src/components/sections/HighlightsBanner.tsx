@@ -52,7 +52,7 @@ export default function HighlightsBanner() {
   };
 
   return (
-    <section className="highlights-banner-section section">
+    <section className="highlights-banner-section section" id="highlights">
       <div className="container">
         <h2 className="highlights-title">Featured Highlights</h2>
         
