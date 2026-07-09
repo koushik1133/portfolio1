@@ -131,6 +131,13 @@ function NightScene() {
           <stop offset="80%"  stopColor="#050e1c" />
           <stop offset="100%" stopColor="#0a1628" />
         </linearGradient>
+        {/* Realistic grey moon base gradient */}
+        <radialGradient id="moonGreyGrad" cx="30%" cy="30%" r="70%">
+          <stop offset="0%"   stopColor="#fdfdfd" />
+          <stop offset="45%"  stopColor="#dedede" />
+          <stop offset="80%"  stopColor="#b5b5b5" />
+          <stop offset="100%" stopColor="#7a7a7a" />
+        </radialGradient>
         {/* Far mountain */}
         <linearGradient id="mtnFar" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%"   stopColor="#0d1f35" />
@@ -150,11 +157,6 @@ function NightScene() {
         <linearGradient id="mist" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%"   stopColor="#1a3a5c" stopOpacity="0.28" />
           <stop offset="100%" stopColor="#1a3a5c" stopOpacity="0" />
-        </linearGradient>
-        {/* Moonbeam down */}
-        <linearGradient id="moonBeam" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stopColor="#fffde7" stopOpacity="0.12" />
-          <stop offset="100%" stopColor="#fffde7" stopOpacity="0" />
         </linearGradient>
         {/* Star glow filter */}
         <filter id="starGlow">
@@ -184,27 +186,52 @@ function NightScene() {
         />
       ))}
 
-      {/* ── Moon: upper-left ── */}
-      {/* Outer atmosphere halo */}
-      <circle cx="130" cy="90" r="110" fill="url(#moonHalo)" />
-      {/* Mid halo */}
-      <circle cx="130" cy="90" r="70"  fill="#c7e9ff" opacity="0.05" />
-      {/* Moon disc */}
-      <circle cx="130" cy="90" r="44"  fill="url(#moonGlow)" />
-      {/* Craters — realistic shading */}
-      <circle cx="112" cy="74"  r="6.5" fill="#fef3c7" opacity="0.30" />
-      <circle cx="148" cy="102" r="4.5" fill="#fef3c7" opacity="0.24" />
-      <circle cx="152" cy="72"  r="3"   fill="#fef3c7" opacity="0.20" />
-      <circle cx="120" cy="96"  r="2.5" fill="#fef3c7" opacity="0.16" />
-      <circle cx="142" cy="80"  r="5"   fill="#fef3c7" opacity="0.18" />
-      {/* Terminator shadow */}
-      <ellipse cx="148" cy="90" rx="36" ry="44" fill="#050e1c" opacity="0.20" />
-      {/* Moonbeam down toward road */}
-      <polygon
-        points="108,134 152,134 180,500 80,500"
-        fill="url(#moonBeam)"
-        opacity="0.5"
-      />
+      {/* ── Realistic Grey Moon (Upper-Left Corner with Floating Animation) ── */}
+      <g style={{ animation: "moonFloat 6s ease-in-out infinite" }}>
+        {/* Faint ambient atmosphere rim glow */}
+        <circle cx="130" cy="90" r="47" fill="#ffffff" opacity="0.04" />
+        {/* Moon base body */}
+        <circle cx="130" cy="90" r="44" fill="url(#moonGreyGrad)" />
+
+        {/* Lunar Maria (large dark basaltic plains) */}
+        <path d="M108,68 Q122,58 140,66 Q152,74 148,90 Q140,106 124,102 Q110,90 108,68 Z" fill="#61666b" opacity="0.32" />
+        <path d="M98,82 Q102,72 116,76 Q128,80 124,92 Q116,104 104,100 Q94,92 98,82 Z" fill="#4b4e52" opacity="0.35" />
+        <path d="M130,64 Q142,60 148,70 Q154,80 146,88 Q138,92 132,80 Z" fill="#52565a" opacity="0.30" />
+        <path d="M92,84 Q96,70 106,76 Q110,88 104,100 Q96,112 88,100 Q86,92 92,84 Z" fill="#585c60" opacity="0.30" />
+
+        {/* Ejecta Rays from Tycho Crater */}
+        <path d="M124,118 L108,98 M124,118 L96,110 M124,118 L114,128 M124,118 L136,124 M124,118 L138,108 M124,118 L132,92 M124,118 L120,78 M124,118 L142,72" stroke="#ffffff" strokeWidth="0.8" opacity="0.22" strokeDasharray="2,3" />
+
+        {/* Major Craters */}
+        {/* Tycho (near bottom-center) */}
+        <circle cx="124" cy="118" r="4.5" fill="#f5f5f5" />
+        <circle cx="124" cy="118" r="2" fill="#adadad" />
+
+        {/* Copernicus (left-center) */}
+        <circle cx="108" cy="88" r="3.5" fill="#ffffff" opacity="0.85" />
+        <circle cx="108" cy="88" r="1.5" fill="#757575" />
+
+        {/* Kepler */}
+        <circle cx="98" cy="92" r="2.2" fill="#ffffff" opacity="0.75" />
+
+        {/* Other craters */}
+        <circle cx="136" cy="68" r="3" fill="#ffffff" opacity="0.4" />
+        <circle cx="144" cy="76" r="2.5" fill="#ffffff" opacity="0.5" />
+        <circle cx="120" cy="56" r="3.5" fill="#ffffff" opacity="0.3" />
+        <circle cx="106" cy="62" r="2" fill="#ffffff" opacity="0.4" />
+        <circle cx="152" cy="98" r="4" fill="#ffffff" opacity="0.3" />
+        <circle cx="138" cy="108" r="2" fill="#ffffff" opacity="0.5" />
+
+        {/* Fine texture and crater rim highlights */}
+        <circle cx="115" cy="72" r="0.8" fill="#ffffff" opacity="0.6" />
+        <circle cx="122" cy="78" r="1" fill="#ffffff" opacity="0.5" />
+        <circle cx="126" cy="84" r="0.7" fill="#ffffff" opacity="0.7" />
+        <circle cx="140" cy="92" r="1.2" fill="#ffffff" opacity="0.4" />
+        <circle cx="132" cy="100" r="0.8" fill="#ffffff" opacity="0.6" />
+
+        {/* 3D shadow terminator overlay (crisp 3D texture shading) */}
+        <path d="M130,46 A44,44 0 0,1 174,90 A44,44 0 0,1 130,134 A44,36 0 0,0 130,46 Z" fill="#030814" opacity="0.25" />
+      </g>
 
       {/* ── Far mountains — tall & dramatic ── */}
       <path
@@ -411,6 +438,11 @@ export default function Footer() {
           30%      { opacity: 0.55; }
           60%      { opacity: 0.85; }
           80%      { opacity: 0.65; }
+        }
+        /* ── Moon float ── */
+        @keyframes moonFloat {
+          0%, 100% { transform: translateY(0px); }
+          50%       { transform: translateY(-8px); }
         }
       `}</style>
 
@@ -625,7 +657,7 @@ export default function Footer() {
             backgroundImage: "repeating-linear-gradient(90deg, transparent 0, transparent 30px, rgba(255,255,255,0.03) 30px, rgba(255,255,255,0.03) 31px)",
           }} />
 
-          {/* Center dividing dashes */}
+          {/* Center dividing dashes — STATIC yellow line */}
           <div style={{
             position: "absolute",
             top: "50%",
@@ -633,31 +665,28 @@ export default function Footer() {
             height: "3px",
             backgroundImage: "repeating-linear-gradient(90deg, #fbbf24 0, #fbbf24 40px, transparent 40px, transparent 80px)",
             backgroundSize: "80px 3px",
-            animation: "dashMove 1s linear infinite",
             transform: "translateY(-50%)",
             opacity: 0.7,
           }} />
 
-          {/* Lane marker top */}
+          {/* Lane marker top — STATIC */}
           <div style={{
             position: "absolute",
             top: "20%",
             left: 0, right: 0,
             height: "2px",
-            backgroundImage: "repeating-linear-gradient(90deg, rgba(255,255,255,0.25) 0, rgba(255,255,255,0.25) 30px, transparent 30px, transparent 60px)",
+            backgroundImage: "repeating-linear-gradient(90deg, rgba(255,255,255,0.22) 0, rgba(255,255,255,0.22) 30px, transparent 30px, transparent 60px)",
             backgroundSize: "60px 2px",
-            animation: "dashMove 1.4s linear infinite",
           }} />
 
-          {/* Lane marker bottom */}
+          {/* Lane marker bottom — STATIC */}
           <div style={{
             position: "absolute",
             bottom: "20%",
             left: 0, right: 0,
             height: "2px",
-            backgroundImage: "repeating-linear-gradient(90deg, rgba(255,255,255,0.25) 0, rgba(255,255,255,0.25) 30px, transparent 30px, transparent 60px)",
+            backgroundImage: "repeating-linear-gradient(90deg, rgba(255,255,255,0.22) 0, rgba(255,255,255,0.22) 30px, transparent 30px, transparent 60px)",
             backgroundSize: "60px 2px",
-            animation: "dashMove 1.8s linear infinite",
           }} />
 
           {/* Road edges */}
