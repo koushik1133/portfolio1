@@ -99,15 +99,15 @@ function CarSVG({ color = "#e53e3e", flip = false }: { color?: string; flip?: bo
 function NightScene() {
   return (
     <svg
-      viewBox="0 0 1440 320"
+      viewBox="0 0 1440 500"
       xmlns="http://www.w3.org/2000/svg"
-      preserveAspectRatio="none"
+      preserveAspectRatio="xMidYMid slice"
       style={{
         position: "absolute",
-        bottom: "48%",  /* sits just above the road */
+        top: 0,
         left: 0,
         width: "100%",
-        height: "clamp(180px, 28vw, 340px)",
+        height: "100%",
         pointerEvents: "none",
       }}
     >
@@ -121,145 +121,148 @@ function NightScene() {
         </radialGradient>
         {/* Moon halo */}
         <radialGradient id="moonHalo" cx="50%" cy="50%" r="50%">
-          <stop offset="0%"   stopColor="#e0f2fe" stopOpacity="0.12" />
+          <stop offset="0%"   stopColor="#e0f2fe" stopOpacity="0.18" />
           <stop offset="100%" stopColor="#e0f2fe" stopOpacity="0" />
         </radialGradient>
         {/* Moonlit sky */}
         <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%"   stopColor="#000000" />
-          <stop offset="60%"  stopColor="#050a14" />
+          <stop offset="50%"  stopColor="#020810" />
+          <stop offset="80%"  stopColor="#050e1c" />
           <stop offset="100%" stopColor="#0a1628" />
         </linearGradient>
-        {/* Far mountain gradient */}
+        {/* Far mountain */}
         <linearGradient id="mtnFar" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%"   stopColor="#0d1f35" />
-          <stop offset="100%" stopColor="#071020" />
+          <stop offset="100%" stopColor="#04101e" />
         </linearGradient>
         {/* Mid mountain */}
         <linearGradient id="mtnMid" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stopColor="#060e1a" />
-          <stop offset="100%" stopColor="#020509" />
+          <stop offset="0%"   stopColor="#050c18" />
+          <stop offset="100%" stopColor="#010408" />
         </linearGradient>
         {/* Near mountain */}
         <linearGradient id="mtnNear" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stopColor="#030810" />
-          <stop offset="100%" stopColor="#010205" />
+          <stop offset="0%"   stopColor="#020609" />
+          <stop offset="100%" stopColor="#010203" />
         </linearGradient>
         {/* Ground mist */}
         <linearGradient id="mist" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stopColor="#1a3a5c" stopOpacity="0.22" />
+          <stop offset="0%"   stopColor="#1a3a5c" stopOpacity="0.28" />
           <stop offset="100%" stopColor="#1a3a5c" stopOpacity="0" />
         </linearGradient>
-        {/* Moonlight road glint */}
-        <linearGradient id="moonRoad" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%"   stopColor="transparent" />
-          <stop offset="10%"  stopColor="#fffde7" stopOpacity="0.04" />
-          <stop offset="50%"  stopColor="#fffde7" stopOpacity="0.10" />
-          <stop offset="90%"  stopColor="#fffde7" stopOpacity="0.04" />
-          <stop offset="100%" stopColor="transparent" />
+        {/* Moonbeam down */}
+        <linearGradient id="moonBeam" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stopColor="#fffde7" stopOpacity="0.12" />
+          <stop offset="100%" stopColor="#fffde7" stopOpacity="0" />
         </linearGradient>
         {/* Star glow filter */}
         <filter id="starGlow">
-          <feGaussianBlur stdDeviation="0.8" result="blur" />
+          <feGaussianBlur stdDeviation="0.7" result="blur" />
           <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
         </filter>
       </defs>
 
-      {/* Sky background */}
-      <rect x="0" y="0" width="1440" height="320" fill="url(#skyGrad)" />
+      {/* Full sky */}
+      <rect x="0" y="0" width="1440" height="500" fill="url(#skyGrad)" />
 
-      {/* ── Stars ── */}
+      {/* ── Stars scattered in the top 55% of sky ── */}
       {[
-        [80,18],[140,8],[220,25],[310,12],[390,30],[470,8],[550,20],[650,15],[730,28],[820,10],
-        [900,22],[980,6],[1060,18],[1150,28],[1230,12],[1320,24],[1400,9],[1440,20],
-        [50,45],[180,55],[290,40],[420,60],[530,48],[660,38],[780,55],[890,42],[1010,52],
-        [1120,38],[1250,58],[1370,44],[100,70],[250,65],[450,80],[620,72],[800,68],[1000,78],
-        [1200,62],[1380,75],[170,90],[380,85],[580,95],[760,88],[960,82],[1160,92],[1350,86],
+        [80,12],[145,5],[230,18],[325,8],[400,22],[478,5],[558,15],[662,10],[738,24],[825,7],
+        [905,18],[985,4],[1065,14],[1158,22],[1238,8],[1328,20],[1408,6],
+        [55,38],[188,48],[298,34],[428,52],[538,42],[665,32],[788,48],[895,36],[1015,46],
+        [1125,32],[1258,52],[1375,38],
+        [110,65],[255,58],[458,72],[628,64],[808,60],[1008,70],[1208,55],[1385,68],
+        [175,88],[385,82],[590,92],[762,84],[962,78],[1162,90],[1358,80],
+        [60,110],[280,105],[480,118],[680,108],[880,115],[1080,106],[1280,112],[1420,110],
       ].map(([x,y], i) => (
-        <circle key={i} cx={x} cy={y} r={i % 5 === 0 ? 1.2 : 0.7}
+        <circle key={i} cx={x} cy={y} r={i % 6 === 0 ? 1.4 : i % 3 === 0 ? 1.0 : 0.6}
           fill="#ffffff"
-          opacity={0.5 + (i % 4) * 0.12}
+          opacity={0.45 + (i % 5) * 0.10}
           filter="url(#starGlow)"
-          style={{ animation: `starTwinkle ${2 + (i % 5) * 0.6}s ease-in-out ${(i * 0.3) % 3}s infinite` }}
+          style={{ animation: `starTwinkle ${1.8 + (i % 6) * 0.5}s ease-in-out ${(i * 0.28) % 3.5}s infinite` }}
         />
       ))}
 
-      {/* ── Moon: upper-left area ── */}
-      {/* Outer halo */}
-      <circle cx="110" cy="72" r="80" fill="url(#moonHalo)" />
+      {/* ── Moon: upper-left ── */}
+      {/* Outer atmosphere halo */}
+      <circle cx="130" cy="90" r="110" fill="url(#moonHalo)" />
       {/* Mid halo */}
-      <circle cx="110" cy="72" r="52" fill="#e0f2fe" opacity="0.06" />
+      <circle cx="130" cy="90" r="70"  fill="#c7e9ff" opacity="0.05" />
       {/* Moon disc */}
-      <circle cx="110" cy="72" r="36" fill="url(#moonGlow)" />
-      {/* Realistic craters */}
-      <circle cx="96"  cy="60" r="5"   fill="#fef3c7" opacity="0.35" />
-      <circle cx="118" cy="82" r="3.5" fill="#fef3c7" opacity="0.28" />
-      <circle cx="128" cy="58" r="2.5" fill="#fef3c7" opacity="0.22" />
-      <circle cx="102" cy="78" r="2"   fill="#fef3c7" opacity="0.18" />
-      <circle cx="120" cy="66" r="4"   fill="#fef3c7" opacity="0.20" />
-      {/* Moon shadow / terminator */}
-      <ellipse cx="122" cy="72" rx="30" ry="36" fill="#0a0f1a" opacity="0.18" />
-      {/* Moonlight ray — soft vertical beam down */}
-      <rect x="88" y="108" width="44" height="212" fill="url(#moonRoad)" opacity="0.6" />
+      <circle cx="130" cy="90" r="44"  fill="url(#moonGlow)" />
+      {/* Craters — realistic shading */}
+      <circle cx="112" cy="74"  r="6.5" fill="#fef3c7" opacity="0.30" />
+      <circle cx="148" cy="102" r="4.5" fill="#fef3c7" opacity="0.24" />
+      <circle cx="152" cy="72"  r="3"   fill="#fef3c7" opacity="0.20" />
+      <circle cx="120" cy="96"  r="2.5" fill="#fef3c7" opacity="0.16" />
+      <circle cx="142" cy="80"  r="5"   fill="#fef3c7" opacity="0.18" />
+      {/* Terminator shadow */}
+      <ellipse cx="148" cy="90" rx="36" ry="44" fill="#050e1c" opacity="0.20" />
+      {/* Moonbeam down toward road */}
+      <polygon
+        points="108,134 152,134 180,500 80,500"
+        fill="url(#moonBeam)"
+        opacity="0.5"
+      />
 
-      {/* ── Far mountains (very pale blue-grey, far away) ── */}
+      {/* ── Far mountains — tall & dramatic ── */}
       <path
-        d="M0,220 L60,150 L130,180 L200,120 L280,165 L360,105 L440,150 L520,90
-           L600,140 L680,85 L760,130 L840,75 L920,120 L1000,80 L1080,115
-           L1160,70 L1240,110 L1320,75 L1400,120 L1440,100 L1440,320 L0,320 Z"
+        d="M0,360 L70,250 L150,295 L240,205 L330,260 L420,175 L510,235
+           L600,155 L690,220 L780,140 L870,195 L960,130 L1050,180
+           L1140,120 L1230,168 L1320,118 L1410,162 L1440,145 L1440,500 L0,500 Z"
         fill="url(#mtnFar)"
-        opacity="0.75"
+        opacity="0.80"
       />
       {/* Snow caps on far peaks */}
-      <path d="M200,120 L215,132 L185,132 Z" fill="#e2e8f0" opacity="0.12" />
-      <path d="M360,105 L378,118 L342,118 Z" fill="#e2e8f0" opacity="0.10" />
-      <path d="M520,90  L540,106 L500,106 Z" fill="#e2e8f0" opacity="0.13" />
-      <path d="M680,85  L700,100 L660,100 Z" fill="#e2e8f0" opacity="0.11" />
-      <path d="M840,75  L862,92  L818,92  Z" fill="#e2e8f0" opacity="0.14" />
-      <path d="M1000,80 L1020,96 L980,96  Z" fill="#e2e8f0" opacity="0.10" />
-      <path d="M1160,70 L1182,88 L1138,88 Z" fill="#e2e8f0" opacity="0.13" />
+      <path d="M240,205 L260,222 L220,222 Z" fill="#dde8f0" opacity="0.18" />
+      <path d="M420,175 L442,195 L398,195 Z" fill="#dde8f0" opacity="0.15" />
+      <path d="M600,155 L624,176 L576,176 Z" fill="#dde8f0" opacity="0.18" />
+      <path d="M780,140 L805,162 L755,162 Z" fill="#dde8f0" opacity="0.20" />
+      <path d="M960,130 L986,154 L934,154 Z" fill="#dde8f0" opacity="0.18" />
+      <path d="M1140,120 L1168,144 L1112,144 Z" fill="#dde8f0" opacity="0.20" />
+      <path d="M1320,118 L1346,142 L1294,142 Z" fill="#dde8f0" opacity="0.16" />
 
-      {/* ── Mid mountains (darker, closer) ── */}
+      {/* ── Mid mountains — closer, darker ── */}
       <path
-        d="M0,260 L80,195 L160,225 L240,170 L330,210 L410,155 L500,195
-           L590,145 L670,185 L760,150 L840,190 L930,142 L1010,178 L1100,138
-           L1180,172 L1270,135 L1360,168 L1440,145 L1440,320 L0,320 Z"
+        d="M0,420 L90,330 L180,368 L270,295 L370,345 L460,272 L560,318
+           L660,250 L755,300 L850,240 L950,285 L1050,228 L1150,270
+           L1250,215 L1350,258 L1440,230 L1440,500 L0,500 Z"
         fill="url(#mtnMid)"
-        opacity="0.92"
+        opacity="0.95"
       />
-      {/* Moonlit ridge highlights on mid mountains */}
-      <path
-        d="M410,155 L430,164 L500,195 L590,145 L610,154"
-        fill="none" stroke="#1e3a5f" strokeWidth="1.5" opacity="0.5"
-      />
-      <path
-        d="M930,142 L950,152 L1010,178 L1100,138 L1118,148"
-        fill="none" stroke="#1e3a5f" strokeWidth="1.5" opacity="0.5"
-      />
+      {/* Moonlit ridge highlight */}
+      <path d="M460,272 L490,286 L560,318 L660,250 L682,262"
+        fill="none" stroke="#1a3254" strokeWidth="2" opacity="0.55" />
+      <path d="M1050,228 L1078,242 L1150,270 L1250,215 L1272,226"
+        fill="none" stroke="#1a3254" strokeWidth="2" opacity="0.55" />
 
-      {/* ── Near mountains / foothills (darkest, closest) ── */}
+      {/* ── Near foothills — darkest ── */}
       <path
-        d="M0,290 L100,240 L200,268 L300,225 L400,255 L500,218
-           L600,248 L700,215 L800,245 L900,210 L1000,240 L1100,205
-           L1200,235 L1300,208 L1400,238 L1440,220 L1440,320 L0,320 Z"
+        d="M0,460 L110,398 L220,428 L330,380 L440,415 L550,370
+           L660,405 L770,362 L880,400 L990,355 L1100,390 L1210,348
+           L1320,384 L1440,355 L1440,500 L0,500 Z"
         fill="url(#mtnNear)"
       />
 
-      {/* ── Pine tree silhouettes on near ridge ── */}
-      {[90,170,310,460,570,680,790,870,990,1090,1180,1290,1390].map((x, i) => (
-        <path
-          key={i}
-          d={`M${x},${245+(i%3)*8} L${x+10},${270+(i%3)*8} L${x+5},${270+(i%3)*8} L${x+5},${280+(i%3)*8} L${x-5},${280+(i%3)*8} L${x-5},${270+(i%3)*8} L${x-10},${270+(i%3)*8} Z`}
-          fill="#010204"
-          opacity="0.9"
-        />
-      ))}
+      {/* ── Pine trees along near ridge ── */}
+      {[85,175,305,435,545,660,770,875,985,1095,1195,1308,1408].map((x, i) => {
+        const base = 395 + (i % 3) * 10;
+        return (
+          <path
+            key={i}
+            d={`M${x},${base-40} L${x+14},${base} L${x+7},${base} L${x+7},${base+16} L${x-7},${base+16} L${x-7},${base} L${x-14},${base} Z`}
+            fill="#010305"
+            opacity="0.95"
+          />
+        );
+      })}
 
-      {/* ── Ground mist / atmosphere ── */}
-      <rect x="0" y="278" width="1440" height="42" fill="url(#mist)" />
-      <ellipse cx="200" cy="300" rx="280" ry="22" fill="#0a1e35" opacity="0.18" />
-      <ellipse cx="900" cy="298" rx="320" ry="20" fill="#0a1e35" opacity="0.14" />
-      <ellipse cx="1300" cy="302" rx="200" ry="18" fill="#0a1e35" opacity="0.12" />
+      {/* ── Ground mist / valley fog ── */}
+      <rect x="0" y="455" width="1440" height="45" fill="url(#mist)" />
+      <ellipse cx="220"  cy="468" rx="320" ry="22" fill="#071525" opacity="0.22" />
+      <ellipse cx="820"  cy="465" rx="380" ry="20" fill="#071525" opacity="0.18" />
+      <ellipse cx="1300" cy="470" rx="240" ry="18" fill="#071525" opacity="0.15" />
     </svg>
   );
 }
@@ -540,7 +543,7 @@ export default function Footer() {
       <div style={{
         position: "relative",
         background: "#000",
-        height: "clamp(220px, 28vw, 320px)",
+        height: "clamp(340px, 42vw, 460px)",
         overflow: "hidden",
       }}>
         {/* Mountain + Moon night scene */}
@@ -566,7 +569,7 @@ export default function Footer() {
           <div key={i} style={{
             position: "absolute",
             left: `${pct}%`,
-            bottom: "52%",
+            bottom: "40%",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -612,8 +615,8 @@ export default function Footer() {
           bottom: 0,
           left: 0,
           right: 0,
-          height: "48%",
-          background: "linear-gradient(180deg, #0a0a0a 0%, #111 60%, #0d0d0d 100%)",
+          height: "40%",
+          background: "linear-gradient(180deg, #080808 0%, #111 50%, #0d0d0d 100%)",
         }}>
           {/* Road texture lines */}
           <div style={{
@@ -671,9 +674,9 @@ export default function Footer() {
         </div>
 
         {/* TOP lane — 3 cars going left → right, above yellow center line */}
-        <AnimatedCar carColor="#ef4444" duration={10} yPos={100} delay={0}    />
-        <AnimatedCar carColor="#3b82f6" duration={10} yPos={100} delay={-3.3} />
-        <AnimatedCar carColor="#f59e0b" duration={10} yPos={100} delay={-6.6} />
+        <AnimatedCar carColor="#ef4444" duration={10} yPos={112} delay={0}    />
+        <AnimatedCar carColor="#3b82f6" duration={10} yPos={112} delay={-3.3} />
+        <AnimatedCar carColor="#f59e0b" duration={10} yPos={112} delay={-6.6} />
 
         {/* BOTTOM lane — 3 cars going right → left, below yellow center line */}
         <AnimatedCar carColor="#10b981" duration={11} yPos={8}   delay={0}    flip />
