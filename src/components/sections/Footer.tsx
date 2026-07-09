@@ -190,16 +190,18 @@ function CitySkyline({ dark }: { dark: boolean }) {
 }
 
 /* ── Animated Car on Track ── */
+/* ── Animated Car on Track ──
+ *  The car div ITSELF is animated so it always enters from off-screen.
+ *  Negative delay = animation starts mid-cycle → staggered spacing.
+ */
 function AnimatedCar({
   carColor,
-  startX,
   duration,
   yPos,
   flip = false,
   delay = 0,
 }: {
   carColor: string;
-  startX: number;
   duration: number;
   yPos: number;
   flip?: boolean;
@@ -211,14 +213,13 @@ function AnimatedCar({
         position: "absolute",
         bottom: yPos,
         left: 0,
-        width: "100%",
-        animation: `carDrive${flip ? "Rev" : ""} ${duration}s linear ${delay}s infinite`,
+        width: "clamp(80px,10vw,130px)",
+        /* Animate the car div itself – always starts from -130px (off left edge) */
+        animation: `${flip ? "carDriveRev" : "carDrive"} ${duration}s linear ${delay}s infinite`,
         willChange: "transform",
       }}
     >
-      <div style={{ position: "absolute", width: "clamp(80px,10vw,140px)", left: `${startX}%` }}>
-        <CarSVG color={carColor} flip={flip} />
-      </div>
+      <CarSVG color={carColor} flip={flip} />
     </div>
   );
 }
@@ -245,12 +246,14 @@ export default function Footer() {
       {/* ── CSS keyframes (inline so no globals needed) ── */}
       <style>{`
         @keyframes carDrive {
-          0%   { transform: translateX(-220px); }
-          100% { transform: translateX(110vw); }
+          /* starts fully off-screen left, exits fully off-screen right */
+          0%   { transform: translateX(-160px); }
+          100% { transform: translateX(calc(100vw + 160px)); }
         }
         @keyframes carDriveRev {
-          0%   { transform: translateX(110vw); }
-          100% { transform: translateX(-220px); }
+          /* starts fully off-screen right, exits fully off-screen left */
+          0%   { transform: translateX(calc(100vw + 160px)); }
+          100% { transform: translateX(-160px); }
         }
         @keyframes dashMove {
           0%   { background-position: 0 0; }
@@ -519,14 +522,15 @@ export default function Footer() {
           <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "3px", background: "#e2e8f0", opacity: 0.4 }} />
         </div>
 
-        {/* Animated cars — TOP lane (left → right, above yellow line) */}
-        <AnimatedCar carColor="#ef4444" startX={5}  duration={12} yPos={72} delay={0} />
-        <AnimatedCar carColor="#3b82f6" startX={40} duration={9}  yPos={72} delay={3} />
-        <AnimatedCar carColor="#f59e0b" startX={70} duration={14} yPos={72} delay={7} />
+        {/* TOP lane — 3 cars going left → right, evenly spaced via negative delay */}
+        <AnimatedCar carColor="#ef4444" duration={10} yPos={72} delay={0}    />
+        <AnimatedCar carColor="#3b82f6" duration={10} yPos={72} delay={-3.3} />
+        <AnimatedCar carColor="#f59e0b" duration={10} yPos={72} delay={-6.6} />
 
-        {/* Animated cars — BOTTOM lane (right → left, below yellow line) */}
-        <AnimatedCar carColor="#10b981" startX={5}  duration={11} yPos={6}  delay={1}  flip />
-        <AnimatedCar carColor="#8b5cf6" startX={55} duration={13} yPos={6}  delay={5}  flip />
+        {/* BOTTOM lane — 3 cars going right → left, evenly spaced via negative delay */}
+        <AnimatedCar carColor="#10b981" duration={11} yPos={6}  delay={0}    flip />
+        <AnimatedCar carColor="#8b5cf6" duration={11} yPos={6}  delay={-3.7} flip />
+        <AnimatedCar carColor="#e11d48" duration={11} yPos={6}  delay={-7.3} flip />
 
       </div>
 
