@@ -111,7 +111,7 @@ function SkyScene({ isDark }: { isDark: boolean }) {
         position: "absolute",
         top: 0,
         left: 0,
-        width: "100%",
+        width: "calc(100% - 2px)",
         height: "100%",
         pointerEvents: "none",
       }}
@@ -391,11 +391,11 @@ export default function Footer() {
         @keyframes carDrive {
           /* starts fully off-screen left, exits fully off-screen right */
           0%   { transform: translateX(-160px); }
-          100% { transform: translateX(calc(100vw + 160px)); }
+          100% { transform: translateX(calc(100% + 160px)); }
         }
         @keyframes carDriveRev {
           /* starts fully off-screen right, exits fully off-screen left */
-          0%   { transform: translateX(calc(100vw + 160px)); }
+          0%   { transform: translateX(calc(100% + 160px)); }
           100% { transform: translateX(-160px); }
         }
         @keyframes dashMove {
