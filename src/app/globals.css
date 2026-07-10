@@ -5728,6 +5728,26 @@ form .form-success {
         width: 16px !important;
         height: 16px !important;
     }
+
+    /* Quick About mobile adjustments */
+    .quick-about-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+    
+    .quick-about-section {
+        padding: 4rem 0;
+    }
+    
+    .quick-about-heading {
+        font-size: clamp(2rem, 6vw, 2.8rem);
+        text-align: left;
+    }
+    
+    .quick-about-text {
+        font-size: 1.1rem;
+        line-height: 1.7;
+    }
 }
 
 /* --- Tiny Mobile Screens (max-width: 480px) --- */
