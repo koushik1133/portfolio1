@@ -309,6 +309,14 @@ p {
     display: none; /* Chrome, Safari, Opera */
 }
 
+/* Page Container to trap any absolute positioned child overflow */
+.page-container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+
 /* ======= Button Base Styles ======= */
 .btn {
     display: inline-flex;
@@ -660,16 +668,27 @@ body.dark-theme #themeToggle .fa-sun {
 /* Mobile specific styles */
 @media screen and (max-width: 768px) {
     .header {
-        top: 0;
-        left: 0;
-        transform: none;
-        width: 100%;
-        border-radius: 0;
-        border-left: none;
-        border-right: none;
-        border-top: none;
-        padding: 0 1rem;
-        background-color: rgba(10, 10, 10, 0.85);
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        transform: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        border-radius: 0 !important;
+        border: none !important;
+        border-bottom: 1px solid var(--border-color) !important;
+        padding: 0 1rem !important;
+        background-color: var(--bg-color-alt) !important;
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05) !important;
+    }
+
+    body.dark-theme .header,
+    html.dark-theme .header {
+        background-color: rgba(10, 10, 10, 0.85) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4) !important;
     }
 
     .navbar {
