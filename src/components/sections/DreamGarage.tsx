@@ -90,11 +90,11 @@ export default function DreamGarage() {
     <section className="garage-section section" id="garage">
       <div className="container">
         <div className="section-heading garage-heading">
-          <h2 className="section-title">The Dream Garage</h2>
+          <h2 className="section-title">My Dream Garage</h2>
           <div className="underline"></div>
         </div>
         <p className="garage-intro">
-          Beyond the code, I am a massive automotive enthusiast.<br/> Here is the ultimate dream garage lineup—swipe to explore.
+          Beyond the code, I am a massive automotive enthusiast.<br/> Here is my ultimate dream garage lineup—a collection of engineering marvels. Swipe to explore!
         </p>
       </div>
 
