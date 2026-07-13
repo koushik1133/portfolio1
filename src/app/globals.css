@@ -6559,74 +6559,159 @@ form .form-success {
     }
 }
 
-/* ── DESKTOP: Restore original floating pill header & nav layout ── */
+/* ══════════════════════════════════════════════════════════════
+   DUAL-RENDER HEADER NAV SYSTEM
+   - nav-menu-desktop: inside the pill header, flex row, desktop only
+   - nav-menu-mobile: outside header, fixed position drawer, mobile only
+   ══════════════════════════════════════════════════════════════ */
+
+/* Hide mobile drawer on desktop by default */
+.nav-menu-mobile {
+    display: none !important;
+}
+
+/* Desktop pill nav */
+.nav-menu-desktop {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    position: static;
+    background: transparent;
+    border: none;
+    flex-direction: row;
+    height: auto;
+    width: auto;
+}
+
 @media screen and (min-width: 769px) {
-    .nav-menu {
-        position: static !important;
-        right: auto !important;
-        width: auto !important;
-        max-width: none !important;
-        height: auto !important;
-        background-color: transparent !important;
-        border: none !important;
-        flex-direction: row !important;
-        align-items: center !important;
-        justify-content: center !important;
-        padding: 0 !important;
-        z-index: auto !important;
-        gap: 0 !important;
-        box-shadow: none !important;
-        overflow: visible !important;
-        transition: none !important;
+    .nav-menu-desktop .nav-link {
+        font-size: 0.92rem;
+        font-weight: 500;
+        color: rgba(9, 9, 11, 0.65);
+        padding: 0.4rem 0.8rem;
+        border-radius: 20px;
+        display: inline-flex;
+        width: auto;
+        border-left: none;
+        letter-spacing: normal;
+        text-decoration: none;
+        transition: color 0.3s, background-color 0.3s;
     }
 
-    .nav-link {
-        font-size: 0.92rem !important;
-        font-weight: 500 !important;
-        color: rgba(9, 9, 11, 0.65) !important;
-        padding: 0.4rem 0.8rem !important;
-        border-radius: 20px !important;
-        display: inline-flex !important;
-        width: auto !important;
-        border-left: none !important;
-        letter-spacing: normal !important;
+    body.dark-theme .nav-menu-desktop .nav-link,
+    html.dark-theme .nav-menu-desktop .nav-link {
+        color: rgba(255, 255, 255, 0.65);
     }
 
-    body.dark-theme .nav-link,
-    html.dark-theme .nav-link {
-        color: rgba(255, 255, 255, 0.65) !important;
+    .nav-menu-desktop .nav-link:hover {
+        color: #09090b;
+        background-color: rgba(9, 9, 11, 0.05);
     }
 
-    .nav-link:hover {
-        color: #09090b !important;
-        background-color: rgba(9, 9, 11, 0.05) !important;
-        border-left: none !important;
-        padding-left: 0.8rem !important;
+    body.dark-theme .nav-menu-desktop .nav-link:hover,
+    html.dark-theme .nav-menu-desktop .nav-link:hover {
+        color: #ffffff;
+        background-color: rgba(255, 255, 255, 0.08);
     }
 
-    body.dark-theme .nav-link:hover,
-    html.dark-theme .nav-link:hover {
-        color: #ffffff !important;
-        background-color: rgba(255, 255, 255, 0.08) !important;
+    .nav-menu-desktop .nav-link.active {
+        color: #09090b;
+        font-weight: 600;
     }
 
-    .nav-link.active {
-        color: #09090b !important;
-        font-weight: 600 !important;
-        background: none !important;
-        border-left: none !important;
+    body.dark-theme .nav-menu-desktop .nav-link.active,
+    html.dark-theme .nav-menu-desktop .nav-link.active {
+        color: #ffffff;
     }
 
-    body.dark-theme .nav-link.active,
-    html.dark-theme .nav-link.active {
-        color: #ffffff !important;
-    }
-
+    /* Hide hamburger and backdrop on desktop */
     .nav-toggle {
         display: none !important;
     }
 
     .nav-menu-overlay {
         display: none !important;
+    }
+}
+
+/* ── MOBILE: drawer nav ── */
+@media screen and (max-width: 768px) {
+    /* Hide desktop pill nav on mobile */
+    .nav-menu-desktop {
+        display: none !important;
+    }
+
+    /* Mobile drawer */
+    .nav-menu-mobile {
+        display: flex !important;
+        position: fixed !important;
+        top: 0 !important;
+        right: -100% !important;
+        left: auto !important;
+        width: 75% !important;
+        max-width: 320px !important;
+        height: 100vh !important;
+        background-color: var(--bg-color) !important;
+        border-left: 1px solid var(--border-color) !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+        padding: 6rem 2rem 2rem 2rem !important;
+        transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        overflow-y: auto !important;
+        margin: 0 !important;
+        list-style: none !important;
+        z-index: 1001 !important;
+        gap: 0.5rem !important;
+    }
+
+    body.dark-theme .nav-menu-mobile,
+    html.dark-theme .nav-menu-mobile {
+        background-color: var(--bg-color) !important;
+    }
+
+    .nav-menu-mobile.active {
+        right: 0 !important;
+        box-shadow: -10px 0 40px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .nav-menu-mobile .nav-item {
+        margin: 0 !important;
+        width: 100% !important;
+        text-align: left !important;
+    }
+
+    .nav-menu-mobile .nav-link {
+        font-size: 1.15rem !important;
+        font-weight: 600 !important;
+        color: var(--text-color-light) !important;
+        padding: 0.7rem 1.2rem !important;
+        border-radius: 12px !important;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        display: flex !important;
+        align-items: center !important;
+        width: 100% !important;
+        border-left: 3px solid transparent !important;
+        letter-spacing: -0.02em !important;
+        text-decoration: none !important;
+    }
+
+    .nav-menu-mobile .nav-link:hover,
+    .nav-menu-mobile .nav-link.active {
+        color: var(--text-color) !important;
+        background: rgba(96, 165, 250, 0.08) !important;
+        border-left: 3px solid #60a5fa !important;
+        padding-left: 1.6rem !important;
+    }
+
+    body.dark-theme .nav-menu-mobile .nav-link:hover,
+    body.dark-theme .nav-menu-mobile .nav-link.active,
+    html.dark-theme .nav-menu-mobile .nav-link:hover,
+    html.dark-theme .nav-menu-mobile .nav-link.active {
+        color: #ffffff !important;
+        background: rgba(167, 139, 250, 0.1) !important;
+        border-left: 3px solid #a78bfa !important;
     }
 }
