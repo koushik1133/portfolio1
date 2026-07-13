@@ -1207,12 +1207,12 @@ body.dark-theme #themeToggle .fa-sun {
     }
 
     .page-wrapper {
-        padding-top: 100px;
+        padding-top: 80px !important;
         padding-bottom: 50px;
     }
 
     .page-header {
-        margin-bottom: 2.5rem;
+        margin-bottom: 1.25rem !important;
     }
 }
 
@@ -1279,7 +1279,7 @@ body.dark-theme #themeToggle .fa-sun {
 .page-body .experience > .container > .section-heading,
 .page-body .projects > .container > .section-heading,
 .page-body .skills > .container > .section-heading {
-    display: none;
+    display: none !important;
 }
 
 /* Remove backgrounds from sections when they are inside subpages to prevent cut-off backgrounds */
@@ -5994,7 +5994,9 @@ form .form-success {
         align-items: center !important;
         gap: 0.5rem !important;
         width: 100% !important;
-        padding: 0 !important;
+        padding: 1.25rem 0 0 0 !important;
+        margin-top: 2rem !important;
+        border-top: 1px solid var(--border-color) !important;
     }
     .stat-item {
         flex: 1;
@@ -6014,6 +6016,9 @@ form .form-success {
     .stat-divider {
         height: 30px !important;
         margin: 0 2px !important;
+    }
+    .hero-scroll-hint {
+        margin-top: 1.75rem !important;
     }
 }
 
@@ -6041,14 +6046,34 @@ form .form-success {
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 100% !important;
+    }
+    .about-text h3 {
+        text-align: center !important;
+        align-self: center !important;
+    }
+    .about-text h3::after {
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+    }
+    .about-details {
+        width: 100% !important;
     }
     .detail-row {
-        justify-content: center;
-        text-align: center;
+        flex-direction: column !important;
+        gap: 1.25rem !important;
+        width: 100% !important;
+        margin-bottom: 1.25rem !important;
     }
     .detail-item {
-        flex-direction: column;
-        align-items: center;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        width: 100% !important;
+        gap: 0.5rem !important;
+    }
+    .detail-content {
+        text-align: center !important;
     }
     .detail-item i {
         margin-bottom: 0.25rem;
