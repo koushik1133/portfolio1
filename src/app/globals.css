@@ -719,40 +719,40 @@ body.dark-theme #themeToggle .fa-sun {
         font-size: 1.25rem;
     }
 
-    /* Hamburger menu button - Ultra delicate (18x18px) */
+    /* Hamburger menu button - Compact and Shorter horizontally */
     .nav-toggle {
         display: block;
-        width: 18px;
+        width: 15px;
         height: 18px;
-        margin-right: 1rem;
+        margin-right: 1.25rem;
         position: relative;
     }
     
     .nav-toggle .bar {
         position: absolute;
         left: 0;
-        width: 18px;
-        height: 1.5px;
+        width: 15px;
+        height: 2px;
         background-color: var(--text-color);
         transition: all 0.25s ease-in-out;
     }
     
-    /* Set the three bars with reduced spacing */
+    /* Set the three bars with correct spacing */
     .nav-toggle .bar:nth-child(1) {
-        top: 3px;
+        top: 4px;
     }
     
     .nav-toggle .bar:nth-child(2) {
-        top: 8px;
+        top: 9px;
     }
     
     .nav-toggle .bar:nth-child(3) {
-        top: 13px;
+        top: 14px;
     }
     
     /* Transform to X when active */
     .nav-toggle.active .bar:nth-child(1) {
-        top: 8px;
+        top: 9px;
         transform: rotate(45deg);
     }
     
@@ -762,7 +762,7 @@ body.dark-theme #themeToggle .fa-sun {
     }
     
     .nav-toggle.active .bar:nth-child(3) {
-        top: 8px;
+        top: 9px;
         transform: rotate(-45deg);
     }
 
@@ -775,7 +775,7 @@ body.dark-theme #themeToggle .fa-sun {
         width: 75%;
         max-width: 320px;
         height: 100vh;
-        background-color: rgba(255, 255, 255, 0.75) !important;
+        background-color: rgba(255, 255, 255, 0.8) !important;
         backdrop-filter: blur(25px) !important;
         -webkit-backdrop-filter: blur(25px) !important;
         border-left: 1px solid rgba(0, 0, 0, 0.05);
@@ -792,7 +792,7 @@ body.dark-theme #themeToggle .fa-sun {
 
     body.dark-theme .nav-menu,
     html.dark-theme .nav-menu {
-        background-color: rgba(10, 10, 10, 0.75) !important;
+        background-color: rgba(10, 10, 10, 0.8) !important;
         border-left: 1px solid rgba(255, 255, 255, 0.05);
     }
     
@@ -839,16 +839,16 @@ body.dark-theme #themeToggle .fa-sun {
         border-left: 3px solid #a78bfa !important;
     }
 
-    /* Premium mobile backdrop blur overlay */
+    /* Premium mobile backdrop blur overlay with strong blur */
     .nav-menu-overlay {
         position: fixed;
         top: 0;
         left: 0;
         width: 100vw;
         height: 100vh;
-        background: rgba(0, 0, 0, 0.3);
-        backdrop-filter: blur(6px);
-        -webkit-backdrop-filter: blur(6px);
+        background: rgba(0, 0, 0, 0.45);
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
         z-index: 1000; /* Just below menu drawer */
     }
     
