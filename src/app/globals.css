@@ -6333,9 +6333,35 @@ form .form-success {
     }
 }
 
-/* ── CONTACT: Remove extra gap ── */
+/* ── CONTACT: Mobile alignment & full-width layout ── */
 @media screen and (max-width: 768px) {
     .contact-grid {
         gap: 2rem !important;
+        grid-template-columns: 1fr !important;
+        width: 100% !important;
+    }
+    .contact-info-side {
+        width: 100% !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+    .contact-subtitle {
+        text-align: center !important;
+        width: 100% !important;
+        font-size: 1.4rem !important;
+    }
+    .contact-description {
+        text-align: center !important;
+        max-width: 100% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        font-size: 0.9rem !important;
+        line-height: 1.6 !important;
+    }
+    .contact-cards {
+        width: 100% !important;
+    }
+    .contact-info-card {
+        width: 100% !important;
     }
 }
