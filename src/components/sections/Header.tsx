@@ -105,6 +105,11 @@ export default function Header() {
           <span className="bar"></span>
         </button>
       </nav>
+
+      {/* Mobile Drawer Overlay */}
+      {isMenuOpen && (
+        <div className="nav-menu-overlay" onClick={() => setIsMenuOpen(false)} />
+      )}
     </header>
   );
 }
