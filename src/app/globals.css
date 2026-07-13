@@ -5790,3 +5790,270 @@ form .form-success {
         display: none !important; /* Touch swipe is enough on tiny screens */
     }
 }
+
+/* ==========================================================
+   COMPREHENSIVE MOBILE RESPONSIVE OVERHAUL
+   Fixes: Footer 2-col, About alignment, Experience compactness,
+   Projects carousel fit, Skills 2-column layout
+   ========================================================== */
+
+/* ── FOOTER: 2-column layout on mobile (Navigation | Connect side by side) ── */
+@media screen and (max-width: 640px) {
+    /* 4-col auto-fit → 2-col grid on mobile */
+    .footer-main-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 1.5rem !important;
+    }
+
+    /* Brand name takes full row width */
+    .footer-brand {
+        grid-column: 1 / -1;
+    }
+
+    /* Navigation stays in column 1, Connect in column 2 — side by side */
+    .footer-nav-col {
+        grid-column: 1;
+    }
+
+    .footer-connect-col {
+        grid-column: 2;
+    }
+
+    /* "Currently" card takes full row width */
+    .footer-currently-col {
+        grid-column: 1 / -1;
+    }
+}
+
+/* ── ABOUT: Fix image / lottie overflow on mobile ── */
+@media screen and (max-width: 768px) {
+    .about-lottie-wrap {
+        width: 100% !important;
+        max-width: 300px;
+        height: 280px;
+        margin: 0 auto;
+    }
+
+    .about-image {
+        order: -1;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .about-text {
+        overflow-wrap: break-word;
+        word-break: break-word;
+    }
+
+    .about-text p {
+        font-size: 0.95rem;
+        line-height: 1.75;
+    }
+
+    .detail-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .detail-item {
+        gap: 0.75rem;
+    }
+
+    .detail-content h4 {
+        font-size: 1rem;
+    }
+
+    .detail-content p {
+        font-size: 0.85rem;
+    }
+}
+
+/* ── EXPERIENCE: Compact timeline on mobile ── */
+@media screen and (max-width: 768px) {
+    .timeline-content {
+        padding: 1rem !important;
+    }
+
+    .timeline-header {
+        gap: 0.75rem;
+    }
+
+    .job-title {
+        font-size: 1rem !important;
+        line-height: 1.4;
+    }
+
+    .company-name {
+        font-size: 0.85rem !important;
+    }
+
+    .job-duration,
+    .company-location {
+        font-size: 0.78rem !important;
+    }
+
+    .job-description {
+        font-size: 0.82rem !important;
+        line-height: 1.6;
+        margin-bottom: 0.75rem;
+    }
+
+    .job-description li {
+        margin-bottom: 0.4rem;
+        padding-left: 1.25rem;
+        font-size: 0.82rem;
+    }
+
+    .job-description li::before {
+        font-size: 1rem;
+    }
+
+    .experience-tech-stack h5 {
+        font-size: 0.85rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .experience-tech-stack .tech-tag {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.55rem;
+    }
+
+    .experience-tech-stack .tech-tags {
+        gap: 0.4rem;
+    }
+
+    .company-logo {
+        width: 40px !important;
+        height: 40px !important;
+        flex-shrink: 0;
+    }
+}
+
+/* ── PROJECTS: Carousel fits mobile viewport ── */
+@media screen and (max-width: 768px) {
+    .project-card {
+        width: min(85vw, 320px) !important;
+        margin-right: 1rem !important;
+    }
+
+    .project-image {
+        height: 150px !important;
+    }
+
+    .project-title {
+        font-size: 1.05rem !important;
+    }
+
+    .project-description {
+        font-size: 0.85rem !important;
+        line-height: 1.55;
+    }
+
+    .project-content {
+        padding: 1rem !important;
+    }
+
+    .project-filters {
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .filter-button {
+        padding: 0.45rem 1rem;
+        font-size: 0.82rem;
+    }
+
+    .scroll-arrow-container {
+        display: flex;
+        gap: 0.5rem;
+        position: static;
+        justify-content: flex-end;
+        margin-bottom: 0.75rem;
+    }
+
+    .scroll-arrow {
+        width: 32px !important;
+        height: 32px !important;
+    }
+}
+
+/* ── SKILLS: 2-column layout + smaller tags + fix icon bg ── */
+@media screen and (max-width: 768px) {
+    /* Override the single-column override — use 2 columns instead */
+    .skills-content {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 1rem !important;
+        padding: 0 0.5rem !important;
+    }
+
+    .skills-category {
+        padding: 1.25rem !important;
+        border-radius: 16px !important;
+    }
+
+    /* Fix category icon background */
+    .category-icon {
+        width: 44px !important;
+        height: 44px !important;
+        min-height: 44px !important;
+        font-size: 1.25rem !important;
+        border-radius: 12px !important;
+        flex-shrink: 0;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .category-header {
+        margin-bottom: 1.25rem;
+        gap: 0.75rem;
+        align-items: center;
+    }
+
+    .skills-category h3 {
+        font-size: 0.95rem !important;
+        font-weight: 700;
+        line-height: 1.3;
+    }
+
+    .skills-tag-cloud {
+        grid-template-columns: 1fr !important;
+        gap: 0.6rem !important;
+    }
+
+    .skill-tag {
+        padding: 0.45rem 0.7rem !important;
+        font-size: 0.75rem !important;
+        border-radius: 8px !important;
+    }
+
+    .skill-tag i {
+        font-size: 0.8rem;
+    }
+
+    .skills-legend {
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .legend-item {
+        font-size: 0.78rem;
+    }
+
+    /* Ensure skills section height is contained */
+    .skills {
+        overflow: visible !important;
+    }
+}
+
+/* Very small screens: collapse skills to single column */
+@media screen and (max-width: 400px) {
+    .skills-content {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+

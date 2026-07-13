@@ -507,7 +507,7 @@ export default function Footer() {
 
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           {/* Main grid */}
-          <div style={{
+          <div className="footer-main-grid" style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
             gap: "2.5rem",
@@ -515,7 +515,7 @@ export default function Footer() {
             borderBottom: isDark ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(0,0,0,0.08)",
           }}>
             {/* Brand */}
-            <div>
+            <div className="footer-brand">
               <div style={{
                 fontSize: "clamp(1.6rem, 3vw, 2rem)",
                 fontWeight: 800,
@@ -531,7 +531,7 @@ export default function Footer() {
             </div>
 
             {/* Quick Links */}
-            <div>
+            <div className="footer-nav-col">
               <h4 style={{ fontSize: "0.75rem", letterSpacing: "0.1em", textTransform: "uppercase",
                 color: "#64748b", marginBottom: "1rem" }}>Navigation</h4>
               {["Home","About","Experience","Projects","Skills","Contact"].map(link => (
@@ -548,7 +548,7 @@ export default function Footer() {
             </div>
 
             {/* Connect */}
-            <div>
+            <div className="footer-connect-col">
               <h4 style={{ fontSize: "0.75rem", letterSpacing: "0.1em", textTransform: "uppercase",
                 color: "#64748b", marginBottom: "1rem" }}>Connect</h4>
               {[
@@ -573,7 +573,7 @@ export default function Footer() {
             </div>
 
             {/* Fun fact */}
-            <div>
+            <div className="footer-currently-col">
               <h4 style={{ fontSize: "0.75rem", letterSpacing: "0.1em", textTransform: "uppercase",
                 color: "#64748b", marginBottom: "1rem" }}>Currently</h4>
               <div style={{
