@@ -198,8 +198,10 @@ Feel free to send a message via the form at the bottom of the page or reach out 
 
       {/* Main Panel Drawer */}
       {isOpen && (
-        <div className="chat-deck-container">
-          {/* Header */}
+        <>
+          <div className="chat-deck-overlay" onClick={() => setIsOpen(false)} />
+          <div className="chat-deck-container">
+            {/* Header */}
           <div className="chat-header">
             <div className="chat-header-info">
               <div className="chat-header-title">KOUSHIK-AGENT-DECK</div>
@@ -307,6 +309,7 @@ Feel free to send a message via the form at the bottom of the page or reach out 
             </button>
           </div>
         </div>
+        </>
       )}
     </>
   );

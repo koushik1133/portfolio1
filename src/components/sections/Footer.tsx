@@ -585,8 +585,7 @@ export default function Footer() {
                 color: isDark ? "#cbd5e1" : "#334155",
                 lineHeight: 1.7,
               }}>
-                🚀 Working on <strong style={{ color: isDark ? "#60a5fa" : "#2563eb" }}>KernelHub, NexousOS & OpenClaw</strong><br />
-                <span style={{ color: isDark ? "#fbbf24" : "#b45309", fontSize: "0.78rem" }}>● In Progress</span><br /><br />
+                🚀 Working on <strong style={{ color: isDark ? "#60a5fa" : "#2563eb" }}>KernelHub, NexousOS & OpenClaw</strong><br /><br />
                 📍 Looking for opportunities in Software Development & AI & Full-Stack roles.
               </div>
             </div>
