@@ -658,6 +658,7 @@ body.dark-theme #themeToggle .fa-sun {
         width: 100%;
         display: flex !important;
         justify-content: flex-start !important;
+        align-items: center !important;
         padding: 0.75rem 0;
         gap: 1.25rem !important;
     }
@@ -705,22 +706,22 @@ body.dark-theme #themeToggle .fa-sun {
         transition: all 0.25s ease-in-out;
     }
     
-    /* Set the three bars with correct spacing */
+    /* Set the three bars with correct spacing (symmetric 3px top/bottom and gaps) */
     .nav-toggle .bar:nth-child(1) {
-        top: 4px;
+        top: 3px;
     }
     
     .nav-toggle .bar:nth-child(2) {
-        top: 9px;
+        top: 8px;
     }
     
     .nav-toggle .bar:nth-child(3) {
-        top: 14px;
+        top: 13px;
     }
     
     /* Transform to X when active */
     .nav-toggle.active .bar:nth-child(1) {
-        top: 9px;
+        top: 8px;
         transform: rotate(45deg);
     }
     
@@ -730,7 +731,7 @@ body.dark-theme #themeToggle .fa-sun {
     }
     
     .nav-toggle.active .bar:nth-child(3) {
-        top: 9px;
+        top: 8px;
         transform: rotate(-45deg);
     }
 
