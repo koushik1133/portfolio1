@@ -58,7 +58,7 @@ export default function Contact() {
 
 
   return (
-    <section className="contact-section" id="contact">
+    <section className="contact-section section" id="contact">
       {/* Background decoration */}
       <div className="contact-bg-glow contact-bg-glow--right" />
       <div className="contact-bg-glow contact-bg-glow--left" />
