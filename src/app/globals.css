@@ -693,17 +693,19 @@ body.dark-theme #themeToggle .fa-sun {
 
     .navbar {
         width: 100%;
-        justify-content: space-between;
+        display: flex !important;
+        justify-content: flex-start !important;
         padding: 0.75rem 0;
-        gap: 0;
+        gap: 1.25rem !important;
     }
     
     .logo {
         margin-left: 1rem;
+        margin-right: auto !important;
     }
     
     .theme-toggle {
-        margin-right: 1rem;
+        margin-right: 0 !important;
     }
     
     #themeToggle {
@@ -735,22 +737,22 @@ body.dark-theme #themeToggle .fa-sun {
         transition: all 0.25s ease-in-out;
     }
     
-    /* Set the three bars with correct spacing */
+    /* Set the three bars with reduced spacing */
     .nav-toggle .bar:nth-child(1) {
-        top: 5px;
+        top: 6px;
     }
     
     .nav-toggle .bar:nth-child(2) {
-        top: 13px;
+        top: 12px;
     }
     
     .nav-toggle .bar:nth-child(3) {
-        top: 21px;
+        top: 18px;
     }
     
     /* Transform to X when active */
     .nav-toggle.active .bar:nth-child(1) {
-        top: 13px;
+        top: 12px;
         transform: rotate(45deg);
     }
     
@@ -760,7 +762,7 @@ body.dark-theme #themeToggle .fa-sun {
     }
     
     .nav-toggle.active .bar:nth-child(3) {
-        top: 13px;
+        top: 12px;
         transform: rotate(-45deg);
     }
 
