@@ -23,7 +23,7 @@ export default function NexusShowcase() {
           </div>
 
           <div className="senior-project-content">
-            <h2 className="senior-project-label">Featured AI Agent Project <span className="tag" style={{background: "rgba(234, 67, 53, 0.1)", color: "#ea4335", marginLeft: "10px", fontSize: "0.8rem", padding: "4px 8px"}}>In Progress</span></h2>
+            <h2 className="senior-project-label">Featured AI Agent Project</h2>
             <h3 className="senior-project-title">NexusOS — Ambient Context Agent</h3>
             <p className="senior-project-desc">
               A proactive cross-device AI operating system that maintains context across wearables, mobile, desktop, and vehicles (OBD-II diagnostics). Built with a hierarchical memory layer and custom voice interfaces to deliver proactive, ambient intelligence.

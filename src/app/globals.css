@@ -735,22 +735,22 @@ body.dark-theme #themeToggle .fa-sun {
         transition: all 0.25s ease-in-out;
     }
     
-    /* Set the three bars */
+    /* Set the three bars with correct spacing */
     .nav-toggle .bar:nth-child(1) {
-        top: 4px;
+        top: 5px;
     }
     
     .nav-toggle .bar:nth-child(2) {
-        top: 6px;
+        top: 13px;
     }
     
     .nav-toggle .bar:nth-child(3) {
-        top: 8px;
+        top: 21px;
     }
     
     /* Transform to X when active */
     .nav-toggle.active .bar:nth-child(1) {
-        top: 6px;
+        top: 13px;
         transform: rotate(45deg);
     }
     
@@ -760,7 +760,7 @@ body.dark-theme #themeToggle .fa-sun {
     }
     
     .nav-toggle.active .bar:nth-child(3) {
-        top: 6px;
+        top: 13px;
         transform: rotate(-45deg);
     }
 
@@ -1242,9 +1242,10 @@ body.dark-theme #themeToggle .fa-sun {
     flex-direction: column;
 }
 
-/* Override .section padding inside pages since page-wrapper handles it */
-.page-body .section {
-    padding: 0;
+/* Adjust section padding inside pages to keep spacing rhythm */
+.page-body > .section:first-of-type,
+.page-body > section:first-of-type {
+    padding-top: 0 !important;
 }
 
 /* Hide duplicate/redundant section headings inside subpages */
@@ -4157,7 +4158,7 @@ body.dark-theme #themeToggle .fa-sun {
     width: 100vw;
     height: 100vh;
     background: transparent;
-    z-index: 999;
+    z-index: 9998;
 }
 
 @media screen and (max-width: 768px) {
@@ -6034,11 +6035,12 @@ form .form-success {
 
 /* ── GLOBAL MOBILE GAP REDUCTION & ABOUT CENTERING ── */
 @media screen and (max-width: 768px) {
-    .section:not(.page-body .section) {
+    .section {
         padding: 3.5rem 0 !important;
     }
-    .page-body .section {
-        padding: 0 !important; /* Preserve removed padding inside subpages */
+    .page-body > .section:first-of-type,
+    .page-body > section:first-of-type {
+        padding-top: 0 !important;
     }
     
     /* Reduce gap between Trailer Parts Experts and Selected Projects by half */
@@ -6102,6 +6104,41 @@ form .form-success {
     .terminal-input,
     .chat-input-field {
         font-size: 16px !important;
+    }
+
+    /* Footer 2-columns and centered layout on mobile */
+    .footer-main-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 2rem !important;
+    }
+    .footer-brand,
+    .footer-currently-col {
+        grid-column: span 2 !important;
+        text-align: center !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    .footer-brand p {
+        max-width: 100% !important;
+        margin: 0 auto !important;
+    }
+    .footer-nav-col,
+    .footer-connect-col {
+        text-align: center !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    .footer-main-grid + div {
+        flex-direction: column !important;
+        text-align: center !important;
+        align-items: center !important;
+    }
+
+    /* Elevate ChatDeck overlay to capture clicks above header and sections */
+    .chat-deck-overlay {
+        z-index: 9998 !important;
     }
 }
 
