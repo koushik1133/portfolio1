@@ -1259,8 +1259,13 @@ body.dark-theme #themeToggle .fa-sun {
 
 /* Remove backgrounds from sections when they are inside subpages to prevent cut-off backgrounds */
 .page-body .skills,
-.page-body .skills::before {
+.page-body .skills::before,
+.page-body .projects,
+.page-body .education,
+.page-body .experience,
+.page-body .about {
     background: none !important;
+    background-color: transparent !important;
 }
 
 /* ======= Homepage: Quick About ======= */
@@ -4851,7 +4856,7 @@ body.dark-theme #themeToggle .fa-sun {
     }
     
     .hero-title {
-        font-size: 1.2rem;
+        font-size: 2.2rem;
     }
     
     .hero-cta {
@@ -5343,6 +5348,75 @@ form .form-success {
 
 .toast-close:hover {
   color: var(--text-color);
+}
+
+/* ======= Outside of Coding (Hobbies) ======= */
+.hobbies-section {
+    padding: var(--spacing-xl) 0;
+    position: relative;
+}
+
+.hobbies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.hobby-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.hobby-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(var(--primary-color-rgb), 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.hobby-icon-wrap {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+}
+
+.hobby-info h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--text-color);
+}
+
+.hobby-info p {
+    font-size: 0.95rem;
+    color: var(--text-color-light);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Hobbies Mobile adjustments */
+@media screen and (max-width: 768px) {
+    .hobbies-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    .hobby-card {
+        align-items: center;
+        text-align: center;
+    }
 }
 
 /* ======= Dream Garage ======= */
@@ -5974,6 +6048,10 @@ form .form-success {
     }
     .featured-projects-section {
         padding-top: 1.5rem !important;
+        padding-bottom: 1.5rem !important; /* Reduced to match 1st image request */
+    }
+    .senior-project-section {
+        padding-top: 1.5rem !important; /* Reduced to align closely with projects */
         padding-bottom: 3.5rem !important;
     }
     .quick-about-section {
@@ -5990,6 +6068,15 @@ form .form-success {
         gap: 1rem !important;
         text-align: center;
     }
+    .about-image {
+        order: -1;
+        width: 100% !important;
+        max-width: 300px !important;
+        margin: 0 auto 1.5rem auto !important;
+        display: flex;
+        justify-content: center;
+        position: relative;
+    }
     .about-text h3, .about-text p {
         text-align: center;
     }
@@ -6000,6 +6087,16 @@ form .form-success {
         flex-direction: column;
         align-items: center;
         text-align: center;
+    }
+
+    /* Expand contact section form horizontally */
+    .contact-section .container {
+        width: 96% !important;
+        max-width: 100% !important;
+        padding: 0 0.5rem !important;
+    }
+    .contact-form-card {
+        padding: 1.25rem !important;
     }
 }
 
@@ -6018,7 +6115,8 @@ form .form-success {
         margin-bottom: 2rem !important;
     }
     .timeline-icon {
-        left: 0 !important;
+        left: -20px !important;
+        margin-left: 0 !important;
         transform: translateX(-50%) !important;
         width: 28px !important;
         height: 28px !important;
