@@ -6098,6 +6098,11 @@ form .form-success {
     .contact-form-card {
         padding: 1.25rem !important;
     }
+    /* Prevent auto-zoom on mobile inputs */
+    .terminal-input,
+    .chat-input-field {
+        font-size: 16px !important;
+    }
 }
 
 /* ── EXPERIENCE: Fix logos and truncate descriptions ── */
