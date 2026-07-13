@@ -1257,6 +1257,12 @@ body.dark-theme #themeToggle .fa-sun {
     display: none;
 }
 
+/* Remove backgrounds from sections when they are inside subpages to prevent cut-off backgrounds */
+.page-body .skills,
+.page-body .skills::before {
+    background: none !important;
+}
+
 /* ======= Homepage: Quick About ======= */
 .quick-about-section {
     padding: 6rem 0;
@@ -2568,7 +2574,7 @@ body.dark-theme #themeToggle .fa-sun {
 
 /* Skills Section */
 .skills {
-    background-color: var(--bg-color-alt);
+    background: linear-gradient(135deg, var(--bg-color) 0%, var(--bg-color-alt) 100%);
     padding: var(--spacing-xl) 0;
     position: relative;
     overflow: hidden;
@@ -5934,10 +5940,6 @@ form .form-success {
     .detail-item {
         flex-direction: column;
         align-items: center;
-        text-align: center;
-    }
-    .detail-content {
-        text-align: center;
     }
     .detail-item i {
         margin-bottom: 0.25rem;
@@ -5953,21 +5955,51 @@ form .form-success {
         width: 100%;
         display: flex;
         justify-content: center;
-        margin-bottom: 0; /* Reduce gap between image and text */
-    }
-    .about-text h3::after {
-        left: 50%;
-        transform: translateX(-50%);
     }
 }
 
-/* ── GLOBAL MOBILE GAP REDUCTION & SECTION CARDS ── */
+/* ── GLOBAL MOBILE GAP REDUCTION & ABOUT CENTERING ── */
 @media screen and (max-width: 768px) {
-    .section {
-        padding: 1.75rem 1.25rem !important;
-        margin: 0.5rem 1rem !important;
-        border-radius: 24px !important;
-        background-color: var(--bg-color-alt) !important;
+    .section:not(.page-body .section) {
+        padding: 3.5rem 0 !important;
+    }
+    .page-body .section {
+        padding: 0 !important; /* Preserve removed padding inside subpages */
+    }
+    
+    /* Reduce gap between Trailer Parts Experts and Selected Projects by half */
+    .recent-experience-section {
+        padding-top: 3.5rem !important;
+        padding-bottom: 1.5rem !important;
+    }
+    .featured-projects-section {
+        padding-top: 1.5rem !important;
+        padding-bottom: 3.5rem !important;
+    }
+    .quick-about-section {
+        padding: 3.5rem 0 !important;
+    }
+
+    /* Reduce gap before Dream Garage by 50% */
+    .garage-section {
+        margin-top: 2.5rem !important;
+    }
+
+    /* Center About Me text and layout on mobile */
+    .about-content {
+        gap: 1rem !important;
+        text-align: center;
+    }
+    .about-text h3, .about-text p {
+        text-align: center;
+    }
+    .detail-row {
+        justify-content: center;
+    }
+    .detail-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 }
 
