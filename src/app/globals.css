@@ -5452,7 +5452,8 @@ html.dark-theme .custom-cursor {
 
 /* ======= Outside of Coding (Hobbies) ======= */
 .hobbies-section {
-    padding: var(--spacing-xl) 0;
+    padding-top: var(--spacing-xl);
+    padding-bottom: 2rem;
     position: relative;
 }
 
@@ -5522,8 +5523,8 @@ html.dark-theme .custom-cursor {
 /* ======= Dream Garage ======= */
 .garage-section {
     position: relative;
-    padding: 8rem 0;
-    margin-top: 5rem;
+    padding: 2rem 0 6rem 0;
+    margin-top: 1rem;
     overflow: hidden;
 }
 
