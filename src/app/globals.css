@@ -704,7 +704,7 @@ body.dark-theme #themeToggle .fa-sun {
         height: 18px;
         margin-right: 1.25rem;
         position: relative;
-        top: -2px !important; /* Visual vertical center alignment correction */
+        top: -6px !important; /* Visual vertical center alignment correction */
     }
     
     .nav-toggle .bar {
