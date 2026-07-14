@@ -6266,12 +6266,12 @@ html.dark-theme .custom-cursor {
 /* ── EXPERIENCE: Fix logos and timeline alignment ── */
 @media screen and (max-width: 768px) {
     .experience-timeline {
-        padding-left: 25px !important;
+        padding-left: 10px !important;
         margin-left: 0 !important;
         margin-right: 0 !important;
     }
     .experience-timeline::before {
-        left: 12px !important;
+        left: 5px !important;
         width: 3px !important;
     }
     .timeline-item {
@@ -6282,13 +6282,13 @@ html.dark-theme .custom-cursor {
     }
     .timeline-icon {
         position: absolute !important;
-        left: 12px !important;
+        left: 5px !important;
         top: 0 !important;
         margin-left: 0 !important;
         transform: translateX(-50%) !important;
-        width: 28px !important;
-        height: 28px !important;
-        font-size: 0.75rem !important;
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 1rem !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
