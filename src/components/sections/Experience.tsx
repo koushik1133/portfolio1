@@ -16,6 +16,7 @@ const JOBS = [
     duration: "Jan 2026 — Present",
     location: "IA, USA",
     links: [
+      { text: "Live Website", url: "https://www.lanetrailers.com" },
       { text: "Live App", url: "https://production-management-murex.vercel.app" },
       { text: "GitHub", url: "https://github.com/koushik1133/production-management" }
     ],
