@@ -6267,22 +6267,22 @@ html.dark-theme .custom-cursor {
 @media screen and (max-width: 768px) {
     .experience-timeline {
         padding-left: 10px !important;
-        margin-left: 0 !important;
+        margin-left: -1.5rem !important;
         margin-right: 0 !important;
     }
     .experience-timeline::before {
-        left: 5px !important;
+        left: 10px !important;
         width: 3px !important;
     }
     .timeline-item {
         width: 100% !important;
-        padding-left: 32px !important;
+        padding-left: 38px !important;
         padding-right: 0 !important;
         margin-bottom: 2rem !important;
     }
     .timeline-icon {
         position: absolute !important;
-        left: 5px !important;
+        left: 10px !important;
         top: 0 !important;
         margin-left: 0 !important;
         transform: translateX(-50%) !important;
