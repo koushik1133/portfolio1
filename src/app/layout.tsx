@@ -54,10 +54,7 @@ export default function RootLayout({
 
       </head>
       <body className={`light-theme ${inter.className}`}>
-        {/* Skip-to-content link for keyboard and screen-reader users */}
-        <a href="#main-content" className="skip-link">
-          Skip to main content
-        </a>
+
 
         <SmoothScroll>
           <ClientLogic />
