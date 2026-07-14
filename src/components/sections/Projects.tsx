@@ -239,8 +239,8 @@ export default function Projects() {
                       alignItems: "center",
                       justifyContent: "center",
                       height: "160px",
-                      background: "#1a1a1a",
-                      color: "#fff",
+                      background: "var(--bg-color-alt)",
+                      color: "var(--text-color)",
                       fontSize: "2.8rem",
                     }}
                   >

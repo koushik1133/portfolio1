@@ -4525,8 +4525,8 @@ body.dark-theme #themeToggle .fa-sun {
 }
 
 .chat-send-btn {
-  background: #ffffff;
-  color: #000000;
+  background: var(--text-color);
+  color: var(--bg-color);
 }
 
 .chat-send-btn:hover:not(:disabled) {
@@ -4546,13 +4546,13 @@ body.dark-theme #themeToggle .fa-sun {
   right: 1.5rem;
   height: 3.25rem;
   padding: 0 1.25rem;
-  background: rgba(10, 10, 12, 0.85);
+  background: var(--text-color);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border-color);
   border-radius: 9999px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 15px rgba(255, 255, 255, 0.05);
-  color: #ffffff;
+  box-shadow: 0 8px 32px var(--shadow-color);
+  color: var(--bg-color);
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -5236,6 +5236,11 @@ form .form-success {
   transform: translate(-5%, -5%);
   transition: transform 0.1s ease-out, width 0.2s ease, height 0.2s ease;
   will-change: left, top;
+}
+
+body.dark-theme .custom-cursor,
+html.dark-theme .custom-cursor {
+  filter: invert(1);
 }
 
 .custom-cursor.cursor-hover {

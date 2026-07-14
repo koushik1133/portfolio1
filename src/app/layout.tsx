@@ -50,17 +50,8 @@ export default function RootLayout({
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-          media="print"
-          // @ts-expect-error — onload is valid HTML but not in React's types for <link>
-          onLoad="this.media='all'"
         />
-        {/* Fallback for browsers that don't run onload on <link> */}
-        <noscript>
-          <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-          />
-        </noscript>
+
       </head>
       <body className={`light-theme ${inter.className}`}>
         {/* Skip-to-content link for keyboard and screen-reader users */}
