@@ -17,47 +17,6 @@ const PROJECTS = [
     icon: "fas fa-laptop-code",
   },
   {
-    id: "doctor",
-    category: "dsml",
-    title: "Doctor Agent — Medical Triage",
-    description: "AI patient triage assistant: answers inquiries, runs RAG context checks against medical history, performs voice intake, and handles urgent physician escalations.",
-    tags: ["Next.js 15", "Groq", "Whisper", "RAG"],
-    links: [
-      { text: "Live App", url: "https://doctor-agent-pearl.vercel.app" },
-      { text: "GitHub", url: "https://github.com/koushik1133/doctor-agent" }
-    ],
-    icon: "fas fa-user-md",
-  },
-  {
-    id: "nexusos",
-    category: "dsml",
-    title: "NexusOS — Context Agent",
-    description: "Proactive cross-device AI OS maintaining context across wearables, mobile, desktop, and vehicles (OBD-II diagnostics) via a unified memory layer.",
-    tags: ["Multi-Agent", "Memory", "Voice AI", "IoT"],
-    links: [],
-    icon: "fas fa-mobile-alt",
-  },
-  {
-    id: "openclaw",
-    category: "dsml",
-    title: "OpenClaw Command Center",
-    description: "Privacy-first local AI command center on personal hardware. Integrates Slack/Telegram bots, Firecrawl web search, and LanceDB semantic memory.",
-    tags: ["Ollama", "Slack/Telegram", "LanceDB", "Tmux"],
-    links: [
-      { text: "GitHub", url: "https://github.com/koushik1133/open-claw-agent" }
-    ],
-    icon: "fas fa-terminal",
-  },
-  {
-    id: "cybersecurity",
-    category: "dsml",
-    title: "Malicious URL Detection",
-    description: "End-to-end MLOps pipeline on AWS using XGBoost. Automates data ingestion, hyperparameter tracking via MLFlow, containerization, and FastAPI inference.",
-    tags: ["XGBoost", "MLFlow", "Docker", "AWS"],
-    links: [],
-    icon: "fas fa-shield-halved",
-  },
-  {
     id: "mekk",
     category: "dsml",
     title: "Mekk — Exploration Robot",
@@ -81,13 +40,36 @@ const PROJECTS = [
     icon: "fas fa-truck-moving",
   },
   {
-    id: "nldb",
+    id: "openclaw",
     category: "dsml",
-    title: "NL-to-Database Agent",
-    description: "AI agent using Google Gemini to convert English instructions into SQL queries. Responsive frontend and FastAPI backend for real-time execution.",
-    tags: ["Gemini AI", "FastAPI", "SQL"],
+    title: "OpenClaw Command Center",
+    description: "Privacy-first local AI command center on personal hardware. Integrates Slack/Telegram bots, Firecrawl web search, and LanceDB semantic memory.",
+    tags: ["Ollama", "Slack/Telegram", "LanceDB", "Tmux"],
+    links: [
+      { text: "GitHub", url: "https://github.com/koushik1133/open-claw-agent" }
+    ],
+    icon: "fas fa-terminal",
+  },
+  {
+    id: "nexusos",
+    category: "dsml",
+    title: "NexusOS — Context Agent",
+    description: "Proactive cross-device AI OS maintaining context across wearables, mobile, desktop, and vehicles (OBD-II diagnostics) via a unified memory layer.",
+    tags: ["Multi-Agent", "Memory", "Voice AI", "IoT"],
     links: [],
-    icon: "fas fa-database",
+    icon: "fas fa-mobile-alt",
+  },
+  {
+    id: "doctor",
+    category: "dsml",
+    title: "Doctor Agent — Medical Triage",
+    description: "AI patient triage assistant: answers inquiries, runs RAG context checks against medical history, performs voice intake, and handles urgent physician escalations.",
+    tags: ["Next.js 15", "Groq", "Whisper", "RAG"],
+    links: [
+      { text: "Live App", url: "https://doctor-agent-pearl.vercel.app" },
+      { text: "GitHub", url: "https://github.com/koushik1133/doctor-agent" }
+    ],
+    icon: "fas fa-user-md",
   },
   {
     id: "gmail",
@@ -101,24 +83,15 @@ const PROJECTS = [
     icon: "fas fa-envelope-open-text",
   },
   {
-    id: "whatsapp",
+    id: "donkeykong",
     category: "sde",
-    title: "WhatsApp AI Ordering Bot",
-    description: "Chatbot automating restaurant ordering, menu queries, and order tracking. Connected live inventory on Google Sheets with agentic workflows.",
-    tags: ["n8n", "WhatsApp API", "Sheets"],
-    links: [],
-    icon: "fab fa-whatsapp",
-  },
-  {
-    id: "arguvista",
-    category: "sde",
-    title: "ArguVista Analyzer",
-    description: "Distributed AI inference tool using Workers AI. Sub-30ms global latency with KV-based conversation memory served from Cloudflare's edge network.",
-    tags: ["Cloudflare", "Llama", "KV"],
+    title: "Donkey Kong Multiplayer",
+    description: "Backend for real-time multiplayer gaming using WebSockets. SQL/Hibernate models for low-latency matchmaking and state sync.",
+    tags: ["Spring Boot", "WebSocket", "Hibernate"],
     links: [
-      { text: "GitHub", url: "https://github.com/koushik1133/ArguVista-Cloudflare" }
+      { text: "GitHub", url: "https://github.com/koushik1133/DonkeyKong" }
     ],
-    icon: "fas fa-cloud",
+    icon: "fas fa-gamepad",
   },
   {
     id: "melodify",
@@ -132,15 +105,42 @@ const PROJECTS = [
     icon: "fas fa-music",
   },
   {
-    id: "donkeykong",
+    id: "arguvista",
     category: "sde",
-    title: "Donkey Kong Multiplayer",
-    description: "Backend for real-time multiplayer gaming using WebSockets. SQL/Hibernate models for low-latency matchmaking and state sync.",
-    tags: ["Spring Boot", "WebSocket", "Hibernate"],
+    title: "ArguVista Analyzer",
+    description: "Distributed AI inference tool using Workers AI. Sub-30ms global latency with KV-based conversation memory served from Cloudflare's edge network.",
+    tags: ["Cloudflare", "Llama", "KV"],
     links: [
-      { text: "GitHub", url: "https://github.com/koushik1133/DonkeyKong" }
+      { text: "GitHub", url: "https://github.com/koushik1133/ArguVista-Cloudflare" }
     ],
-    icon: "fas fa-gamepad",
+    icon: "fas fa-cloud",
+  },
+  {
+    id: "cybersecurity",
+    category: "dsml",
+    title: "Malicious URL Detection",
+    description: "End-to-end MLOps pipeline on AWS using XGBoost. Automates data ingestion, hyperparameter tracking via MLFlow, containerization, and FastAPI inference.",
+    tags: ["XGBoost", "MLFlow", "Docker", "AWS"],
+    links: [],
+    icon: "fas fa-shield-halved",
+  },
+  {
+    id: "nldb",
+    category: "dsml",
+    title: "NL-to-Database Agent",
+    description: "AI agent using Google Gemini to convert English instructions into SQL queries. Responsive frontend and FastAPI backend for real-time execution.",
+    tags: ["Gemini AI", "FastAPI", "SQL"],
+    links: [],
+    icon: "fas fa-database",
+  },
+  {
+    id: "whatsapp",
+    category: "sde",
+    title: "WhatsApp AI Ordering Bot",
+    description: "Chatbot automating restaurant ordering, menu queries, and order tracking. Connected live inventory on Google Sheets with agentic workflows.",
+    tags: ["n8n", "WhatsApp API", "Sheets"],
+    links: [],
+    icon: "fab fa-whatsapp",
   },
   {
     id: "roguelike",
