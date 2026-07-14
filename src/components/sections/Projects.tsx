@@ -10,8 +10,10 @@ const PROJECTS = [
     title: "KernelHub — End-to-End Business OS",
     description: "A full-stack AI workspace: chat with RAG over your files, review GitHub repos, run automations, manage production Kanban, and generate landing pages.",
     tags: ["Next.js 15", "Supabase", "Aurora DSQL", "DynamoDB", "Pinecone", "Groq", "Cloud Run"],
-    linkTitle: "Live",
-    linkUrl: "https://javis-xtmerz2lha-uc.a.run.app",
+    links: [
+      { text: "Live App", url: "https://javis-xtmerz2lha-uc.a.run.app" },
+      { text: "GitHub", url: "https://github.com/koushik1133/build-chat-task-javis" }
+    ],
     icon: "fas fa-laptop-code",
   },
   {
@@ -20,8 +22,10 @@ const PROJECTS = [
     title: "Doctor Agent — Medical Triage",
     description: "AI patient triage assistant: answers inquiries, runs RAG context checks against medical history, performs voice intake, and handles urgent physician escalations.",
     tags: ["Next.js 15", "Groq", "Whisper", "RAG"],
-    linkTitle: "Coming Soon",
-    linkUrl: null,
+    links: [
+      { text: "Live App", url: "https://doctor-agent-pearl.vercel.app" },
+      { text: "GitHub", url: "https://github.com/koushik1133/doctor-agent" }
+    ],
     icon: "fas fa-user-md",
   },
   {
@@ -30,8 +34,7 @@ const PROJECTS = [
     title: "NexusOS — Context Agent",
     description: "Proactive cross-device AI OS maintaining context across wearables, mobile, desktop, and vehicles (OBD-II diagnostics) via a unified memory layer.",
     tags: ["Multi-Agent", "Memory", "Voice AI", "IoT"],
-    linkTitle: "Coming Soon",
-    linkUrl: null,
+    links: [],
     icon: "fas fa-mobile-alt",
   },
   {
@@ -40,8 +43,9 @@ const PROJECTS = [
     title: "OpenClaw Command Center",
     description: "Privacy-first local AI command center on personal hardware. Integrates Slack/Telegram bots, Firecrawl web search, and LanceDB semantic memory.",
     tags: ["Ollama", "Slack/Telegram", "LanceDB", "Tmux"],
-    linkTitle: "Coming Soon",
-    linkUrl: null,
+    links: [
+      { text: "GitHub", url: "https://github.com/koushik1133/open-claw-agent" }
+    ],
     icon: "fas fa-terminal",
   },
   {
@@ -50,8 +54,7 @@ const PROJECTS = [
     title: "Malicious URL Detection",
     description: "End-to-end MLOps pipeline on AWS using XGBoost. Automates data ingestion, hyperparameter tracking via MLFlow, containerization, and FastAPI inference.",
     tags: ["XGBoost", "MLFlow", "Docker", "AWS"],
-    linkTitle: "Coming Soon",
-    linkUrl: null,
+    links: [],
     icon: "fas fa-shield-halved",
   },
   {
@@ -60,8 +63,10 @@ const PROJECTS = [
     title: "Mekk — Exploration Robot",
     description: "Autonomous AI exploration robot on a custom 3D chassis. Features YOLOv8n tracking, ultrasonic sensor fusion, and local speech controls via Whisper.",
     tags: ["Raspberry Pi", "YOLOv8", "Whisper", "OpenCV"],
-    linkTitle: "Coming Soon",
-    linkUrl: null,
+    links: [
+      { text: "Senior Design Site", url: "https://seniord.cs.iastate.edu/2025-Dec-01/" },
+      { text: "GitHub", url: "https://github.com/koushik1133/Mekk-The-Robot" }
+    ],
     icon: "fas fa-robot",
   },
   {
@@ -70,8 +75,9 @@ const PROJECTS = [
     title: "Trailer Parts Experts",
     description: "Custom Shopify storefront theme via Liquid, driving a 43% surge in holiday sales and executing technical SEO strategies for regional traffic.",
     tags: ["Full-Stack", "Shopify", "Liquid"],
-    linkTitle: "Live",
-    linkUrl: "https://trailerpartsexperts.com",
+    links: [
+      { text: "Live Store", url: "https://trailerpartsexperts.com" }
+    ],
     icon: "fas fa-truck-moving",
   },
   {
@@ -80,8 +86,7 @@ const PROJECTS = [
     title: "NL-to-Database Agent",
     description: "AI agent using Google Gemini to convert English instructions into SQL queries. Responsive frontend and FastAPI backend for real-time execution.",
     tags: ["Gemini AI", "FastAPI", "SQL"],
-    linkTitle: "Coming Soon",
-    linkUrl: null,
+    links: [],
     icon: "fas fa-database",
   },
   {
@@ -90,8 +95,9 @@ const PROJECTS = [
     title: "AI Gmail Assistant",
     description: "Automated Gmail agent that routes emails, generates summaries, and handles auto-labeling via multi-step agentic pipelines and workspace automation.",
     tags: ["n8n", "Gmail API", "AI Studio"],
-    linkTitle: "Coming Soon",
-    linkUrl: null,
+    links: [
+      { text: "Demo Link", url: "https://www.linkedin.com/posts/koushik-shaganti_ai-n8n-automation-activity-7371983640450441219-iiW-" }
+    ],
     icon: "fas fa-envelope-open-text",
   },
   {
@@ -100,8 +106,7 @@ const PROJECTS = [
     title: "WhatsApp AI Ordering Bot",
     description: "Chatbot automating restaurant ordering, menu queries, and order tracking. Connected live inventory on Google Sheets with agentic workflows.",
     tags: ["n8n", "WhatsApp API", "Sheets"],
-    linkTitle: "Coming Soon",
-    linkUrl: null,
+    links: [],
     icon: "fab fa-whatsapp",
   },
   {
@@ -110,8 +115,9 @@ const PROJECTS = [
     title: "ArguVista Analyzer",
     description: "Distributed AI inference tool using Workers AI. Sub-30ms global latency with KV-based conversation memory served from Cloudflare's edge network.",
     tags: ["Cloudflare", "Llama", "KV"],
-    linkTitle: "Coming Soon",
-    linkUrl: null,
+    links: [
+      { text: "GitHub", url: "https://github.com/koushik1133/ArguVista-Cloudflare" }
+    ],
     icon: "fas fa-cloud",
   },
   {
@@ -120,8 +126,9 @@ const PROJECTS = [
     title: "Melodify Platform",
     description: "MERN-stack application with artist microservices, metadata management, and dynamic previews integrated via the YouTube API.",
     tags: ["React", "Node.js", "MongoDB"],
-    linkTitle: "Coming Soon",
-    linkUrl: null,
+    links: [
+      { text: "GitHub", url: "https://github.com/koushik1133/melodify" }
+    ],
     icon: "fas fa-music",
   },
   {
@@ -130,8 +137,9 @@ const PROJECTS = [
     title: "Donkey Kong Multiplayer",
     description: "Backend for real-time multiplayer gaming using WebSockets. SQL/Hibernate models for low-latency matchmaking and state sync.",
     tags: ["Spring Boot", "WebSocket", "Hibernate"],
-    linkTitle: "Coming Soon",
-    linkUrl: null,
+    links: [
+      { text: "GitHub", url: "https://github.com/koushik1133/DonkeyKong" }
+    ],
     icon: "fas fa-gamepad",
   },
   {
@@ -140,8 +148,7 @@ const PROJECTS = [
     title: "Roguelike Dungeon Game",
     description: "Dungeon crawler with OOP design and file I/O. Multiplayer support using WebSockets for real-time interactions.",
     tags: ["C/C++", "OOP", "WebSockets"],
-    linkTitle: "Coming Soon",
-    linkUrl: null,
+    links: [],
     icon: "fas fa-dungeon",
   },
 ];
@@ -222,7 +229,6 @@ export default function Projects() {
         >
           <div className="scroll-content projects-grid">
             {filteredProjects.map((project) => {
-              const hasLink = Boolean(project.linkUrl);
               return (
                 <motion.div
                   className="project-card"
@@ -257,21 +263,24 @@ export default function Projects() {
                         </span>
                       ))}
                     </div>
-                    <div className="project-links">
-                      {hasLink ? (
-                        <a
-                          href={project.linkUrl!}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="project-link hover-target"
-                          aria-label={`${project.linkTitle} — ${project.title}`}
-                        >
-                          <i
-                            className="fas fa-external-link-alt"
-                            aria-hidden="true"
-                          />{" "}
-                          {project.linkTitle}
-                        </a>
+                    <div className="project-links" style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+                      {project.links && project.links.length > 0 ? (
+                        project.links.map((link, idx) => (
+                          <a
+                            key={idx}
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="project-link hover-target"
+                            aria-label={`${link.text} — ${project.title}`}
+                          >
+                            <i
+                              className={link.text.toLowerCase().includes('github') ? 'fab fa-github' : 'fas fa-external-link-alt'}
+                              aria-hidden="true"
+                            />{" "}
+                            {link.text}
+                          </a>
+                        ))
                       ) : (
                         <span
                           className="project-link project-link--disabled"
