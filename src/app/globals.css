@@ -6514,6 +6514,7 @@ form .form-success {
 
 
 
+@media screen and (max-width: 768px) {
     /* ── RecentExperience – mobile ── */
     .recent-exp-card {
         padding: 1.25rem !important;
