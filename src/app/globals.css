@@ -378,9 +378,9 @@ img {
     max-width: 90%;
     z-index: 1000;
     /* Light Mode Default (Glassmorphic) */
-    background-color: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
     border: 1px solid rgba(0, 0, 0, 0.06);
     border-radius: 100px;
     box-shadow: 0 10px 30px -10px rgba(9, 9, 11, 0.08), 0 1px 3px rgba(9, 9, 11, 0.02);
@@ -391,7 +391,9 @@ img {
 /* Dark Mode Adaptation */
 body.dark-theme .header,
 html.dark-theme .header {
-    background-color: rgba(13, 13, 13, 0.65);
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.7), 0 1px 3px rgba(0, 0, 0, 0.4);
 }
@@ -939,25 +941,30 @@ body.dark-theme #themeToggle .fa-sun {
 @media screen and (min-width: 769px) {
     .hero-split {
         display: grid;
-        grid-template-areas: "text image";
         grid-template-columns: 1fr auto;
-        align-items: center;
-        gap: 3rem;
+        gap: 0rem 3rem;
         padding: 2rem 0 0;
     }
 
     .hero-name-block {
-        grid-area: text;
+        grid-column: 1;
+        grid-row: 1;
         max-width: 560px;
+        align-self: end;
+        padding-bottom: 1.5rem;
     }
 
     .hero-desc-block {
-        grid-area: text;
+        grid-column: 1;
+        grid-row: 2;
         max-width: 560px;
+        align-self: start;
     }
 
     .hero-lottie {
-        grid-area: image;
+        grid-column: 2;
+        grid-row: 1 / span 2;
+        align-self: center;
     }
 }
 
