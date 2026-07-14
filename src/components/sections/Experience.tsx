@@ -15,6 +15,10 @@ const JOBS = [
     company: "LANE Trailer Mfg.",
     duration: "Jan 2026 — Present",
     location: "IA, USA",
+    links: [
+      { text: "Live App", url: "https://production-management-murex.vercel.app" },
+      { text: "GitHub", url: "https://github.com/koushik1133/production-management" }
+    ],
     keyBullets: [
       "Architected real-time production management system with Kanban scheduling and multi-department dashboards, boosting shop efficiency by 40%.",
       "Developed n8n workflow automation using Claude/Gemini APIs, eliminating 60%+ of repetitive processes.",
@@ -37,6 +41,9 @@ const JOBS = [
     company: "Trailer Parts Experts",
     duration: "Oct 2025 — Dec 2025",
     location: "Remote",
+    links: [
+      { text: "Live Store", url: "https://trailerpartsexperts.com" }
+    ],
     keyBullets: [
       "Designed and built a fully custom Shopify e-commerce website from scratch — zero to a fully operational revenue-generating storefront.",
       "Delivered measurable business impact, contributing to a 43% increase in online sales over three months post-launch.",
@@ -114,6 +121,21 @@ function JobCard({ job }: { job: (typeof JOBS)[0] }) {
             <p className="company-location">
               <i className="fas fa-map-marker-alt" aria-hidden="true" /> {job.location}
             </p>
+            {job.links && job.links.length > 0 && (
+              <div className="job-links" style={{ marginTop: '0.5rem', display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+                {job.links.map((link, idx) => (
+                  <a 
+                    key={idx} 
+                    href={link.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    style={{ fontSize: '0.85rem', color: 'var(--primary-color)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.35rem', fontWeight: 600 }}
+                  >
+                    <i className={link.text.toLowerCase().includes('github') ? 'fab fa-github' : 'fas fa-external-link-alt'}></i> {link.text}
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 
