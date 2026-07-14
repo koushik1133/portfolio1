@@ -6408,7 +6408,6 @@ html.dark-theme .custom-cursor {
         min-height: 44px;
     }
     .banner-dot {
-        min-height: 44px;
         position: relative;
     }
     .banner-dot::before {
@@ -6417,7 +6416,7 @@ html.dark-theme .custom-cursor {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 100%;
+        width: 44px;
         height: 44px;
     }
 }
