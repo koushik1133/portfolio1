@@ -22,8 +22,8 @@ export default function Education() {
             transition={{ duration: 0.5, type: "spring", bounce: 0.4 }}
             viewport={{ once: true, margin: "-100px" }}
           >
-            <div className="timeline-icon">
-               <i className="fas fa-university"></i>
+            <div className="timeline-icon" aria-hidden="true">
+               🎓
             </div>
             <div className="timeline-content">
               <div className="timeline-header">
@@ -52,8 +52,8 @@ export default function Education() {
             transition={{ duration: 0.5, type: "spring", bounce: 0.4 }}
             viewport={{ once: true, margin: "-100px" }}
           >
-            <div className="timeline-icon">
-               <i className="fas fa-school"></i>
+            <div className="timeline-icon" aria-hidden="true">
+               🏫
             </div>
             <div className="timeline-content">
               <div className="timeline-header">
@@ -84,8 +84,8 @@ export default function Education() {
             transition={{ duration: 0.5, type: "spring", bounce: 0.4 }}
             viewport={{ once: true, margin: "-100px" }}
           >
-            <div className="timeline-icon">
-               <i className="fas fa-book-reader"></i>
+            <div className="timeline-icon" aria-hidden="true">
+               📖
             </div>
             <div className="timeline-content">
               <div className="timeline-header">
