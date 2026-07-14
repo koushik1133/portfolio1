@@ -6312,10 +6312,7 @@ html.dark-theme .custom-cursor {
         width: 100% !important;
         height: 100% !important;
     }
-    /* Truncate descriptions on mobile */
-    .job-description li:nth-child(n+3) {
-        display: none !important;
-    }
+    /* Truncation on mobile is handled by React state now */
     .education-description p {
         display: -webkit-box;
         -webkit-line-clamp: 3;
