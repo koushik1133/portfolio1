@@ -676,6 +676,7 @@ body.dark-theme #themeToggle .fa-sun {
         width: 2.25rem;
         height: 2.25rem;
         background-color: var(--bg-color-alt);
+        color: var(--text-color);
     }
     
     #themeToggle .fa-moon,
@@ -6511,84 +6512,7 @@ form .form-success {
     }
 }
 
-/* ── HOME PAGE: Featured Projects – Dark Space Background (mobile only) ── */
-@media screen and (max-width: 768px) {
-    .featured-projects-section {
-        background: linear-gradient(180deg, #09090b 0%, #0d0d1a 40%, #09090b 100%) !important;
-        border-radius: 0 !important;
-        padding: 2.5rem 0 2.5rem !important;
-        position: relative;
-        overflow: hidden;
-    }
 
-    .featured-projects-section::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background-image:
-            radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px),
-            radial-gradient(circle, rgba(96,165,250,0.04) 1px, transparent 1px);
-        background-size: 28px 28px, 56px 56px;
-        background-position: 0 0, 14px 14px;
-        pointer-events: none;
-        z-index: 0;
-    }
-
-    .featured-projects-section::after {
-        content: '';
-        position: absolute;
-        top: 30%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 300px;
-        height: 300px;
-        background: radial-gradient(circle, rgba(41,121,255,0.12) 0%, transparent 70%);
-        pointer-events: none;
-        z-index: 0;
-    }
-
-    .featured-projects-section .container {
-        position: relative;
-        z-index: 1;
-    }
-
-    .featured-projects-section .section-title-small {
-        color: #ffffff !important;
-    }
-    .featured-projects-section .view-all-link {
-        color: rgba(255, 255, 255, 0.6) !important;
-    }
-    .featured-projects-section .view-all-link:hover {
-        color: #60a5fa !important;
-    }
-
-    .featured-card {
-        background: rgba(255, 255, 255, 0.04) !important;
-        border: 1px solid rgba(255, 255, 255, 0.08) !important;
-        border-radius: 20px !important;
-        padding: 1.25rem !important;
-        gap: 1.5rem !important;
-        grid-template-columns: 1fr !important;
-    }
-
-    .featured-title {
-        font-size: 1.5rem !important;
-        color: #ffffff !important;
-    }
-    .featured-subtitle {
-        font-size: 1rem !important;
-        color: rgba(255, 255, 255, 0.55) !important;
-        margin-bottom: 0.75rem !important;
-    }
-    .featured-desc {
-        font-size: 0.9rem !important;
-        color: rgba(255, 255, 255, 0.65) !important;
-        margin-bottom: 1.25rem !important;
-        line-height: 1.6 !important;
-    }
-    .featured-grid {
-        gap: 2rem !important;
-    }
 
     /* ── RecentExperience – mobile ── */
     .recent-exp-card {
