@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
 
 const PROJECTS = [
@@ -8,45 +8,41 @@ const PROJECTS = [
     id: "kernelhub",
     category: "sde",
     title: "KernelHub — End-to-End Business OS",
-    description: "A full-stack AI workspace for developers and teams: chat with RAG over your files, review GitHub repos, run automations on a schedule, manage production Kanban, and generate landing pages.",
+    description: "A full-stack AI workspace: chat with RAG over your files, review GitHub repos, run automations, manage production Kanban, and generate landing pages.",
     tags: ["Next.js 15", "Supabase", "Aurora DSQL", "DynamoDB", "Pinecone", "Groq", "Cloud Run"],
     linkTitle: "Live",
     linkUrl: "https://javis-xtmerz2lha-uc.a.run.app",
     icon: "fas fa-laptop-code",
-    image: null
   },
   {
     id: "doctor",
     category: "dsml",
     title: "Doctor Agent — Medical Triage",
-    description: "AI patient triage assistant answering inquiries, running RAG context checks against medical history, performing voice intake, and handling urgent physician escalations.",
+    description: "AI patient triage assistant: answers inquiries, runs RAG context checks against medical history, performs voice intake, and handles urgent physician escalations.",
     tags: ["Next.js 15", "Groq", "Whisper", "RAG"],
-    linkTitle: "Live",
-    linkUrl: "#",
+    linkTitle: "Coming Soon",
+    linkUrl: null,
     icon: "fas fa-user-md",
-    image: null
   },
   {
     id: "nexusos",
     category: "dsml",
     title: "NexusOS — Context Agent",
-    description: "Proactive cross-device AI operating system that maintains context across wearables, mobile, desktop, and vehicles (OBD-II diagnostics) using a unified memory layer.",
+    description: "Proactive cross-device AI OS maintaining context across wearables, mobile, desktop, and vehicles (OBD-II diagnostics) via a unified memory layer.",
     tags: ["Multi-Agent", "Memory", "Voice AI", "IoT"],
-    linkTitle: "Read Case Study",
-    linkUrl: "#",
+    linkTitle: "Coming Soon",
+    linkUrl: null,
     icon: "fas fa-mobile-alt",
-    image: null
   },
   {
     id: "openclaw",
     category: "dsml",
     title: "OpenClaw Command Center",
-    description: "Privacy-first local AI command center running on personal hardware. Integrates Slack/Telegram bots, Firecrawl web search, and LanceDB semantic memory.",
+    description: "Privacy-first local AI command center on personal hardware. Integrates Slack/Telegram bots, Firecrawl web search, and LanceDB semantic memory.",
     tags: ["Ollama", "Slack/Telegram", "LanceDB", "Tmux"],
-    linkTitle: "Read Case Study",
-    linkUrl: "#",
+    linkTitle: "Coming Soon",
+    linkUrl: null,
     icon: "fas fa-terminal",
-    image: null
   },
   {
     id: "cybersecurity",
@@ -54,76 +50,69 @@ const PROJECTS = [
     title: "Malicious URL Detection",
     description: "End-to-end MLOps pipeline on AWS using XGBoost. Automates data ingestion, hyperparameter tracking via MLFlow, containerization, and FastAPI inference.",
     tags: ["XGBoost", "MLFlow", "Docker", "AWS"],
-    linkTitle: "Read Case Study",
-    linkUrl: "#",
+    linkTitle: "Coming Soon",
+    linkUrl: null,
     icon: "fas fa-shield-halved",
-    image: null
   },
   {
     id: "mekk",
     category: "dsml",
     title: "Mekk — Exploration Robot",
-    description: "Autonomous AI exploration robot built on a custom 3D chassis. Features YOLOv8n tracking, ultrasonic sensor fusion collision avoidance, and local speech controls.",
+    description: "Autonomous AI exploration robot on a custom 3D chassis. Features YOLOv8n tracking, ultrasonic sensor fusion, and local speech controls via Whisper.",
     tags: ["Raspberry Pi", "YOLOv8", "Whisper", "OpenCV"],
-    linkTitle: "Live",
-    linkUrl: "#",
+    linkTitle: "Coming Soon",
+    linkUrl: null,
     icon: "fas fa-robot",
-    image: null
   },
   {
     id: "trailer",
     category: "sde",
     title: "Trailer Parts Experts",
-    description: "Designed a custom Shopify storefront theme via Liquid, driving a 43% surge in holiday sales transactions and executed technical SEO strategies.",
+    description: "Custom Shopify storefront theme via Liquid, driving a 43% surge in holiday sales and executing technical SEO strategies for regional traffic.",
     tags: ["Full-Stack", "Shopify", "Liquid"],
     linkTitle: "Live",
     linkUrl: "https://trailerpartsexperts.com",
     icon: "fas fa-truck-moving",
-    image: null
   },
   {
     id: "nldb",
     category: "dsml",
     title: "NL-to-Database Agent",
-    description: "AI agent using Google Gemini to convert English instructions into SQL queries. Developed a responsive frontend and FastAPI backend for real-time execution.",
+    description: "AI agent using Google Gemini to convert English instructions into SQL queries. Responsive frontend and FastAPI backend for real-time execution.",
     tags: ["Gemini AI", "FastAPI", "SQL"],
-    linkTitle: "Read Case Study",
-    linkUrl: "#",
+    linkTitle: "Coming Soon",
+    linkUrl: null,
     icon: "fas fa-database",
-    image: null
   },
   {
     id: "gmail",
     category: "dsml",
     title: "AI Gmail Assistant",
-    description: "Automated Gmail management agent that routes emails, generates summaries, and handles auto-labeling via multi-step agentic pipelines and workspace automation.",
+    description: "Automated Gmail agent that routes emails, generates summaries, and handles auto-labeling via multi-step agentic pipelines and workspace automation.",
     tags: ["n8n", "Gmail API", "AI Studio"],
-    linkTitle: "Read Case Study",
-    linkUrl: "#",
+    linkTitle: "Coming Soon",
+    linkUrl: null,
     icon: "fas fa-envelope-open-text",
-    image: null
   },
   {
     id: "whatsapp",
     category: "sde",
     title: "WhatsApp AI Ordering Bot",
-    description: "Developed a chatbot automating restaurant ordering, menu queries, and order tracking. Connected live inventory on Google Sheets with agentic workflows.",
+    description: "Chatbot automating restaurant ordering, menu queries, and order tracking. Connected live inventory on Google Sheets with agentic workflows.",
     tags: ["n8n", "WhatsApp API", "Sheets"],
-    linkTitle: "Read Case Study",
-    linkUrl: "#",
+    linkTitle: "Coming Soon",
+    linkUrl: null,
     icon: "fab fa-whatsapp",
-    image: null
   },
   {
     id: "arguvista",
     category: "sde",
     title: "ArguVista Analyzer",
-    description: "Distributed AI inference tool using Workers AI. Achieved sub-30ms global latency with KV-based conversation memory served from Cloudflare's edge network.",
+    description: "Distributed AI inference tool using Workers AI. Sub-30ms global latency with KV-based conversation memory served from Cloudflare's edge network.",
     tags: ["Cloudflare", "Llama", "KV"],
-    linkTitle: "Read Case Study",
-    linkUrl: "#",
+    linkTitle: "Coming Soon",
+    linkUrl: null,
     icon: "fas fa-cloud",
-    image: null
   },
   {
     id: "melodify",
@@ -131,100 +120,172 @@ const PROJECTS = [
     title: "Melodify Platform",
     description: "MERN-stack application with artist microservices, metadata management, and dynamic previews integrated via the YouTube API.",
     tags: ["React", "Node.js", "MongoDB"],
-    linkTitle: "Read Case Study",
-    linkUrl: "#",
+    linkTitle: "Coming Soon",
+    linkUrl: null,
     icon: "fas fa-music",
-    image: null
   },
   {
     id: "donkeykong",
     category: "sde",
     title: "Donkey Kong Multiplayer",
-    description: "Backend architecture for real-time multiplayer gaming using WebSockets. Designed SQL/Hibernate models for low-latency matchmaking and state sync.",
+    description: "Backend for real-time multiplayer gaming using WebSockets. SQL/Hibernate models for low-latency matchmaking and state sync.",
     tags: ["Spring Boot", "WebSocket", "Hibernate"],
-    linkTitle: "Read Case Study",
-    linkUrl: "#",
+    linkTitle: "Coming Soon",
+    linkUrl: null,
     icon: "fas fa-gamepad",
-    image: null
   },
   {
     id: "roguelike",
     category: "sde",
     title: "Roguelike Dungeon Game",
-    description: "Dungeon crawler with OOP design and file I/O. Added multiplayer support using WebSockets to reduce latency and enable real-time interactions.",
+    description: "Dungeon crawler with OOP design and file I/O. Multiplayer support using WebSockets for real-time interactions.",
     tags: ["C/C++", "OOP", "WebSockets"],
-    linkTitle: "Read Case Study",
-    linkUrl: "#",
+    linkTitle: "Coming Soon",
+    linkUrl: null,
     icon: "fas fa-dungeon",
-    image: null
-  }
+  },
 ];
 
 export default function Projects() {
   const [filter, setFilter] = useState("all");
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  const filteredProjects = PROJECTS.filter((p) => filter === "all" || p.category === filter);
+  // Touch-swipe tracking for scroll container
+  const touchStartX = useRef<number | null>(null);
+
+  const filteredProjects = PROJECTS.filter(
+    (p) => filter === "all" || p.category === filter
+  );
 
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
-      const scrollAmount = direction === "left" ? -400 : 400;
+      // Use card width so we scroll exactly one card on mobile
+      const cardWidth =
+        scrollRef.current.querySelector<HTMLElement>(".project-card")
+          ?.offsetWidth ?? 360;
+      const scrollAmount = direction === "left" ? -cardWidth : cardWidth;
       scrollRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
     }
   };
 
   return (
-    <section className="projects section horizontal-scroll-enabled" id="projects">
+    <section
+      className="projects section horizontal-scroll-enabled"
+      id="projects"
+    >
       <div className="container">
         <div className="section-heading">
           <h2>My Projects</h2>
-          <div className="underline"></div>
+          <div className="underline" />
         </div>
-        <div className="project-filters">
-          <button className={`filter-button ${filter === "all" ? "active" : ""}`} onClick={() => setFilter("all")}>All Projects</button>
-          <button className={`filter-button ${filter === "sde" ? "active" : ""}`} onClick={() => setFilter("sde")}>Full-Stack / Web</button>
-          <button className={`filter-button ${filter === "dsml" ? "active" : ""}`} onClick={() => setFilter("dsml")}>AI & Data</button>
+
+        {/* Filter buttons */}
+        <div className="project-filters" role="group" aria-label="Filter projects">
+          {[
+            { key: "all", label: "All Projects" },
+            { key: "sde", label: "Full-Stack / Web" },
+            { key: "dsml", label: "AI & Data" },
+          ].map(({ key, label }) => (
+            <button
+              key={key}
+              className={`filter-button ${filter === key ? "active" : ""}`}
+              onClick={() => setFilter(key)}
+              aria-pressed={filter === key}
+            >
+              {label}
+            </button>
+          ))}
         </div>
-        
-        <div className="scroll-arrow-container">
-           <button className="scroll-arrow prev-arrow" aria-label="Previous items" onClick={() => scroll("left")}>
-               <i className="fas fa-chevron-left"></i>
-           </button>
-           <button className="scroll-arrow next-arrow" aria-label="Next items" onClick={() => scroll("right")}>
-               <i className="fas fa-chevron-right"></i>
-           </button>
+
+        {/* Scroll arrows */}
+        <div className="scroll-arrow-container" aria-hidden="true">
+          <button
+            className="scroll-arrow prev-arrow"
+            aria-label="Scroll projects left"
+            onClick={() => scroll("left")}
+          >
+            <i className="fas fa-chevron-left" aria-hidden="true" />
+          </button>
+          <button
+            className="scroll-arrow next-arrow"
+            aria-label="Scroll projects right"
+            onClick={() => scroll("right")}
+          >
+            <i className="fas fa-chevron-right" aria-hidden="true" />
+          </button>
         </div>
-        
-        <div className="horizontal-scroll-wrapper" ref={scrollRef}>
+
+        {/* Scrollable card rail */}
+        <div
+          className="horizontal-scroll-wrapper"
+          ref={scrollRef}
+        >
           <div className="scroll-content projects-grid">
-            {filteredProjects.map((project) => (
-              <motion.div 
-                className="project-card" 
-                data-category={project.category} 
-                key={project.id}
-                whileHover={{ y: -10, scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              >
-                <div className="project-image" style={{display: 'flex', alignItems: 'center', justifyContent: 'center', height: '180px', background: '#1a1a1a', color: '#fff', fontSize: '3rem'}}>
-                  {/* Using icon in place of image for now as requested by user's design */}
-                  <i className={project.icon}></i>
-                </div>
-                <div className="project-content">
-                  <h3 className="project-title">{project.title}</h3>
-                  <p className="project-description">{project.description}</p>
-                  <div className="project-tech-stack">
-                    {project.tags.map((tag) => (
-                      <span className="tech-tag" key={tag}>{tag}</span>
-                    ))}
+            {filteredProjects.map((project) => {
+              const hasLink = Boolean(project.linkUrl);
+              return (
+                <motion.div
+                  className="project-card"
+                  data-category={project.category}
+                  key={project.id}
+                  whileHover={{ y: -8, scale: 1.015 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 22 }}
+                >
+                  {/* Icon banner */}
+                  <div
+                    className="project-image"
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      height: "160px",
+                      background: "#1a1a1a",
+                      color: "#fff",
+                      fontSize: "2.8rem",
+                    }}
+                  >
+                    <i className={project.icon} aria-hidden="true" />
                   </div>
-                  <div className="project-links">
-                    <a href={project.linkUrl} className="project-link hover-target">
-                      <i className="fas fa-external-link-alt"></i> {project.linkTitle}
-                    </a>
+
+                  <div className="project-content">
+                    <h3 className="project-title">{project.title}</h3>
+                    <p className="project-description">{project.description}</p>
+                    <div className="project-tech-stack">
+                      {project.tags.map((tag) => (
+                        <span className="tech-tag" key={tag}>
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="project-links">
+                      {hasLink ? (
+                        <a
+                          href={project.linkUrl!}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="project-link hover-target"
+                          aria-label={`${project.linkTitle} — ${project.title}`}
+                        >
+                          <i
+                            className="fas fa-external-link-alt"
+                            aria-hidden="true"
+                          />{" "}
+                          {project.linkTitle}
+                        </a>
+                      ) : (
+                        <span
+                          className="project-link project-link--disabled"
+                          aria-label="Coming soon"
+                        >
+                          <i className="fas fa-clock" aria-hidden="true" />{" "}
+                          Coming Soon
+                        </span>
+                      )}
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </div>

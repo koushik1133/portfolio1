@@ -6,14 +6,17 @@ export default function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
   const [isHovering, setIsHovering] = useState(false);
+  const [isTouch, setIsTouch] = useState(true); // assume touch until checked
 
   useEffect(() => {
-    // Hide cursor on touch devices
-    if ("ontouchstart" in window) {
-      if (cursorRef.current) cursorRef.current.style.display = "none";
-      if (glowRef.current) glowRef.current.style.display = "none";
+    // Immediately bail out on touch / coarse-pointer devices (phones, tablets)
+    const coarse = window.matchMedia("(pointer: coarse)").matches;
+    const hasTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+    if (coarse || hasTouch) {
+      setIsTouch(true);
       return;
     }
+    setIsTouch(false);
 
     let mouseX = 0;
     let mouseY = 0;
@@ -23,7 +26,7 @@ export default function CustomCursor() {
     const handleMouseMove = (e: MouseEvent) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
-      
+
       if (cursorRef.current) {
         cursorRef.current.style.left = `${mouseX}px`;
         cursorRef.current.style.top = `${mouseY}px`;
@@ -54,7 +57,6 @@ export default function CustomCursor() {
     let animationFrameId: number;
 
     const animateGlow = () => {
-      // Lerp the glow behind the cursor
       glowX += (mouseX - glowX) * 0.12;
       glowY += (mouseY - glowY) * 0.12;
 
@@ -77,15 +79,18 @@ export default function CustomCursor() {
     };
   }, []);
 
+  // Render nothing on touch/coarse-pointer devices — saves JS + avoids CSS conflicts
+  if (isTouch) return null;
+
   return (
     <>
-      <div 
-        ref={glowRef} 
-        className={`cursor-glow ${isHovering ? "cursor-hover" : ""}`} 
+      <div
+        ref={glowRef}
+        className={`cursor-glow ${isHovering ? "cursor-hover" : ""}`}
       />
-      <div 
-        ref={cursorRef} 
-        className={`custom-cursor ${isHovering ? "cursor-hover" : ""}`} 
+      <div
+        ref={cursorRef}
+        className={`custom-cursor ${isHovering ? "cursor-hover" : ""}`}
       />
     </>
   );

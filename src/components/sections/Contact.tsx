@@ -56,10 +56,8 @@ export default function Contact() {
     show: { opacity: 1, y: 0, transition: { type: "spring" as const, stiffness: 100 } },
   };
 
-
   return (
     <section className="contact-section section" id="contact">
-      {/* Background decoration */}
       <div className="contact-bg-glow contact-bg-glow--right" />
       <div className="contact-bg-glow contact-bg-glow--left" />
 
@@ -228,6 +226,7 @@ export default function Contact() {
                       name="name" 
                       className="terminal-input hover-target"
                       placeholder="Enter your name..." 
+                      autoComplete="name"
                       required
                     />
                   </div>
@@ -243,6 +242,8 @@ export default function Contact() {
                       name="email" 
                       className="terminal-input hover-target"
                       placeholder="your@email.com" 
+                      autoComplete="email"
+                      inputMode="email"
                       required
                     />
                   </div>
@@ -257,6 +258,7 @@ export default function Contact() {
                       name="message" 
                       className="terminal-input terminal-textarea hover-target"
                       placeholder="Type your message here..." 
+                      rows={5}
                       required
                     ></textarea>
                   </div>
