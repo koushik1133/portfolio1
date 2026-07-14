@@ -2140,13 +2140,14 @@ body.dark-theme #themeToggle .fa-sun {
     margin-left: 21.5px; /* (line left position + half line width) */
     width: 40px;
     height: 40px;
-    background-color: var(--primary-color);
+    background-color: var(--card-bg);
     border: 3px solid var(--bg-color); /* To make it pop from the line */
     border-radius: var(--border-radius-round);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--bg-color); /* FIXED: Use bg-color so it contrasts with primary-color background */
+    color: var(--text-color);
     font-size: 1.2rem;
     z-index: 1; /* Above the timeline line */
 }
@@ -2738,6 +2739,7 @@ body.dark-theme #themeToggle .fa-sun {
 .category-icon {
     width: 64px;
     height: 64px;
+    flex-shrink: 0;
     background: linear-gradient(135deg, rgba(var(--primary-color-rgb), 0.2) 0%, rgba(var(--primary-color-rgb), 0.1) 100%);
     border-radius: 16px;
     display: flex;
