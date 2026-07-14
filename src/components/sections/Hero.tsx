@@ -28,11 +28,17 @@ export default function Hero() {
       <div className="hero-grid-bg" aria-hidden="true" />
 
       <div className="hero-container">
-        {/* Split row: text | lottie */}
+        {/*
+          Desktop: hero-split is a flex row  →  [text left] [image right]
+          Mobile:  hero-split is flex column →  order controls the stack:
+                   1. hero-name-block  (badge + name)
+                   2. hero-lottie      (image)
+                   3. hero-desc-block  (description + buttons)
+        */}
         <div className="hero-split">
-          {/* LEFT: Text */}
+          {/* BLOCK 1 — Badge + Name (order:1 on mobile) */}
           <motion.div
-            className="hero-content"
+            className="hero-name-block"
             variants={containerVariants}
             initial="hidden"
             animate="show"
@@ -49,7 +55,33 @@ export default function Hero() {
               <br />
               <span className="hero-gradient" style={{ fontSize: '0.7em', fontWeight: 500 }}>Software Engineer</span>
             </motion.h1>
+          </motion.div>
 
+          {/* BLOCK 2 — 3D Boy character (order:2 on mobile, right side on desktop) */}
+          <motion.div
+            className="hero-lottie"
+            initial={{ opacity: 0, x: 60, scale: 0.9 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
+            aria-hidden="true"
+          >
+            <Image
+              src="/boy_character.png"
+              alt="3D Boy Character"
+              width={500}
+              height={500}
+              style={{ width: "100%", height: "100%", objectFit: "contain" }}
+              priority
+            />
+          </motion.div>
+
+          {/* BLOCK 3 — Description + CTAs (order:3 on mobile) */}
+          <motion.div
+            className="hero-desc-block"
+            variants={containerVariants}
+            initial="hidden"
+            animate="show"
+          >
             {/* Description */}
             <motion.p className="hero-description" variants={itemVariants}>
               Software Engineer at <strong>LANE Trailer Mfg.</strong> and Senior Computer Science student
@@ -84,24 +116,6 @@ export default function Hero() {
                 GitHub
               </a>
             </motion.div>
-          </motion.div>
-
-          {/* RIGHT: 3D Boy character */}
-          <motion.div
-            className="hero-lottie"
-            initial={{ opacity: 0, x: 60, scale: 0.9 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
-            aria-hidden="true"
-          >
-            <Image
-              src="/boy_character.png"
-              alt="3D Boy Character"
-              width={500}
-              height={500}
-              style={{ width: "100%", height: "100%", objectFit: "contain" }}
-              priority
-            />
           </motion.div>
         </div>
 

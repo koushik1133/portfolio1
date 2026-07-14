@@ -907,13 +907,57 @@ body.dark-theme #themeToggle .fa-sun {
     padding: 2rem 0 0;
 }
 
-/* ======= Hero Content (left column) ======= */
+/* ======= Hero Content (left column — desktop) ======= */
 .hero-content {
     flex: 1;
     max-width: 560px;
     display: flex;
     flex-direction: column;
     gap: 0;
+}
+
+/* Desktop: name-block and desc-block both sit in the left flex column */
+.hero-name-block,
+.hero-desc-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* On desktop the two blocks share the left flex-1 slot */
+.hero-name-block {
+    flex: none;
+}
+
+.hero-desc-block {
+    flex: 1;
+    max-width: 560px;
+}
+
+/* Desktop wrapper: name+desc stacked on left, image on right */
+@media screen and (min-width: 769px) {
+    .hero-split {
+        display: grid;
+        grid-template-areas: "text image";
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: 3rem;
+        padding: 2rem 0 0;
+    }
+
+    .hero-name-block {
+        grid-area: text;
+        max-width: 560px;
+    }
+
+    .hero-desc-block {
+        grid-area: text;
+        max-width: 560px;
+    }
+
+    .hero-lottie {
+        grid-area: image;
+    }
 }
 
 /* Available badge */
@@ -1673,16 +1717,39 @@ body.dark-theme #themeToggle .fa-sun {
         padding-bottom: 4rem;
     }
 
+    /* ── Mobile hero order: Badge+Name → Image → Description+Buttons ── */
     .hero-split {
-        flex-direction: column-reverse;
+        flex-direction: column;
+        align-items: center;
         text-align: center;
-        gap: 2rem;
-        padding-top: 1rem;
+        gap: 0;
+        padding-top: 0.5rem;
     }
 
-    .hero-content {
+    /* 1st: badge + name */
+    .hero-name-block {
         max-width: 100%;
         align-items: center;
+        order: 1;
+        padding-bottom: 0.5rem;
+    }
+
+    /* 2nd: character image */
+    .hero-lottie {
+        flex: 0 0 auto;
+        width: 220px;
+        height: 220px;
+        order: 2;
+        margin: 0.25rem auto;
+        animation: none; /* pause float on mobile for clarity */
+    }
+
+    /* 3rd: description + buttons */
+    .hero-desc-block {
+        max-width: 100%;
+        align-items: center;
+        order: 3;
+        padding-top: 0.5rem;
     }
 
     .hero-badge {
@@ -1696,12 +1763,6 @@ body.dark-theme #themeToggle .fa-sun {
 
     .hero-actions {
         justify-content: center;
-    }
-
-    .hero-lottie {
-        flex: 0 0 auto;
-        width: 280px;
-        height: 280px;
     }
 }
 
@@ -4877,17 +4938,10 @@ body.dark-theme #themeToggle .fa-sun {
    Hero Component Responsive Styling
    ------------------------------------------- */
 @media only screen and (max-width: 480px) {
+    /* REMOVED: flex-direction:column-reverse on .hero-content was scrambling
+       name/description/button order. Now handled by order properties below. */
     .hero-content {
-        flex-direction: column-reverse;
-    }
-    
-    .hero-image {
-        margin-bottom: 2rem;
-    }
-    
-    .hero-image img {
-        max-width: 180px;
-        height: auto;
+        flex-direction: column;
     }
     
     .hero-title {
