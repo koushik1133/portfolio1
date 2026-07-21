@@ -107,8 +107,7 @@ Other major projects include:
       setTimeout(() => {
         addMessage("assistant", `📞 **Connect with Koushik:**
 - **Email**: koushik9924@gmail.com
-- **Phone**: (515) 451-2785
-- **Location**: Minnesota, USA
+- **Location**: Ames, IA
 - **GitHub**: github.com/koushik1133
 - **LinkedIn**: linkedin.com/in/koushik-shaganti
 

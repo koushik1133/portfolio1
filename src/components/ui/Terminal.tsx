@@ -144,8 +144,7 @@ export default function Terminal() {
             ...currentLines,
             { text: "================ CONNECT SYSTEM ================", type: "system" },
             { text: "📧 Email: koushik9924@gmail.com", type: "output" },
-            { text: "📞 Phone: (515) 451-2785", type: "output" },
-            { text: "📍 Location: Minnesota, USA", type: "output" },
+            { text: "📍 Location: Ames, IA", type: "output" },
             { text: "🔗 GitHub: github.com/koushik1133", type: "output" },
             { text: "🔗 LinkedIn: linkedin.com/in/koushik-shaganti", type: "output" }
           ]);

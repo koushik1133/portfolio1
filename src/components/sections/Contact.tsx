@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Phone, MapPin, Send, Clock, CheckCircle2, X } from "lucide-react";
+import { Mail, MapPin, Send, Clock, CheckCircle2, X } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 export default function Contact() {
@@ -106,21 +106,7 @@ export default function Contact() {
                 </div>
               </motion.a>
 
-              {/* Phone Card */}
-              <motion.a 
-                href="tel:5154512785"
-                className="hover-target contact-info-card"
-                variants={itemVariants}
-                whileHover={{ x: 4 }}
-              >
-                <div className="contact-info-icon contact-info-icon--purple">
-                  <Phone size={22} />
-                </div>
-                <div className="contact-info-text">
-                  <span className="contact-info-label">Phone</span>
-                  <span className="contact-info-value">(515) 451-2785</span>
-                </div>
-              </motion.a>
+
 
               {/* Location Card */}
               <motion.div 
@@ -133,7 +119,7 @@ export default function Contact() {
                 </div>
                 <div className="contact-info-text">
                   <span className="contact-info-label">Location</span>
-                  <span className="contact-info-value">Minnesota, USA</span>
+                  <span className="contact-info-value">Ames, IA</span>
                 </div>
               </motion.div>
 

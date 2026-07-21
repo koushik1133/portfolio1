@@ -25,8 +25,7 @@ Here is Koushik's complete profile details:
   - **Databases**: PostgreSQL, MySQL, MongoDB, Pinecone, LanceDB, Supabase, Aurora DSQL, DynamoDB
 - **Contact Details**:
   - **Email**: koushik9924@gmail.com
-  - **Phone**: (515) 451-2785
-  - **Location**: Minnesota, USA (previously Iowa/Hyderabad)
+  - **Location**: Ames, IA (previously Iowa/Hyderabad)
   - **GitHub**: https://github.com/koushik1133
   - **LinkedIn**: https://www.linkedin.com/in/koushik-shaganti
 
